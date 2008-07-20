@@ -29,4 +29,41 @@ Different sections of the program:
   * Write DAQ, output LCD screen, reset button flipflop
   * GPS, get gps update if available
 
+Should there be an fltk gui thread as in previous versions? Having a gui would make things easier when loading thing initially, but don't need the realtime gui since will never be using it. So only a console application with perhaps and open file dialog when first executed to load the directions file.
+
 Different threads will be, calculation, DAQ communication, GPS reading, log data.
+
+20x4 LCD layout will be
+{{{
+12345678901234567890
+
+During rallye operation:
+## LSS       ##:##.#
+##>SL adfasdfasdfasd
+## SSS      ##.##/##
+## R1       ##.# ###
+
+
+1) [2 cast][1 space][9 dir][1 space][7 time]
+2) [2 cast][1 arrow][17 dir]
+3) [2 cast][1 space][8 dir][1 space][8 avg spd/cast]
+4) [2 cast][1 space][8 dir][1 space][4 cur spd][4 cur direction number]
+
+Stopped
+##>LSS/U    
+## 
+!Stopped!
+MODE: input area
+
+
+##>LSS/U    
+## 
+!Countdown to go!
+Timer: ##:##.##
+}}}
+
+If no cast change on a direction, then the 3 spaces on the left will be given to the direction.
+
+LCD display has 160 characters/second update rate, so updating, 17 characters can easily get 5Hz update rate for dynamic fields
+
+How to handle initial inputting of times and counting down? Sync to rallye clock, input leave time, start timer counting down to leave time. Need ability to do all that through the LCD, so that the laptop lid never has to be opened during the rallye. Only time it should be opened is at the beginning when loading the directions on to the laptop.
