@@ -5,6 +5,19 @@
 Some guiding principles in designing the code for this project:
   * Must be completly realtime, no blocking for I/O or read operations
   * Multithreaded, seperate threads for each main task of the system
+  * Easy to use, must be simple and quick to start up and initialize
+  * Gracefully handle errors, including loss of GPS signal
+  * Use common libraries, including Boost Threads
+
+== Components ==
+
+Different hardware components making up the system:
+  * *Laptop*, runs everything
+  * *Buttons*, external buttons mounted next to shifter, for next, checkpoint, undo, panic, used during the rallye
+  * *LCD*, external 20x4 LCD display mounted on gauge cluster, used to display
+  * *Audio*, laptop audio out going through the car stereo to read directions out loud
+  * *DAQ*, interface everything with the laptop, including reading the VSS signal through the counter
+  * *Laptop mount*, mount all loose electronics and laptop
 
 
 = Details =
@@ -14,3 +27,5 @@ Different sections of the program:
   * Read DAQ, read in button status, wheel sensor counter
   * Write DAQ, output LCD screen, reset button flipflop
   * GPS, get gps update if available
+
+Different threads will be, calculation, DAQ communication, GPS reading, log data.
