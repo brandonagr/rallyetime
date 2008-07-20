@@ -1,0 +1,16 @@
+#summary RallyeTime DG design
+
+= Introduction =
+
+Some guiding principles in designing the code for this project:
+  * Must be completly realtime, no blocking for I/O or read operations
+  * Multithreaded, seperate threads for each main task of the system
+
+
+= Details =
+
+Different sections of the program:
+  * Calculation, based on current time and distance, 
+  * Read DAQ, read in button status, wheel sensor counter
+  * Write DAQ, output LCD screen, reset button flipflop
+  * GPS, get gps update if available
