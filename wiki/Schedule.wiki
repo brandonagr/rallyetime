@@ -1,0 +1,20 @@
+#summary Summer development schedule
+#labels Featured,Phase-Requirements
+
+= Week Deadlines = 
+
+*July 20*- Design software, get all libraries compiling
+
+*July 27*- Have DAQ, board mounted, test VSS
+
+*August 3*- Make LCD mount, test realtime VSS
+
+*August 10*- Have software fully functioning
+
+*August 17*- Test, debug software
+
+*August 24*- Run 2 test rallyes, evaulate performance
+
+*August 31*- Run 1 more test rallye, first rallye on friday night
+
+September 5 is the first rallye, end of week of August 31st
