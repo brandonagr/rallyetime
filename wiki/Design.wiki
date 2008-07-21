@@ -31,7 +31,9 @@ Different sections of the program:
 
 Should there be an fltk gui thread as in previous versions? Having a gui would make things easier when loading thing initially, but don't need the realtime gui since will never be using it. So only a console application with perhaps and open file dialog when first executed to load the directions file.
 
-Different threads will be, calculation, DAQ communication, GPS reading, log data.
+Different threads will be, calculation[1](wr current state/rd buttons/vss), DAQ communication[2](wr buttons/rd current state), GPS reading[3](wr cur pos), log data[4](rd buttons/current state).
+
+Possibly use an event buffer following the description in http://www.ddj.com/cpp/184401518 to communicate between threads. 
 
 20x4 LCD layout will be
 {{{
