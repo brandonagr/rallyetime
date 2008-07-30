@@ -28,6 +28,7 @@ Different sections of the program:
   * Read DAQ, read in button status, wheel sensor counter
   * Write DAQ, output LCD screen, reset button flipflop
   * GPS, get gps update if available
+  * Audio, use MS speech SDK to speak next two directions and button push acknowledgements
 
 Should there be an fltk gui thread as in previous versions? Having a gui would make things easier when loading thing initially, but don't need the realtime gui since will never be using it. So only a console application with perhaps and open file dialog when first executed to load the directions file.
 
