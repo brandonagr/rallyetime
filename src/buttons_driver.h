@@ -14,11 +14,13 @@ Brandon Green - 08-05-29
 class ButtonsDriver
 {
 private:
-  //ports for lcd output
+  //ports for buttons/input
   DAQTask input_;
+  DAQTask ws_input_;
   DAQTask reset_;
 
   unsigned char read_buttons();
+  unsigned long read_wheelsensor();
   void reset_buttons();  
 
 public:
