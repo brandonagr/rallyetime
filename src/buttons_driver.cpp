@@ -32,18 +32,18 @@ ButtonsDriver::ButtonsDriver()
 {
 
   //Initialize the LCD ports as outputs
-  err_chk( DAQmxBaseCreateDIChan(input_.t_,"Dev1/port1/line4:7","",DAQmx_Val_ChanForAllLines) );
-  err_chk( DAQmxBaseCreateCICountEdgesChan(ws_input_.t_,"Dev1/ctr0","",DAQmx_Val_Falling,0,DAQmx_Val_CountUp));
-  err_chk( DAQmxBaseCreateDOChan(reset_.t_,"Dev1/port2/line6","",DAQmx_Val_ChanForAllLines) );
-  err_chk( DAQmxBaseStartTask (input_.t_) );
-  err_chk( DAQmxBaseStartTask (ws_input_.t_) );
-  err_chk( DAQmxBaseStartTask (reset_.t_) );
+  err_chk( DAQmxCreateDIChan(input_.t_,"Dev1/port1/line4:7","",DAQmx_Val_ChanForAllLines) );
+  err_chk( DAQmxCreateCICountEdgesChan(ws_input_.t_,"Dev1/ctr0","",DAQmx_Val_Falling,0,DAQmx_Val_CountUp));
+  err_chk( DAQmxCreateDOChan(reset_.t_,"Dev1/port2/line6","",DAQmx_Val_ChanForAllLines) );
+  err_chk( DAQmxStartTask (input_.t_) );
+  err_chk( DAQmxStartTask (ws_input_.t_) );
+  err_chk( DAQmxStartTask (reset_.t_) );
 
   reset_buttons();    
 
   for(int i=0; i<100; i++)
   {
-    /*
+    
     unsigned char buttons=read_buttons();
 
     std::cout<<"Read in: "<<convBase(buttons,2)<<std::endl;
@@ -52,11 +52,11 @@ ButtonsDriver::ButtonsDriver()
     {
       std::cout<<"Resetting debounce circuit..."<<std::endl;
       reset_buttons();
-    }*/
-
+    }
+/*
     unsigned int count=read_wheelsensor();
     cout<<"wheel sensor count: "<<count<<endl;
-
+*/
     Sleep(1000);
   }
 }
@@ -71,7 +71,7 @@ unsigned char ButtonsDriver::read_buttons()
 {
   unsigned char data;
   int32 read;
-  err_chk (DAQmxBaseReadDigitalU8 (input_.t_,1,1.0,DAQmx_Val_GroupByChannel,&data,1,&read,(bool32*)NULL));
+  err_chk (DAQmxReadDigitalU8 (input_.t_,1,1.0,DAQmx_Val_GroupByChannel,&data,1,&read,(bool32*)NULL));
 
   if (read==0)
     std::cout<<"What I didn't get any samples?"<<std::endl;
@@ -84,7 +84,7 @@ unsigned char ButtonsDriver::read_buttons()
 unsigned long ButtonsDriver::read_wheelsensor()
 {
   unsigned long data;
-  err_chk (DAQmxBaseReadCounterScalarU32(ws_input_.t_,1.0,&data,NULL));
+  err_chk (DAQmxReadCounterScalarU32(ws_input_.t_,1.0,&data,NULL));
 
   return data;
 }
@@ -95,7 +95,7 @@ void ButtonsDriver::reset_buttons()
 {
   unsigned char data_reset=0;
   int32 written;
-  err_chk (DAQmxBaseWriteDigitalU8(reset_.t_,1,0,1.0,DAQmx_Val_GroupByChannel,&data_reset,&written,(bool32*)NULL));
+  err_chk (DAQmxWriteDigitalU8(reset_.t_,1,0,1.0,DAQmx_Val_GroupByChannel,&data_reset,&written,(bool32*)NULL));
   data_reset=0xFF;
-  err_chk (DAQmxBaseWriteDigitalU8(reset_.t_,1,0,1.0,DAQmx_Val_GroupByChannel,&data_reset,&written,(bool32*)NULL));
+  err_chk (DAQmxWriteDigitalU8(reset_.t_,1,0,1.0,DAQmx_Val_GroupByChannel,&data_reset,&written,(bool32*)NULL));
 }

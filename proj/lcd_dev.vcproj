@@ -61,7 +61,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="&quot;..\libs\nidaqmxbase.lib&quot;"
+				AdditionalDependencies="&quot;..\libs\nidaqmx.lib&quot;"
 				OutputFile="../bin/lcd_devd.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories=""
@@ -139,7 +139,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="&quot;..\libs\nidaqmxbase.lib&quot;"
+				AdditionalDependencies="&quot;..\libs\nidaqmx.lib&quot;"
 				OutputFile="../bin/lcd_dev.exe"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""

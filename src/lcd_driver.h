@@ -8,7 +8,7 @@ Brandon Green - 08-05-29
 #ifndef LCD_DRIVER_H_
 #define LCD_DRIVER_H_
 
-#include "NIDAQmxBase.h"
+#include "NIDAQmx.h"
 #include <string>
 
 //----------------------------------------------------------------
@@ -34,14 +34,14 @@ struct DAQTask
   DAQTask(const char taskname[])
     :t_(0)
   {
-    err_chk( DAQmxBaseCreateTask(taskname, &t_) );
+    err_chk( DAQmxCreateTask(taskname, &t_) );
   }
   ~DAQTask()
   {
     if (t_)
     {
-      DAQmxBaseStopTask(t_);
-      DAQmxBaseClearTask(t_);
+      DAQmxStopTask(t_);
+      DAQmxClearTask(t_);
       t_=0;
     }
   }
