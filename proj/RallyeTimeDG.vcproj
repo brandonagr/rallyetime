@@ -2,8 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8.00"
-	Name="lcd_dev"
-	ProjectGUID="{034C7EC5-3DEF-4277-930D-652807732576}"
+	Name="RallyeTimeDG"
+	ProjectGUID="{1237C19F-5D08-4809-BB81-E167542782CF}"
+	RootNamespace="RallyeTimeDG"
 	Keyword="Win32Proj"
 	>
 	<Platforms>
@@ -16,8 +17,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="build\lcd_dev\$(ConfigurationName)"
-			IntermediateDirectory="build\lcd_dev\$(ConfigurationName)"
+			OutputDirectory="build\RallyeTimeDG\$(ConfigurationName)"
+			IntermediateDirectory="build\RallyeTimeDG\$(ConfigurationName)"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			CharacterSet="2"
@@ -62,12 +63,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="&quot;..\libs\nidaqmx.lib&quot;"
-				OutputFile="../bin/lcd_devd.exe"
+				OutputFile="../bin/RallyeTimeDG_d.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories=""
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(OutDir)/lcd_dev.pdb"
+				ProgramDatabaseFile="$(OutDir)/RallyeTimeDG.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -98,10 +99,11 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="build\lcd_dev\$(ConfigurationName)"
-			IntermediateDirectory="build\lcd_dev\$(ConfigurationName)"
+			OutputDirectory="build\RallyeTimeDG\$(ConfigurationName)"
+			IntermediateDirectory="build\RallyeTimeDG\$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="2"
+			WholeProgramOptimization="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -140,7 +142,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="&quot;..\libs\nidaqmx.lib&quot;"
-				OutputFile="../bin/lcd_dev.exe"
+				OutputFile="../bin/RallyeTimeDG.exe"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""
 				DelayLoadDLLs=""
@@ -181,27 +183,50 @@
 	<Files>
 		<Filter
 			Name="Main"
-			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
+			<File
+				RelativePath="..\src\main.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
-			Name="daq_drivers"
+			Name="RallyeTime"
 			>
 			<File
-				RelativePath="..\src\buttons_driver.cpp"
+				RelativePath="..\src\GPS.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\buttons_driver.h"
+				RelativePath="..\src\GPS.h"
 				>
 			</File>
 			<File
-				RelativePath="..\src\lcd_driver.cpp"
+				RelativePath="..\src\RallyeTimeDG.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\lcd_driver.h"
+				RelativePath="..\src\RallyeTimeDG.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Misc"
+			>
+			<File
+				RelativePath="..\src\SerialPort.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\src\SerialPort.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\Util.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\src\Util.h"
 				>
 			</File>
 		</Filter>

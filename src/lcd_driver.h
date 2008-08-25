@@ -19,6 +19,7 @@ struct DAQException : public std::exception
   DAQException(std::string& message)
     :m_(message)
   {
+    
   }
 };
 

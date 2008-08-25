@@ -1,21 +1,30 @@
+#include "RallyeTimeDG.h"
+
 #include <iostream>
-
-#include "lcd_driver.h"
-#include "buttons_driver.h"
-
+//#include <string> //included above in RallyeTimeDG
+#include <memory>
 using namespace std;
 
 
-
-void main()
+int main()
 {
+  const string config_file="data/settings.txt";
+
   try
   {
-    //LCDDriver lcd;
-    ButtonsDriver buttons;
+    cout<<"Attempting to construct RallyeTimeDG class..."<<endl;
+    auto_ptr<RallyeTimeDG> rallyetime(new RallyeTimeDG(config_file));
+
+    cout<<"Entering main loop..."<<endl;
+    rallyetime->run_till_quit();    
   }
-  catch(DAQException& e)
+  catch(exception& e)
   {
-    cout<<"Failed with message: "<<e.m_<<endl;
+    cout<<"!!!"<<endl<<"Fatal exception: "<<e.what()<<endl<<"!!!"<<endl;    
   }
+
+  cout<<endl<<"Goodbye!"<<endl;
+  getline(cin,string());
+
+  return 0;
 }
