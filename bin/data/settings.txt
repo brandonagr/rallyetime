@@ -1,0 +1,19 @@
+#--------------------------------------------
+#
+# RallyeTime Config File - This file is loaded once at program startup to configure how the program will run
+#
+#PARAMETERS: 
+#
+# GPSComPort - specify which comport the GPS reports on
+#  ie COM3
+#
+# GPSReplayFile - path to a text capture of gps data, program WILL replay data instead of get actual data IF file exists
+#  filepath
+#
+#
+#--------------------------------------------
+
+
+GPSPort COM3
+
+GPSReplayFile ./gps_replay.txt

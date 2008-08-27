@@ -8,15 +8,9 @@ Brandon Green - 08-08-24
 #define GPS_H_
 
 #include "Util.h"
-
+#include "ThreadSupport.h"
+#include "SerialPort.h"
 #include <string>
-#include <boost/thread/thread.hpp>
-#include <boost/thread/mutex.hpp>
-#include <boost/thread/condition.hpp>
-
-#pragma comment(lib, "boost_thread-vc80-mt-1_35.lib")
-
-typedef boost::mutex::scoped_lock scoped_lock;
 
 
 // Holds individual GPS update
@@ -105,9 +99,10 @@ class GPSThread
 {
 private:
   bool* kill_flag_;
-
   GPSBuffer buffer_;
 
+  CSerialPort gpsport_;
+  std::string get_gps_line();
 
 public:
   GPSThread(Params& params, bool* kill_flag);

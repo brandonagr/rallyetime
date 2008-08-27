@@ -9,6 +9,7 @@ Brandon Green - 08-08-24
 
 #include "GPS.h"
 #include "Util.h"
+#include "ThreadSupport.h"
 #include <memory>
 
 
@@ -21,7 +22,7 @@ private:
   bool kill_flag_;
 
   GPSThread gps_;
-  std::auto_ptr<boost::thread> gps_thread_;
+  boost::thread gps_thread_;
 
 
 

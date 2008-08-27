@@ -222,6 +222,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\ThreadSupport.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\src\ThreadSupport.h"
+				>
+			</File>
+			<File
 				RelativePath="..\src\Util.cpp"
 				>
 			</File>

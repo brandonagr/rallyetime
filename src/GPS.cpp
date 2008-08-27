@@ -1,6 +1,7 @@
 #include "GPS.h"
 
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 
@@ -163,6 +164,7 @@ void GPSBuffer::put(GPSData& data)
 
   if (!empty)
   {
+    IO_LOCK;
     cout<<"LOST GPS UPDATE BECAUSE IT'S NOT BEING READ FAST ENOUGH BY MAIN THREAD!"<<endl;
   }
   latest=data;
@@ -196,23 +198,66 @@ bool GPSBuffer::is_empty()
 GPSThread::GPSThread(Params& params, bool* kill_flag)
  :kill_flag_(kill_flag)
 {
-  cout<<"made gps thread!"<<endl;
+  {
+    IO_LOCK;
+    cout<<"Initializing GPS..."<<endl;
+  }
+  
+  if (!gpsport_.OpenPort(params.get<std::string>("GPSPort")))
+    throw(exception("Failed to open port!"));
+  if (!gpsport_.ConfigurePort(CBR_4800,8,true,NOPARITY,ONESTOPBIT))
+    throw(exception("Failed to configure port!"));
+  if (!gpsport_.SetCommunicationTimeouts(500,100,1,0,0))
+    throw(exception("Failed to set timeouts on port!"));
 }
 GPSThread::~GPSThread()
 {
-  cout<<"killing gps thread!"<<endl;
+  gpsport_.ClosePort();
 }
 
 
+//-----------------------------------------------------------
+std::string GPSThread::get_gps_line()
+{
+  string linedata="";
+
+  BYTE data;
+    
+  if (gpsport_.ReadByte(data)) //as soon as one byte is ready assume whole string is ready
+  {
+    if (data!='\r' && data!='\n')
+      linedata+=data;
+    do
+    {
+      if(gpsport_.ReadByte(data))
+      {
+        if (data!='\r' && data!='\n')
+         linedata+=data;
+      }
+      else
+        data=0;
+    }
+    while(data!='\n');
+  }
+
+  return linedata;
+}
 
 //-----------------------------------------------------------
 void GPSThread::run()
 {
   while(!(*kill_flag_))
   {
+    string linedata=get_gps_line();
+    if (linedata.size()>0 && GPSData::is_GPRMC(linedata)) //new position update has come in
+    {
+      GPSData gpspos=GPSData(linedata);
+
+      if (gpspos.valid_)
+        buffer_.put(gpspos);
+    }
+
     boost::thread::yield();
   }
-
-  cout<<"went outside scope"<<endl;
 }
 
