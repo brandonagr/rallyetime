@@ -1,7 +1,6 @@
 #include "RallyeTimeDG.h"
 
 #include <iostream>
-//#include <string> //included above in RallyeTimeDG
 #include <memory>
 using namespace std;
 

@@ -21,8 +21,8 @@ private:
   Params params_;
   bool kill_flag_;
 
-  GPSThread gps_;
-  boost::thread gps_thread_;
+  //GPSThread gps_;
+  //boost::thread gps_thread_;
 
 
 
