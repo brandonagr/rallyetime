@@ -194,6 +194,22 @@
 			Name="RallyeTime"
 			>
 			<File
+				RelativePath="..\src\DAQButtons.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\src\DAQButtons.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\DAQLCD.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\src\DAQLCD.h"
+				>
+			</File>
+			<File
 				RelativePath="..\src\GPS.cpp"
 				>
 			</File>
@@ -213,6 +229,14 @@
 		<Filter
 			Name="Misc"
 			>
+			<File
+				RelativePath="..\src\DAQ.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\src\DAQ.h"
+				>
+			</File>
 			<File
 				RelativePath="..\src\SerialPort.cpp"
 				>
