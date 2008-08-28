@@ -151,52 +151,11 @@ ostream& operator << (ostream& os, GPSData& pos)
 
 
 //===========================================================
-GPSBuffer::GPSBuffer()
- :empty(true)
-{
-
-}
-
-//----------------------------------------------------------------
-void GPSBuffer::put(GPSData& data)
-{
-  scoped_lock lock(mutex);
-
-  if (!empty)
-  {
-    IO_LOCK;
-    cout<<"LOST GPS UPDATE BECAUSE IT'S NOT BEING READ FAST ENOUGH BY MAIN THREAD!"<<endl;
-  }
-  latest=data;
-
-  empty=false;
-}
-
-//-----------------------------------------------------------
-GPSData GPSBuffer::get()
-{
-  scoped_lock lock(mutex);
-
-  empty=true;
-
-  return latest;
-}
-
-//-----------------------------------------------------------
-bool GPSBuffer::is_empty()
-{
-  scoped_lock lock(mutex);
-
-  return empty;
-}
-
-
-
-//===========================================================
 
 //-----------------------------------------------------------
 GPSThread::GPSThread(Params& params, bool* kill_flag)
- :kill_flag_(kill_flag)
+ :kill_flag_(kill_flag),
+  empty_(true)
 {
   {
     IO_LOCK;
@@ -254,10 +213,38 @@ void GPSThread::run()
       GPSData gpspos=GPSData(linedata);
 
       if (gpspos.valid_)
-        buffer_.put(gpspos);
+      {
+        scoped_lock lock(shared_data_mutex_);
+
+        if (!empty_)
+        {
+          IO_LOCK;
+          cout<<"LOST GPS UPDATE BECAUSE IT'S NOT BEING READ FAST ENOUGH BY MAIN THREAD!"<<endl;
+        }
+        latest_=gpspos;
+
+        empty_=false;
+      }
     }
 
     boost::thread::yield();
   }
 }
 
+//-----------------------------------------------------------
+bool GPSThread::is_gps_update()
+{
+  scoped_lock lock(shared_data_mutex_);
+
+  return !empty_;
+}
+
+//-----------------------------------------------------------
+GPSData GPSThread::get_gps_update()
+{
+  scoped_lock lock(shared_data_mutex_);
+
+  empty_=true;
+
+  return latest_;
+}

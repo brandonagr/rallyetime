@@ -7,10 +7,14 @@ using namespace std;
 //-----------------------------------------------------------
 RallyeTimeDG::RallyeTimeDG(const std::string& config_file_location)
  :params_(config_file_location),
-  kill_flag_(false)
+  kill_flag_(false),
 
   //gps_(params_, &kill_flag_),
   //gps_thread_(boost::bind(&GPSThread::run,&gps_))
+
+  
+  lcd_(&kill_flag_),
+  lcd_thread_(boost::bind(&DAQLCDThread::run,&lcd_))
 {
 
 
@@ -28,6 +32,7 @@ RallyeTimeDG::~RallyeTimeDG()
 
   kill_flag_=true;
   //gps_thread_.join();
+  lcd_thread_.join();
 
   {
     IO_LOCK;
@@ -56,6 +61,13 @@ void RallyeTimeDG::run_till_quit()
     if (dt<0.0) //bug on multicore amd desktop where dt is sometimes reported as negative
       dt=0.0;
     
+
+    std::string test;
+    getline(cin,test);    
+    if (!test.compare("x"))
+      break;
+
+    lcd_.write_string(LCDString(0,0,test));
 
 //process inputs
 //-------------------------------------------------

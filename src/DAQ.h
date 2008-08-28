@@ -48,24 +48,7 @@ struct DAQTask
   }
 };
 
-
-//----------------------------------------------------------------
-class LCDDriver
-{
-private:
-  //ports for lcd output
-  DAQTask p0_;
-  DAQTask p1_;
-
-  void write_data(unsigned char data, bool rs=false);
-  void write_string(std::string line);
-
-public:
-  LCDDriver();
-  ~LCDDriver();
-};
-
-
+/*
 //----------------------------------------------------------------
 class ButtonsDriver
 {
@@ -83,6 +66,6 @@ public:
   ButtonsDriver();
   ~ButtonsDriver();
 };
-
+*/
 
 #endif

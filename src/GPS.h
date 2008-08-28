@@ -74,32 +74,17 @@ public:
 std::ostream& operator << (std::ostream& os, GPSData& pos);
 
 
-// wrap locking shared data
-//  ASSUME - that get gets called rapidly enough so that a GPSData update is not overwritten
-//================================================================
-class GPSBuffer
-{
-private:
-  boost::mutex mutex;
-  
-  bool empty;
-  GPSData latest;
-
-public:
-  GPSBuffer();
-    
-  void put(GPSData& data); //called by GPSThread when it gets an update
-  GPSData get(); //called by RallyeTimeDG thread to get latest GPS update
-  bool is_empty();
-};
-
-
 //================================================================
 class GPSThread
 {
 private:
   bool* kill_flag_;
-  GPSBuffer buffer_;
+  
+  //shared data---
+  boost::mutex shared_data_mutex_;  
+  bool empty_;
+  GPSData latest_;
+  //---------------
 
   CSerialPort gpsport_;
   std::string get_gps_line();
@@ -110,9 +95,10 @@ public:
 
   void run();
 
-  //called by external threads
-  bool is_gps_update(){return !buffer_.is_empty();};
-  GPSData get_gps_update(){return buffer_.get();};
+  //called by external threads---
+  bool is_gps_update();
+  GPSData get_gps_update();
+  //-----------------------------
 };
 
 

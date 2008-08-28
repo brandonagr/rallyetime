@@ -7,11 +7,11 @@ Brandon Green - 08-08-24
 #ifndef RALLYETIMEDG_H_
 #define RALLYETIMEDG_H_
 
+#include "DAQLCD.h"
 #include "GPS.h"
 #include "Util.h"
 #include "ThreadSupport.h"
 #include <memory>
-
 
 
 //================================================================
@@ -23,6 +23,9 @@ private:
 
   //GPSThread gps_;
   //boost::thread gps_thread_;
+
+  DAQLCDThread lcd_;
+  boost::thread lcd_thread_;
 
 
 
