@@ -1,7 +1,11 @@
 #include "RallyeTimeDG.h"
 
 #include <iostream>
+#include <sstream>
 using namespace std;
+
+#define WINDOWS_LEAN_AND_MEAN
+#include <windows.h>
 
 
 //-----------------------------------------------------------
@@ -50,6 +54,23 @@ void RallyeTimeDG::run_till_quit()
   QueryPerformanceFrequency(&freq_);
   double freq_inv_=1/(double)freq_.QuadPart;
   QueryPerformanceCounter(&prev_time_);  
+  
+  PrettyTime curtime;
+
+
+  double test=0.0;
+  int x=0;
+  int y=0;
+
+
+  lcd_.write_string(LCDString(0,0,"[dir         ][time]"));
+  lcd_.write_string(LCDString(0,1,"[>dir              ]"));
+  lcd_.write_string(LCDString(0,2,"[dir        ][avg/c]"));
+  lcd_.write_string(LCDString(0,3,"[di"));
+  lcd_.write_string(LCDString(7,4,"r       ][#][spd]"));
+
+  //lcd_.write_string(LCDString(104,0,"X"));
+
 
   while(true)
   {
@@ -60,14 +81,32 @@ void RallyeTimeDG::run_till_quit()
 
     if (dt<0.0) //bug on multicore amd desktop where dt is sometimes reported as negative
       dt=0.0;
-    
 
-    std::string test;
-    getline(cin,test);    
-    if (!test.compare("x"))
+    if (GetAsyncKeyState(VK_ESCAPE))
       break;
 
-    lcd_.write_string(LCDString(0,0,test));
+/*
+    test+=dt;
+
+    if (test>0.25)
+    {
+      lcd_.write_string(LCDString(x,0,"X"));
+
+      x++;
+      if (x==128)
+        x=0;
+
+      test=0.0;
+    }*/
+
+    //curtime+=dt;
+
+    //ostringstream out;
+    //out<<curtime;
+
+    //cout<<curtime<<" ";
+
+    //lcd_.write_string(LCDString(0,0,out.str()));
 
 //process inputs
 //-------------------------------------------------
@@ -93,13 +132,15 @@ void RallyeTimeDG::run_till_quit()
 
 
 
+    /*
     {
       IO_LOCK;
       cout<<"dt: "<<dt<<endl;
     }
+    */
     if (dt<0.1) //perform loop timing to regulate how fast it goes
     {
-      int t=91-int(((dt+prev_dt)/2.0)*1000.0);
+      int t=100-int(((dt+prev_dt)/2.0)*1000.0);
 
       if (t>1)
         Sleep(t); //stall some time, avg previous two frame times in order to prevent oscillating between .2 and .8 or similiar

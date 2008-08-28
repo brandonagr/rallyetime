@@ -12,6 +12,16 @@ Brandon Green - 08-08-27
 #include "ThreadSupport.h"
 #include <list>
 
+
+/*
+LCD Mapping, WHICH MAKES NO SENSE!
+
+0----------------19
+40---------------59
+20---------------39
+60-62 87--------103
+*/
+
 //----------------------------------------------------------------
 struct LCDString
 {
