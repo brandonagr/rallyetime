@@ -15,10 +15,12 @@ RallyeTimeDG::RallyeTimeDG(const std::string& config_file_location)
 
   //gps_(params_, &kill_flag_),
   //gps_thread_(boost::bind(&GPSThread::run,&gps_))
-
   
   lcd_(&kill_flag_),
-  lcd_thread_(boost::bind(&DAQLCDThread::run,&lcd_))
+  lcd_thread_(boost::bind(&DAQLCDThread::run,&lcd_)),
+
+  input_(&kill_flag_),
+  input_thread_(boost::bind(&DAQButtonThread::run,&input_))
 {
 
 
@@ -37,6 +39,7 @@ RallyeTimeDG::~RallyeTimeDG()
   kill_flag_=true;
   //gps_thread_.join();
   lcd_thread_.join();
+  input_thread_.join();
 
   {
     IO_LOCK;
@@ -56,6 +59,7 @@ void RallyeTimeDG::run_till_quit()
   QueryPerformanceCounter(&prev_time_);  
   
   PrettyTime curtime;
+  double time_since_update=0.0;
 
 
   double test=0.0;
@@ -66,10 +70,7 @@ void RallyeTimeDG::run_till_quit()
   lcd_.write_string(LCDString(0,0,"[dir         ][time]"));
   lcd_.write_string(LCDString(0,1,"[>dir              ]"));
   lcd_.write_string(LCDString(0,2,"[dir        ][avg/c]"));
-  lcd_.write_string(LCDString(0,3,"[di"));
-  lcd_.write_string(LCDString(7,4,"r       ][#][spd]"));
-
-  //lcd_.write_string(LCDString(104,0,"X"));
+  lcd_.write_string(LCDString(0,3,"[dir       ][#][spd]"));
 
 
   while(true)
@@ -85,28 +86,19 @@ void RallyeTimeDG::run_till_quit()
     if (GetAsyncKeyState(VK_ESCAPE))
       break;
 
-/*
-    test+=dt;
 
-    if (test>0.25)
+    time_since_update+=dt;
+    curtime+=dt;
+
+    if (time_since_update>0.1)
     {
-      lcd_.write_string(LCDString(x,0,"X"));
+      ostringstream out;
+      out<<curtime;
+      //cout<<curtime<<" ";
+      lcd_.write_string(LCDString(0,0,out.str()));
 
-      x++;
-      if (x==128)
-        x=0;
-
-      test=0.0;
-    }*/
-
-    //curtime+=dt;
-
-    //ostringstream out;
-    //out<<curtime;
-
-    //cout<<curtime<<" ";
-
-    //lcd_.write_string(LCDString(0,0,out.str()));
+      time_since_update-=0.1;
+    }
 
 //process inputs
 //-------------------------------------------------
@@ -122,6 +114,45 @@ void RallyeTimeDG::run_till_quit()
       }
     }
     */
+
+    if (input_.is_event())
+    {
+      ButtonEvent button=input_.get_event();
+
+      switch(button.type_)
+      {
+      case ButtonEvent::NEXT_PRESS:
+        {
+          IO_LOCK;
+          cout<<"NEXT_PRESS"<<endl;
+        }
+        break;
+      case ButtonEvent::CHKPNT_PRESS:
+        {
+          IO_LOCK;
+          cout<<"CHKPNT_PRESS"<<endl;
+        }
+        break;
+      case ButtonEvent::UNDO_PRESS:
+        {
+          IO_LOCK;
+          cout<<"UNDO_PRESS"<<endl;
+        }
+        break;
+      case ButtonEvent::PANIC_ENGAGE:
+        {
+          IO_LOCK;
+          cout<<"PANIC_ENGAGE"<<endl;
+        }
+        break;
+      case ButtonEvent::PANIC_RELEASE:
+        {
+          IO_LOCK;
+          cout<<"PANIC_RELEASE"<<endl;
+        }
+        break;
+      }
+    }
 
 //update rallyetime state
 //-------------------------------------------------

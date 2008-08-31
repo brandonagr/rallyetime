@@ -23,17 +23,10 @@ DAQLCDThread::DAQLCDThread(bool* kill_flag)
   write_data(0x0c); //set display cursor on for now, 0x0f=blink with underscore, 0x0d=blink no underscore, 0x0e=just the underline, 0x0c=no cursor
   write_data(0x38); //set data size and enable full screen
 
-  internal_write_string(LCDString(0,0,"Initializing"));
-  internal_write_string(LCDString(0,2,"RallyeTimeDG..."));
-  /*
-  internal_write_string(LCDString(0,0,"abababababababababab"));
-  internal_write_string(LCDString(0,1,"dcdcdcdcdcdcdcdcdcdc"));
-  internal_write_string(LCDString(0,2,"efefefefefefefefefef"));
-  internal_write_string(LCDString(0,3,"hghghghghghghghghghg"));
-  internal_write_string(LCDString(87,0,"-"));
-  internal_write_string(LCDString(103,0,"-"));
-  */
-
+  internal_write_string(LCDString(0,0,"+------------------+"));
+  internal_write_string(LCDString(0,1,"|   Initializing   |"));
+  internal_write_string(LCDString(0,2,"|    RallyeTime    |"));
+  internal_write_string(LCDString(0,3,"+------------------+"));
 }
 DAQLCDThread::~DAQLCDThread()
 {
@@ -65,9 +58,14 @@ void DAQLCDThread::set_location(unsigned char x, unsigned char y)
     y=2;
   else if (y==2)
     y=1;
+  else if (y==3) //bizarre mapping
+  {
+    y=4;
+    x+=4;
+  }
 
-  std::cout<<"moving to location: ("<<(int)x<<", "<<(int)y<<")"<<std::endl;
-  std::cout<<"address offset: "<<(int)((y*20+x)&0x7F)<<std::endl;
+  //std::cout<<"moving to location: ("<<(int)x<<", "<<(int)y<<")"<<std::endl;
+  //std::cout<<"address offset: "<<(int)((y*20+x)&0x7F)<<std::endl;
 
   // take number and mask with 01111111, then OR with 10000000 to get in correct set ddram address mode
   unsigned char data_p0=0x80 | ((y*20+x)&0x7F);
@@ -92,7 +90,7 @@ void DAQLCDThread::internal_write_string(LCDString& data)
   for(std::string::iterator i=data.data_.begin(); i!=data.data_.end(); i++)
   {
     write_data((unsigned char)*i,true);
-    std::cout<<"writing "<<*i<<" "<<(int)*i<<std::endl;
+    //std::cout<<"writing "<<*i<<" "<<(int)*i<<std::endl;
   }
 }
 
@@ -141,6 +139,9 @@ void DAQLCDThread::run()
 void DAQLCDThread::write_string(LCDString& data)
 {
   scoped_lock lock(shared_data_mutex_);
+
+  if (write_que_.size()>12) //hmmm, silently throwing away lcd updates is probably not a good thing!  
+    write_que_.pop_front();  
 
   write_que_.push_back(data);
 }

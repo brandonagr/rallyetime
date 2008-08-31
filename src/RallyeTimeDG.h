@@ -8,6 +8,7 @@ Brandon Green - 08-08-24
 #define RALLYETIMEDG_H_
 
 #include "DAQLCD.h"
+#include "DAQButtons.h"
 #include "GPS.h"
 #include "Util.h"
 #include "ThreadSupport.h"
@@ -26,6 +27,8 @@ private:
 
   DAQLCDThread lcd_;
   boost::thread lcd_thread_;
+  DAQButtonThread input_;
+  boost::thread input_thread_;
 
 
 
