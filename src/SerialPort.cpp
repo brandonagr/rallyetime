@@ -49,7 +49,7 @@ CSerialPort::~CSerialPort()
 /////////////////////////////////////////////////////////////////////////////
 // CSerialPort message handlers
 
-BOOL CSerialPort::OpenPort(CString portname)
+BOOL CSerialPort::OpenPort(std::string portname)
 {
 portname= "//./" +portname;
 

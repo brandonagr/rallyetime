@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="&quot;..\libs\nidaqmx.lib&quot;"
+				AdditionalDependencies="&quot;..\libs\nidaqmx.lib&quot; winmm.lib"
 				OutputFile="../bin/RallyeTimeDG_d.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories=""
@@ -141,7 +141,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="&quot;..\libs\nidaqmx.lib&quot;"
+				AdditionalDependencies="&quot;..\libs\nidaqmx.lib&quot; winmm.lib"
 				OutputFile="../bin/RallyeTimeDG.exe"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""
@@ -218,6 +218,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\LogManager.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\src\LogManager.h"
+				>
+			</File>
+			<File
 				RelativePath="..\src\RallyeTimeDG.cpp"
 				>
 			</File>
@@ -243,6 +251,14 @@
 			</File>
 			<File
 				RelativePath="..\src\SerialPort.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\Speech.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\src\Speech.h"
 				>
 			</File>
 			<File

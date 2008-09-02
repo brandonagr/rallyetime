@@ -12,7 +12,6 @@ Brandon Green - 08-08-31
 #include "ThreadSupport.h"
 
 
-
 //----------------------------------------------------------------
 // panic is a toggle, everything else is momentary button
 struct ButtonEvent

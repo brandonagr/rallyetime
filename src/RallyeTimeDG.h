@@ -12,6 +12,8 @@ Brandon Green - 08-08-24
 #include "GPS.h"
 #include "Util.h"
 #include "ThreadSupport.h"
+#include "LogManager.h"
+#include "Speech.h"
 #include <memory>
 
 
@@ -22,6 +24,8 @@ private:
   Params params_;
   bool kill_flag_;
 
+  CSpeech voice_;
+
   //GPSThread gps_;
   //boost::thread gps_thread_;
 
@@ -29,6 +33,8 @@ private:
   boost::thread lcd_thread_;
   DAQButtonThread input_;
   boost::thread input_thread_;
+  LogManager log_;
+  boost::thread log_thread_;
 
 
 

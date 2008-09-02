@@ -8,7 +8,6 @@
 #include <windows.h>
 
 typedef unsigned char BYTE;
-typedef std::string CString;
 typedef unsigned long DWORD;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -58,7 +57,7 @@ public:
 	void ClosePort();
 	BOOL ReadByte(BYTE &resp);
 	BOOL WriteByte(BYTE bybyte);
-	BOOL OpenPort(CString portname);
+	BOOL OpenPort(std::string portname);
 	BOOL SetCommunicationTimeouts(DWORD ReadIntervalTimeout,DWORD ReadTotalTimeoutMultiplier,DWORD ReadTotalTimeoutConstant,DWORD WriteTotalTimeoutMultiplier,DWORD WriteTotalTimeoutConstant);
 	BOOL ConfigurePort(DWORD BaudRate,BYTE ByteSize,DWORD fParity,BYTE  Parity,BYTE StopBits);
 	HANDLE hComm;

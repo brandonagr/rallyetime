@@ -48,24 +48,4 @@ struct DAQTask
   }
 };
 
-/*
-//----------------------------------------------------------------
-class ButtonsDriver
-{
-private:
-  //ports for buttons/input
-  DAQTask input_;
-  DAQTask ws_input_;
-  DAQTask reset_;
-
-  unsigned char read_buttons();
-  unsigned long read_wheelsensor();
-  void reset_buttons();  
-
-public:
-  ButtonsDriver();
-  ~ButtonsDriver();
-};
-*/
-
 #endif

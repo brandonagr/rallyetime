@@ -20,8 +20,12 @@ RallyeTimeDG::RallyeTimeDG(const std::string& config_file_location)
   lcd_thread_(boost::bind(&DAQLCDThread::run,&lcd_)),
 
   input_(&kill_flag_),
-  input_thread_(boost::bind(&DAQButtonThread::run,&input_))
+  input_thread_(boost::bind(&DAQButtonThread::run,&input_)),
+
+  log_(&kill_flag_),
+  log_thread_(boost::bind(&LogManager::run,&log_))
 {
+  voice_.speak("initializing system, please wait.");
 
 
 
@@ -37,9 +41,11 @@ RallyeTimeDG::~RallyeTimeDG()
   }
 
   kill_flag_=true;
+
   //gps_thread_.join();
   lcd_thread_.join();
   input_thread_.join();
+  log_thread_.join();
 
   {
     IO_LOCK;
@@ -96,6 +102,7 @@ void RallyeTimeDG::run_till_quit()
       out<<curtime;
       //cout<<curtime<<" ";
       lcd_.write_string(LCDString(0,0,out.str()));
+      log_.log_event(out.str(), LogManager::GPSLOG);
 
       time_since_update-=0.1;
     }
