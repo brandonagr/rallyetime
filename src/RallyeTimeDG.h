@@ -36,6 +36,8 @@ private:
   LogManager log_;
   boost::thread log_thread_;
 
+  KeyboardInput key_input_;
+
 
 
 public:

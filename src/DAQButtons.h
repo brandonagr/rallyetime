@@ -12,7 +12,7 @@ Brandon Green - 08-08-31
 #include "ThreadSupport.h"
 
 
-//----------------------------------------------------------------
+//==============================================================
 // panic is a toggle, everything else is momentary button
 struct ButtonEvent
 {
@@ -28,7 +28,7 @@ struct ButtonEvent
 // type for wheel sensor revolution counter
 typedef unsigned long WSSCount;
 
-//----------------------------------------------------------------
+//===============================================================
 class DAQButtonThread
 {
 private:
@@ -61,6 +61,33 @@ public:
   bool is_event();  
   ButtonEvent get_event();
   WSSCount get_wss_count();
+};
+
+
+//==============================================================
+// manage input
+class KeyboardInput
+{
+private:
+  unsigned char keydown_[256];
+  unsigned char debounce_[256];
+
+  bool time_input_;
+  std::string time_;
+  void process_time_input();
+
+public:
+  KeyboardInput();
+
+  void update();
+
+  bool keypress(int vkey){return keydown_[vkey]!=0 && debounce_[vkey]==0;} //if this key was newly pressed since the last update
+  bool keydown(int vkey){return keydown_[vkey]!=0;}
+
+  void start_time_input();
+  bool is_done(){return !time_input_;}
+  std::string get_time(){return time_;}
+  void stop_time_input();
 };
 
 #endif

@@ -1,6 +1,9 @@
 #include "DAQButtons.h"
 #include <iostream>
 
+#define WINDOWS_LEAN_AND_MEAN
+#include <windows.h>
+
 using namespace std;
 
 //----------------------------------------------------------------
@@ -190,4 +193,75 @@ void DAQButtonThread::run()
 
     boost::thread::yield();
   }
+}
+
+
+//==============================================================
+//
+KeyboardInput::KeyboardInput()
+:time_input_(false)
+{
+  memset(&keydown_,0,256);
+  memset(&debounce_,0,256);
+}
+
+//----------------------------------------------------------------
+// update keydown array and check for new keypresses
+void KeyboardInput::update()
+{
+  memcpy(&debounce_, &keydown_, 256);
+  for (int i=0; i<256; i++)
+    keydown_[i] = (unsigned char)(GetAsyncKeyState(i) >> 8);
+
+  /*
+  for (int i=65; i<122; i++)
+  {
+    if (keydown_[i])
+      cout<<i<<" this ONE"<<endl;
+
+    cout<<((keydown_[i]==0)?'_':'X')<<((debounce_[i]==0)?'_':'X');
+  }
+  cout<<endl;
+*/
+  if (time_input_)
+    process_time_input();
+}
+
+//----------------------------------------------------------------
+//
+void KeyboardInput::process_time_input()
+{
+  //check for backspace
+  if (keypress(VK_BACK) || keypress(VK_DELETE))
+  {
+    if (time_.size()>0)
+      time_.erase(time_.end()-1);
+  }
+  if (keypress(VK_RETURN))
+    time_input_=false;
+
+  if (time_.size()<6)
+  {
+    for(int i=48; i<58; i++) //now check through the numbers, 0-9
+    {
+      if (keypress(i))
+        time_.append(string(1,(char)i));
+    }
+
+    if (time_.size()>6) //in case they hit two characters at once
+      time_=time_.substr(0,6);
+  }
+}
+
+
+//----------------------------------------------------------------
+//
+void KeyboardInput::start_time_input()
+{
+  time_input_=true;
+  time_=string();
+}
+void KeyboardInput::stop_time_input()
+{
+  time_input_=false;
 }

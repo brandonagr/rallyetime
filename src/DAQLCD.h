@@ -10,6 +10,7 @@ Brandon Green - 08-08-27
 
 #include "DAQ.h"
 #include "ThreadSupport.h"
+#include "Util.h"
 #include <list>
 
 
@@ -69,4 +70,40 @@ public:
   void write_string(LCDString& data);  
 };
 
+//----------------------------------------------------------------
+// manage lcd screen output, exists in main thread
+class LCDScreen
+{
+  DAQLCDThread& lcd_;
+
+/*
+  lcd_.write_string(LCDString(0,0,"[dir         ][time]"));
+  lcd_.write_string(LCDString(0,1,"[dir               ]"));
+  lcd_.write_string(LCDString(0,2,"[dir        ][avg/c]"));
+  lcd_.write_string(LCDString(0,3,"[dir       ][#][spd]"));
+
+  dir line 1= 14
+  dir line 2= 20
+  dir line 3= 13
+  dir line 4= 12
+
+  time= {+,-}###.#
+  avg= ##.#/##
+  #(cur dir number)= ###
+  spd= >##.#
+*/
+
+  //3 realtime fields
+  //
+
+public:
+  LCDScreen(DAQLCDThread& lcd);
+
+
+  void set_time(PrettyTime& time);
+  void set_cur_speed(double cur_speed);
+  void set_cur_avg_speed(double cur_avg_speed);
+
+  void update(double dt); 
+};
 #endif

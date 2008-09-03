@@ -81,16 +81,25 @@ void RallyeTimeDG::run_till_quit()
 
   while(true)
   {
-    prev_dt=dt; //calc dt of this loop
-    QueryPerformanceCounter(&this_time_);
+    prev_dt=dt; 
+    QueryPerformanceCounter(&this_time_); //calc dt of this loop
     dt = double(this_time_.QuadPart-prev_time_.QuadPart) * freq_inv_;
     prev_time_=this_time_;
 
-    if (dt<0.0) //bug on multicore amd desktop where dt is sometimes reported as negative
-      dt=0.0;
+    key_input_.update();
 
-    if (GetAsyncKeyState(VK_ESCAPE))
+    if (key_input_.keydown(VK_ESCAPE)) //exit entire program
       break;
+      
+
+/*  //testing asynchronous input  
+    if (key_input_.keypress('S'))
+      key_input_.start_time_input();
+
+    if (!key_input_.is_done())
+      cout<<"Currently: '"<<key_input_.get_time()<<"'"<<endl;
+      */
+
 
 
     time_since_update+=dt;
