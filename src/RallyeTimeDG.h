@@ -28,7 +28,7 @@ private:
 
   //GPSThread gps_;
   //boost::thread gps_thread_;
-
+  
   DAQLCDThread lcd_;
   boost::thread lcd_thread_;
   DAQButtonThread input_;
@@ -36,6 +36,7 @@ private:
   LogManager log_;
   boost::thread log_thread_;
 
+  LCDScreen screen_;
   KeyboardInput key_input_;
 
 

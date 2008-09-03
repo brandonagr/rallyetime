@@ -34,6 +34,29 @@ struct LCDString
      y_(y),
      data_(data)
   {}
+  LCDString(unsigned char x, unsigned char y, std::string data, int field_size, bool justify_right=true)
+    :x_(x),
+     y_(y)
+  {
+    if ((int)data.size()>field_size) //truncate
+      data_=data.substr(0,field_size);
+    else
+      if ((int)data.size()<field_size) //need some padding
+      {
+        if (justify_right)
+        {
+          data_=std::string(field_size-(int)data.size(),' ');
+          data_.append(data);
+        }
+        else
+        {
+          data_=data;
+          data_.append(std::string(field_size-(int)data.size(),' '));
+        }
+      }
+      else
+        data_=data; //already the right size
+  }
   LCDString()
     :x_(0),
      y_(0)
@@ -68,13 +91,39 @@ public:
 
   //called by main thread, places string in que
   void write_string(LCDString& data);  
+  void clear();
 };
+
+
+//================================================================
+
+
+const double LCDSCREEN_REFRESH_RATE=0.1; //10hz update rate
+
+struct RallyeDirections //temp until it's added in
+{};
 
 //----------------------------------------------------------------
 // manage lcd screen output, exists in main thread
 class LCDScreen
 {
-  DAQLCDThread& lcd_;
+  DAQLCDThread* lcd_;
+
+  double time_since_write_;
+
+  double time_;
+  double avg_spd_;
+  double spd_;
+
+  bool enable_fullscreen_; 
+
+  bool full_redraw_; //only full redraw after a set_dirs call
+  int cast_;
+  int dir_numb_;
+  std::vector<std::string> dirs_;
+
+   
+
 
 /*
   lcd_.write_string(LCDString(0,0,"[dir         ][time]"));
@@ -97,13 +146,19 @@ class LCDScreen
   //
 
 public:
-  LCDScreen(DAQLCDThread& lcd);
+  LCDScreen(DAQLCDThread* lcd);
 
+
+  void set_dirs(RallyeDirections& dirs);
 
   void set_time(PrettyTime& time);
   void set_cur_speed(double cur_speed);
   void set_cur_avg_speed(double cur_avg_speed);
 
   void update(double dt); 
+
+  void clear(){lcd_->clear();}
+
+  void set_fullscreen_mode(bool val){enable_fullscreen_=val;}
 };
 #endif

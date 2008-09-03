@@ -226,6 +226,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\RallyeData.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\src\RallyeData.h"
+				>
+			</File>
+			<File
 				RelativePath="..\src\RallyeTimeDG.cpp"
 				>
 			</File>

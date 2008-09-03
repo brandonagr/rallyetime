@@ -1,4 +1,6 @@
 #include "DAQLCD.h"
+#include <sstream>
+using namespace std;
 
 
 //----------------------------------------------------------------
@@ -144,4 +146,73 @@ void DAQLCDThread::write_string(LCDString& data)
     write_que_.pop_front();  
 
   write_que_.push_back(data);
+}
+void DAQLCDThread::clear()
+{
+  scoped_lock lock(shared_data_mutex_);
+
+  write_que_.push_back(LCDString(0,0,string(80,' ')));
+}
+
+
+//==============================================================
+//
+LCDScreen::LCDScreen(DAQLCDThread* lcd)
+:lcd_(lcd),
+ time_since_write_(LCDSCREEN_REFRESH_RATE), //start out at rate so first call will get an update
+ time_(0.0),
+ avg_spd_(0.0),
+ spd_(0.0),
+ full_redraw_(false),
+ enable_fullscreen_(false)
+{
+
+}
+//----------------------------------------------------------------
+// 
+void LCDScreen::set_dirs(RallyeDirections& dirs)
+{
+  full_redraw_=true;
+}
+
+//----------------------------------------------------------------
+// 
+void LCDScreen::set_time(PrettyTime& time)
+{
+  time_=time.get_seconds();
+}
+void LCDScreen::set_cur_speed(double cur_speed)
+{
+  spd_=cur_speed;
+}
+void LCDScreen::set_cur_avg_speed(double cur_avg_speed)
+{
+  avg_spd_=cur_avg_speed;
+}
+//----------------------------------------------------------------
+// 
+void LCDScreen::update(double dt)
+{
+  time_since_write_+=dt;
+  if (time_since_write_>LCDSCREEN_REFRESH_RATE)
+  {
+    ostringstream out;
+    out<<fixed<<showpoint<<setprecision(1);
+
+    if (enable_fullscreen_)
+    {
+      out<<((time_>0)?'+':'-')<<fabs(time_);
+      lcd_->write_string(LCDString(14,0,out.str(),6));
+
+      out.str("");
+      out<<avg_spd_;
+      lcd_->write_string(LCDString(13,2,out.str(),4));
+    }
+
+    out.str("");
+    out<<'>'<<spd_;
+    lcd_->write_string(LCDString(15,3,out.str(),5,false));
+
+    time_since_write_-=LCDSCREEN_REFRESH_RATE;
+  }
 }

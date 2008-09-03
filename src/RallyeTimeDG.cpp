@@ -23,12 +23,11 @@ RallyeTimeDG::RallyeTimeDG(const std::string& config_file_location)
   input_thread_(boost::bind(&DAQButtonThread::run,&input_)),
 
   log_(&kill_flag_),
-  log_thread_(boost::bind(&LogManager::run,&log_))
+  log_thread_(boost::bind(&LogManager::run,&log_)),
+
+  screen_(&lcd_)
 {
-  voice_.speak("initializing system, please wait.");
-
-
-
+  voice_.speak("Initializing system.");
 }
 
 
@@ -63,7 +62,7 @@ void RallyeTimeDG::run_till_quit()
   QueryPerformanceFrequency(&freq_);
   double freq_inv_=1/(double)freq_.QuadPart;
   QueryPerformanceCounter(&prev_time_);  
-  
+  /*
   PrettyTime curtime;
   double time_since_update=0.0;
 
@@ -77,6 +76,12 @@ void RallyeTimeDG::run_till_quit()
   lcd_.write_string(LCDString(0,1,"[>dir              ]"));
   lcd_.write_string(LCDString(0,2,"[dir        ][avg/c]"));
   lcd_.write_string(LCDString(0,3,"[dir       ][#][spd]"));
+*/
+  screen_.clear();
+
+  screen_.set_fullscreen_mode(true);
+  PrettyTime curtime(60.0);
+  double speed=25.0;
 
 
   while(true)
@@ -100,8 +105,7 @@ void RallyeTimeDG::run_till_quit()
       cout<<"Currently: '"<<key_input_.get_time()<<"'"<<endl;
       */
 
-
-
+/*
     time_since_update+=dt;
     curtime+=dt;
 
@@ -115,7 +119,7 @@ void RallyeTimeDG::run_till_quit()
 
       time_since_update-=0.1;
     }
-
+*/
 //process inputs
 //-------------------------------------------------
     /*
@@ -173,10 +177,18 @@ void RallyeTimeDG::run_till_quit()
 //update rallyetime state
 //-------------------------------------------------
 
+    curtime+=-dt;
+    speed+=0.3;
+    if (speed>120)
+      speed=15;
+
+    screen_.set_time(curtime);
+    screen_.set_cur_speed(speed);
 
 //process output
 //-------------------------------------------------
 
+    screen_.update(dt); //output data to realtime screen
 
 
     /*
