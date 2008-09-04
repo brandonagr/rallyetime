@@ -13,14 +13,14 @@ RallyeTimeDG::RallyeTimeDG(const std::string& config_file_location)
  :params_(config_file_location),
   kill_flag_(false),
 
-  gps_(params_, &kill_flag_),
-  gps_thread_(boost::bind(&GPSThread::run,&gps_)),
+  //gps_(params_, &kill_flag_),
+  //gps_thread_(boost::bind(&GPSThread::run,&gps_)),
   
   lcd_(&kill_flag_),
   lcd_thread_(boost::bind(&DAQLCDThread::run,&lcd_)),
   screen_(&lcd_),
 
-  input_(&kill_flag_),
+  input_(&kill_flag_, params_),
   input_thread_(boost::bind(&DAQButtonThread::run,&input_)),
 
   log_(&kill_flag_),
@@ -85,7 +85,7 @@ void RallyeTimeDG::run_till_quit()
   PrettyTime curtime(0.0);
   GPSData last_pos;
   double dist=0.0;
-  WSSCount total=0;
+  double gps_spd=0.0;
 
 
   while(true)
@@ -101,11 +101,13 @@ void RallyeTimeDG::run_till_quit()
       break;
 
 
-    if (gps_.is_gps_update())
+ //   if (gps_.is_gps_update())
     {
-      GPSData cur_pos=gps_.get_gps_update();
-	  total=input_.get_wss_count();
+ //     GPSData cur_pos=gps_.get_gps_update();
 
+   //   gps_spd=cur_pos.speed_;
+
+      /*
       if (!last_pos.valid_)
         last_pos=cur_pos;
 
@@ -116,10 +118,7 @@ void RallyeTimeDG::run_till_quit()
       ostringstream out;
       out<<cur_pos;      
       log_.log_event(out.str(),LogManager::GPSLOG);
-
-      out.str("");
-      out<<total<<" "<<dist;
-      log_.log_event(out.str(),LogManager::GPSLOG);
+      */
     }
 
 
@@ -206,8 +205,12 @@ void RallyeTimeDG::run_till_quit()
 //-------------------------------------------------
 
     curtime+=dt;
-	screen_.set_cur_speed((double)total);
-	screen_.set_cur_avg_speed(curtime.get_seconds());
+
+    screen_.set_cur_speed(input_.get_instant_speed());
+
+	  screen_.set_cur_avg_speed(gps_spd);
+
+    dist+=input_.get_distance();
     screen_.set_time(PrettyTime(dist/5280.0));
 
 //process output

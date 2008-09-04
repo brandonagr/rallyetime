@@ -54,7 +54,10 @@ void LogManager::write_logs()
   {    
     scoped_lock lock(shared_data_mutex_);
     if (logfile_log_.size()!=0)
+    {
       temp=logfile_log_;
+      logfile_log_.clear();
+    }
   }
   if (temp.size()!=0)
   {
@@ -68,7 +71,10 @@ void LogManager::write_logs()
   {
     scoped_lock lock(shared_data_mutex_);
     if (timesheet_log_.size()!=0)
+    {
       temp=timesheet_log_;
+      timesheet_log_.clear();
+    }
   }
   if (temp.size()!=0)
   {
@@ -82,7 +88,10 @@ void LogManager::write_logs()
   {
     scoped_lock lock(shared_data_mutex_);
     if (gpslog_log_.size()!=0)
+    {
       temp=gpslog_log_;
+      gpslog_log_.clear();
+    }
   }
   if (temp.size()!=0)
   {

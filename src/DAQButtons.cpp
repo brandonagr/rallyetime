@@ -8,7 +8,7 @@ using namespace std;
 
 //----------------------------------------------------------------
 // 
-DAQButtonThread::DAQButtonThread(bool* kill_flag)
+DAQButtonThread::DAQButtonThread(bool* kill_flag, Params param)
  :kill_flag_(kill_flag),
   input_("task_button_input"),
   wss_input_("task_wheelsensor_input"),
@@ -17,8 +17,17 @@ DAQButtonThread::DAQButtonThread(bool* kill_flag)
   next_db_(0.0),
   chkpnt_db_(0.0),
   undo_db_(0.0),
-  panic_flipped_(false)
+  panic_flipped_(false),
+
+  prev_wss_(0),
+  cur_history_(0),
+  history_valid_(false),
+
+  dist_(0.0),
+  inst_spd_(0.0)
 {
+  rollout_=param.get<double>("TireRollout")*param.get<double>("CorrectionFactor");
+
   err_chk( DAQmxCreateDIChan(input_.t_,"Dev1/port1/line4:7","",DAQmx_Val_ChanForAllLines) );
   err_chk( DAQmxCreateCICountEdgesChan(wss_input_.t_,"Dev1/ctr0","",DAQmx_Val_Falling,0,DAQmx_Val_CountUp));
   err_chk( DAQmxCreateDOChan(reset_.t_,"Dev1/port2/line6","",DAQmx_Val_ChanForAllLines) );
@@ -35,13 +44,43 @@ DAQButtonThread::~DAQButtonThread()
 
 //----------------------------------------------------------------
 // 
-void DAQButtonThread::update_wss()
+void DAQButtonThread::update_wss(double dt)
 {
-  WSSCount ndata;
-  err_chk (DAQmxReadCounterScalarU32(wss_input_.t_,1.0,&ndata,NULL));
+  WSSCount wss;
+  err_chk (DAQmxReadCounterScalarU32(wss_input_.t_,1.0,&wss,NULL));
 
-  scoped_lock lock(shared_data_mutex_);
-  wss_=ndata;
+
+  WSSCount delta_pulse=wss-prev_wss_;
+  prev_wss_=wss;
+
+  pulse_history_[cur_history_]=delta_pulse;
+  pulse_dt_history_[cur_history_]=dt;
+  cur_history_++;
+  if (cur_history_==INSTANT_HIST_SIZE)
+  {
+    cur_history_=0;
+    history_valid_=true;
+  }
+
+  //calculate the current instant speed
+  int pulses=0;
+  double time=0.0;
+
+  int max=(history_valid_? INSTANT_HIST_SIZE : cur_history_);
+  for(int i=0; i<max; i++)
+  {
+    pulses+=pulse_history_[i];
+    time+=pulse_dt_history_[i];
+  }
+
+  double inst_spd=(pulses*rollout_)/time;
+  
+  {
+    scoped_lock lock(shared_data_mutex_);
+
+    dist_+=delta_pulse*rollout_;
+    inst_spd_=inst_spd;
+  }
 }
 
 //----------------------------------------------------------------
@@ -81,13 +120,21 @@ ButtonEvent DAQButtonThread::get_event()
 
 //----------------------------------------------------------------
 // 
-WSSCount DAQButtonThread::get_wss_count()
+double DAQButtonThread::get_distance()
 {
   scoped_lock lock(shared_data_mutex_);
 
-  return wss_;
-}
+  double t=dist_;
+  dist_=0.0;
 
+  return t;
+}
+double DAQButtonThread::get_instant_speed()
+{
+  scoped_lock lock(shared_data_mutex_);
+
+  return inst_spd_;
+}
 
 //----------------------------------------------------------------
 // 
@@ -186,9 +233,9 @@ void DAQButtonThread::run()
         }
       }
 
-      update_wss();
+      update_wss(daq_bandwidth_limiter);
 
-      daq_bandwidth_limiter-=0.1;
+      daq_bandwidth_limiter=0.0;
     }
 
     boost::thread::yield();

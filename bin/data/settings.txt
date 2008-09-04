@@ -14,6 +14,12 @@
 #--------------------------------------------
 
 
-GPSPort COM3
+GPSPort COM4
 
 GPSReplayFile ./gps_replay.txt
+
+#Rollout in feet of one tire revolution
+TireRollout 6.4881528587342
+
+#Percent that the car that made the rallye is off from actual
+CorrectionFactor 1.005

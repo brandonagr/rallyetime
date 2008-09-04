@@ -10,6 +10,7 @@ Brandon Green - 08-08-31
 
 #include "DAQ.h"
 #include "ThreadSupport.h"
+#include "Util.h"
 
 
 //==============================================================
@@ -27,6 +28,7 @@ struct ButtonEvent
 
 // type for wheel sensor revolution counter
 typedef unsigned long WSSCount;
+#define INSTANT_HIST_SIZE 5
 
 //===============================================================
 class DAQButtonThread
@@ -42,17 +44,29 @@ private:
   double next_db_, chkpnt_db_, undo_db_;
   bool panic_flipped_;
 
+
+  double rollout_; //in feet
+  
+  WSSCount prev_wss_;
+
+  WSSCount pulse_history_[INSTANT_HIST_SIZE];
+  double pulse_dt_history_[INSTANT_HIST_SIZE];
+  int cur_history_;
+  bool history_valid_;
+  
+
   //shared data----
   boost::mutex shared_data_mutex_;
   std::list<ButtonEvent> event_que_;
-  WSSCount wss_;
+  double dist_;  
+  double inst_spd_;
   //---------------
   
-  void update_wss();
+  void update_wss(double dt);
   void reset_buttons(); //reset debounce circuit
 
 public:
-  DAQButtonThread(bool* kill_flag);
+  DAQButtonThread(bool* kill_flag, Params param);
   ~DAQButtonThread();
 
   void run();
@@ -60,7 +74,9 @@ public:
   //called by main thread, gets data
   bool is_event();  
   ButtonEvent get_event();
-  WSSCount get_wss_count();
+
+  double get_distance(); //distance since last time this function was called in feet
+  double get_instant_speed(); //instant speed in feet/second
 };
 
 
