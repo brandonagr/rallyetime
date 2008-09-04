@@ -26,8 +26,8 @@ private:
 
   CSpeech voice_;
 
-  //GPSThread gps_;
-  //boost::thread gps_thread_;
+  GPSThread gps_;
+  boost::thread gps_thread_;
   
   DAQLCDThread lcd_;
   boost::thread lcd_thread_;
@@ -38,6 +38,18 @@ private:
 
   LCDScreen screen_;
   KeyboardInput key_input_;
+
+
+                     //input official time, input rallye directions, staging(waiting in line to start rallye), running rallye
+  enum ProgramState {SETUP_ONE, SETUP_TWO, STAGING, RALLYE};
+  ProgramState cur_state_;
+
+  void update_setup_one(double dt);
+  void update_setup_two(double dt);
+  void update_staging(double dt);
+  void rallye(double dt);
+
+
 
 
 

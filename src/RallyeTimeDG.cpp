@@ -13,11 +13,12 @@ RallyeTimeDG::RallyeTimeDG(const std::string& config_file_location)
  :params_(config_file_location),
   kill_flag_(false),
 
-  //gps_(params_, &kill_flag_),
-  //gps_thread_(boost::bind(&GPSThread::run,&gps_))
+  gps_(params_, &kill_flag_),
+  gps_thread_(boost::bind(&GPSThread::run,&gps_)),
   
   lcd_(&kill_flag_),
   lcd_thread_(boost::bind(&DAQLCDThread::run,&lcd_)),
+  screen_(&lcd_),
 
   input_(&kill_flag_),
   input_thread_(boost::bind(&DAQButtonThread::run,&input_)),
@@ -25,7 +26,7 @@ RallyeTimeDG::RallyeTimeDG(const std::string& config_file_location)
   log_(&kill_flag_),
   log_thread_(boost::bind(&LogManager::run,&log_)),
 
-  screen_(&lcd_)
+  cur_state_(RallyeTimeDG::SETUP_ONE)
 {
   voice_.speak("Initializing system.");
 }
@@ -80,8 +81,10 @@ void RallyeTimeDG::run_till_quit()
   screen_.clear();
 
   screen_.set_fullscreen_mode(true);
-  PrettyTime curtime(60.0);
-  double speed=25.0;
+
+  PrettyTime curtime(0.0);
+  GPSData last_pos;
+  double dist=0.0;
 
 
   while(true)
@@ -95,6 +98,29 @@ void RallyeTimeDG::run_till_quit()
 
     if (key_input_.keydown(VK_ESCAPE)) //exit entire program
       break;
+
+
+    if (gps_.is_gps_update())
+    {
+      GPSData cur_pos=gps_.get_gps_update();
+
+      if (!last_pos.valid_)
+        last_pos=cur_pos;
+
+      dist+=last_pos.distance(cur_pos);
+
+      last_pos=cur_pos;
+
+      ostringstream out;
+      out<<cur_pos;      
+      log_.log_event(out.str(),LogManager::GPSLOG);
+
+      out.str("");
+      out<<input_.get_wss_count()<<" "<<dist;
+      log_.log_event(out.str(),LogManager::GPSLOG);
+    }
+
+
       
 
 /*  //testing asynchronous input  
@@ -177,13 +203,8 @@ void RallyeTimeDG::run_till_quit()
 //update rallyetime state
 //-------------------------------------------------
 
-    curtime+=-dt;
-    speed+=0.3;
-    if (speed>120)
-      speed=15;
-
-    screen_.set_time(curtime);
-    screen_.set_cur_speed(speed);
+    curtime+=dt;
+    screen_.set_time(PrettyTime(dist));
 
 //process output
 //-------------------------------------------------

@@ -83,6 +83,7 @@ public:
 
 //================================================================
 //
+/*
 class RallyeState
 {
 private:
@@ -126,7 +127,7 @@ public:
   void hit_chkpnt();
   void hit_freeze();
 };
-
+*/
 
 
 #endif

@@ -236,7 +236,7 @@ void RallyeDirections::RallyeDirectionsFileWriter(std::string filename, std::vec
 }
 
 //================================================================
-
+/*
 //----------------------------------------------------------------
 // 
 RallyeState::RallyeState(Params params)
@@ -508,3 +508,5 @@ void RallyeState::calc_end_leg_stats()
 			    <<"\tDiff- "<<timedif.get_string()<<"\t"<<timedif.get_seconds()<<endl;
   output.close();
 }
+
+*/
