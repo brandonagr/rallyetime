@@ -85,6 +85,7 @@ void RallyeTimeDG::run_till_quit()
   PrettyTime curtime(0.0);
   GPSData last_pos;
   double dist=0.0;
+  WSSCount total=0;
 
 
   while(true)
@@ -103,6 +104,7 @@ void RallyeTimeDG::run_till_quit()
     if (gps_.is_gps_update())
     {
       GPSData cur_pos=gps_.get_gps_update();
+	  total=input_.get_wss_count();
 
       if (!last_pos.valid_)
         last_pos=cur_pos;
@@ -116,7 +118,7 @@ void RallyeTimeDG::run_till_quit()
       log_.log_event(out.str(),LogManager::GPSLOG);
 
       out.str("");
-      out<<input_.get_wss_count()<<" "<<dist;
+      out<<total<<" "<<dist;
       log_.log_event(out.str(),LogManager::GPSLOG);
     }
 
@@ -204,7 +206,9 @@ void RallyeTimeDG::run_till_quit()
 //-------------------------------------------------
 
     curtime+=dt;
-    screen_.set_time(PrettyTime(dist));
+	screen_.set_cur_speed((double)total);
+	screen_.set_cur_avg_speed(curtime.get_seconds());
+    screen_.set_time(PrettyTime(dist/5280.0));
 
 //process output
 //-------------------------------------------------
