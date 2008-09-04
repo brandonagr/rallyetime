@@ -22,4 +22,4 @@ GPSReplayFile ./gps_replay.txt
 TireRollout 6.4881528587342
 
 #Percent that the car that made the rallye is off from actual
-CorrectionFactor 1.005
+CorrectionFactor 1.002
