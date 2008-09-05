@@ -14,8 +14,8 @@ RallyeTimeDG::RallyeTimeDG(const std::string& config_file_location)
  :params_(config_file_location),
   kill_flag_(false),
 
-  //gps_(params_, &kill_flag_),
-  //gps_thread_(boost::bind(&GPSThread::run,&gps_)),
+  gps_(params_, &kill_flag_),
+  gps_thread_(boost::bind(&GPSThread::run,&gps_)),
   
   lcd_(&kill_flag_),
   lcd_thread_(boost::bind(&DAQLCDThread::run,&lcd_)),
@@ -84,8 +84,13 @@ void RallyeTimeDG::run_till_quit()
     if (key_input_.keydown(VK_ESCAPE)) //exit entire program
       break;
 
-//    if (gps_.is_gps_update())
-//      last_gps_pos_=gps_.get_gps_update();
+    if (gps_.is_gps_update())
+    {
+      last_gps_pos_=gps_.get_gps_update();
+
+      ostringstream out;out<<last_gps_pos_;
+      log_.log_event(out.str(),LogManager::GPSLOG);
+    }
 
     screen_.set_cur_speed(input_.get_instant_speed());
 

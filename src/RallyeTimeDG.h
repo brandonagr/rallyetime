@@ -30,8 +30,8 @@ private:
 
   CSpeech voice_;
 
-  //GPSThread gps_;
-  //boost::thread gps_thread_;
+  GPSThread gps_;
+  boost::thread gps_thread_;
   GPSData last_gps_pos_;
   
   DAQLCDThread lcd_;

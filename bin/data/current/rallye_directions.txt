@@ -1,0 +1,143 @@
+R1 UNMARKED          15
+RSL          35
+RSL
+SSL
+L1          30
+R3          20
+LSS          25
+R1
+L1
+RSS          20
+LSS          25
+R1
+RSS
+L1
+LSS          35
+SSL
+SSL
+LSL
+CAST           40
+RSL          60
+SL  "OPPE"
+L1          30
+R1
+R1
+LSS
+L1          25
+RSS
+L4
+RSS
+L3
+L1
+R2
+LSS
+RSS          40
+LSL          50
+RSL          25
+L2 UNMARKED          10
+L1 UNMARKED
+L1 UNMARKED
+R1 UNMARKED          25
+RSL          40
+SSL
+LSL
+L1          60
+R5          50
+LSS
+LSS
+R2          40
+R3          25
+RSS
+**DIP**
+RSS          30
+SSS
+SSS          40
+SSL
+LSL          30
+RSL
+SSS
+R1
+R1
+LSS
+RSL          35
+SSL
+SSL/RR          45
+SSS
+SR  "MIT"          30
+RSS          35
+SR image
+R1 UNMARKED
+S/YLD
+SSS          40
+R4
+RSS
+RSS
+L2          50
+SR  "SPEE"          35
+LSS          40
+SSS          55
+SSS
+RSS
+CAST           45
+SSL
+SSL
+SSL
+CAST           40
+LSL          25
+RSL
+SSL          30
+LSL
+R1
+R4 UNMARKED          5
+L3 UNMARKED
+R1 UNMARKED
+SSS
+RSS          30
+RSL
+RSL          25
+SR  "ONLY"
+R1 UNMARKED          5
+SSS
+L6 UNMARKED
+LSL          35
+SSL
+SSL
+L1 UNMARKED          25
+RSS
+LSS          35
+SSL
+SSL
+SSL
+SSL
+SSL
+CAST           40
+RSL          25
+SSS
+SSS
+SSS
+RSS
+LSL          35
+R1          30
+SSL
+SSL
+R1 UNMARKED          5
+R9 UNMARKED
+RSS          15
+LSL          30
+SSL
+CAST           35
+SSL
+SSL
+CAST           50
+CAST           60
+R2          55
+RSS          40
+LSS          55
+L1          25
+RSS
+RSS          50
+SL "LIS"
+CAST           40
+L1 UNMARKED          5
+RT UNMARKED
+R1 UNMARKED

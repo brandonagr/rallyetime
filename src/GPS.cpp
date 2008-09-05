@@ -143,7 +143,7 @@ void GPSData::calc_state()
 ostream& operator << (ostream& os, GPSData& pos)
 {
   os.setf(ios_base::fixed);
-  os<<(pos.valid_?"Y":"N")<<"\t"<<pos.state_x_<<"\t"<<pos.state_y_<<"\t"<<pos.speed_<<"\t"<<pos.bearing_<<"\t"<<pos.time_;  
+  os<<pos.state_x_<<"\t"<<pos.state_y_<<"\t"<<pos.lat_<<"\t"<<pos.lon_<<"\t"<<pos.speed_<<"\t"<<pos.bearing_<<"\t"<<pos.time_;  
 
   return os;
 }
