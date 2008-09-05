@@ -7,7 +7,9 @@ using namespace std;
 // 
 LogManager::LogManager(bool* kill_flag)
  :kill_flag_(kill_flag),
-  flush_log_(false)
+  flush_log_(false),
+
+  timestamp_(0.0)
 {
   logfile_log_.reserve(100);
   timesheet_log_.reserve(10);
@@ -24,6 +26,10 @@ LogManager::~LogManager()
 void LogManager::log_event(std::string& str, LogType type)
 {
   scoped_lock lock(shared_data_mutex_);
+
+  ostringstream ts;
+  ts<<"\t("<<timestamp_<<")";
+  str.append(ts.str());
 
   switch(type)
   {
@@ -108,20 +114,35 @@ void LogManager::write_logs()
 // 
 void LogManager::run()
 {
-  DWORD start=timeGetTime();
-  DWORD cur=start;
+    LARGE_INTEGER freq_, prev_time_, this_time_;   
+  double dt=0.0;
+  QueryPerformanceFrequency(&freq_);
+  double freq_inv_=1/(double)freq_.QuadPart;
+  QueryPerformanceCounter(&prev_time_);  
 
-  double timer=0.0;
+  double start=0.0;
+  double time=0.0;
+  
 
   while(!(*kill_flag_))
   {
-    cur=timeGetTime(); //don't need high resolution timer for this
+    //get dt of the loop
+    QueryPerformanceCounter(&this_time_);
+    dt = double(this_time_.QuadPart-prev_time_.QuadPart) * freq_inv_;
+    prev_time_=this_time_;
 
-    if (cur-start>300000 || flush_log_) //5 min is 300 seconds, 300 000 milliseconds
+    time+=dt;
+
+    {
+      scoped_lock lock(shared_data_mutex_);
+      timestamp_=time;      
+    }
+
+    if (time-start>300 || flush_log_) //5 min is 300 seconds, 300 000 milliseconds
     {
       write_logs();
 
-      start=cur;
+      start=time;
       flush_log_=false;
     }
 

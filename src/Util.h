@@ -55,7 +55,7 @@ struct PrettyTime
   //intialize the values to this string
   void set(std::string setstring, bool hascolon=true)
   {
-    if (setstring.size()<8)
+    if (setstring.size()<6)
     {
       std::cout<<"Invalide string input '"<<setstring<<"'"<<std::endl;
       set(0,0,0);

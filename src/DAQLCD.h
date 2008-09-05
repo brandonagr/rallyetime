@@ -100,8 +100,6 @@ public:
 
 const double LCDSCREEN_REFRESH_RATE=0.1; //10hz update rate
 
-struct RallyeDirections //temp until it's added in
-{};
 
 //----------------------------------------------------------------
 // manage lcd screen output, exists in main thread
@@ -122,7 +120,7 @@ class LCDScreen
   int dir_numb_;
   std::vector<std::string> dirs_;
 
-   
+ 
 
 
 /*
@@ -142,14 +140,11 @@ class LCDScreen
   spd= >##.#
 */
 
-  //3 realtime fields
-  //
-
 public:
   LCDScreen(DAQLCDThread* lcd);
 
 
-  void set_dirs(RallyeDirections& dirs);
+  void set_dirs(std::vector<std::string>& dirs);
 
   void set_time(PrettyTime& time);
   void set_cur_speed(double cur_speed);

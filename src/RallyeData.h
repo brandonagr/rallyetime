@@ -8,6 +8,8 @@ Brandon Green - 08-09-02
 #define RALLYEDATA_H_
 
 #include "Util.h"
+#include "DAQLCD.h"
+#include "LogManager.h"
 
 
 //================================================================
@@ -83,15 +85,15 @@ public:
 
 //================================================================
 //
-/*
 class RallyeState
 {
 private:
+  LogManager* log_;
+
   RallyeDirections rallye_dirs_;
   RallyeLeg leg_; 
 
   PrettyTime realclock_; 
-  PrettyTime gps_time_offset_;
   
   bool rallye_inprogress_; //true if the rallye is currently going
   bool distance_freeze_;
@@ -114,11 +116,12 @@ private:
 
 
 public:
-  RallyeState(Params params);
+  RallyeState(Params params, LogManager* log);
 
-  void update_time(double dt);
-  void update_pos(double dist, GPSData& gpspos);
-  void set_invalid_update(){window_data_.gps_fix_=false;}
+  void update(double dt, double dist);
+
+  void fill_screen_active(LCDScreen& screen); //display all the actively updated variables
+  void fill_screen_full(LCDScreen& screen); //load up all the directions
 
   void hit_timer_go(PrettyTime target);
   void hit_timer_sync(PrettyTime input);
@@ -127,7 +130,6 @@ public:
   void hit_chkpnt();
   void hit_freeze();
 };
-*/
 
 
 #endif

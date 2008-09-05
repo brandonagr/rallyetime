@@ -170,8 +170,9 @@ LCDScreen::LCDScreen(DAQLCDThread* lcd)
 }
 //----------------------------------------------------------------
 // 
-void LCDScreen::set_dirs(RallyeDirections& dirs)
+void LCDScreen::set_dirs(std::vector<std::string>& dirs)
 {
+
   full_redraw_=true;
 }
 

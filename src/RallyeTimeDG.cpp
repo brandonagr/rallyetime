@@ -29,6 +29,8 @@ RallyeTimeDG::RallyeTimeDG(const std::string& config_file_location)
   cur_state_(RallyeTimeDG::SETUP_ONE)
 {
   voice_.speak("Initializing system.");
+
+  switch_to_setup_one();
 }
 
 
@@ -63,30 +65,6 @@ void RallyeTimeDG::run_till_quit()
   QueryPerformanceFrequency(&freq_);
   double freq_inv_=1/(double)freq_.QuadPart;
   QueryPerformanceCounter(&prev_time_);  
-  /*
-  PrettyTime curtime;
-  double time_since_update=0.0;
-
-
-  double test=0.0;
-  int x=0;
-  int y=0;
-
-
-  lcd_.write_string(LCDString(0,0,"[dir         ][time]"));
-  lcd_.write_string(LCDString(0,1,"[>dir              ]"));
-  lcd_.write_string(LCDString(0,2,"[dir        ][avg/c]"));
-  lcd_.write_string(LCDString(0,3,"[dir       ][#][spd]"));
-*/
-  screen_.clear();
-
-  screen_.set_fullscreen_mode(true);
-
-  PrettyTime curtime(0.0);
-  GPSData last_pos;
-  double dist=0.0;
-  double gps_spd=0.0;
-
 
   while(true)
   {
@@ -95,34 +73,40 @@ void RallyeTimeDG::run_till_quit()
     dt = double(this_time_.QuadPart-prev_time_.QuadPart) * freq_inv_;
     prev_time_=this_time_;
 
+
+    //--------------------------------------------------------
+    // updates that get called in any state
+    official_time_+=dt;
+
     key_input_.update();
 
     if (key_input_.keydown(VK_ESCAPE)) //exit entire program
       break;
 
+//    if (gps_.is_gps_update())
+//      last_gps_pos_=gps_.get_gps_update();
 
- //   if (gps_.is_gps_update())
+    screen_.set_cur_speed(input_.get_instant_speed());
+
+    //--------------------------------------------------------
+    // state based updates
+    switch(cur_state_)
     {
- //     GPSData cur_pos=gps_.get_gps_update();
+    case SETUP_ONE:
 
-   //   gps_spd=cur_pos.speed_;
+      update_setup_one(dt);
 
-      /*
-      if (!last_pos.valid_)
-        last_pos=cur_pos;
+      break;
+    case SETUP_TWO:
 
-      dist+=last_pos.distance(cur_pos);
+      break;
+    case STAGING:
 
-      last_pos=cur_pos;
+      break;
+    case RALLYE:
 
-      ostringstream out;
-      out<<cur_pos;      
-      log_.log_event(out.str(),LogManager::GPSLOG);
-      */
+      break;
     }
-
-
-      
 
 /*  //testing asynchronous input  
     if (key_input_.keypress('S'))
@@ -204,6 +188,7 @@ void RallyeTimeDG::run_till_quit()
 //update rallyetime state
 //-------------------------------------------------
 
+/*
     curtime+=dt;
 
     screen_.set_cur_speed(input_.get_instant_speed());
@@ -212,6 +197,8 @@ void RallyeTimeDG::run_till_quit()
 
     dist+=input_.get_distance();
     screen_.set_time(PrettyTime(dist/5280.0));
+*/
+
 
 //process output
 //-------------------------------------------------
@@ -219,12 +206,6 @@ void RallyeTimeDG::run_till_quit()
     screen_.update(dt); //output data to realtime screen
 
 
-    /*
-    {
-      IO_LOCK;
-      cout<<"dt: "<<dt<<endl;
-    }
-    */
     if (dt<0.1) //perform loop timing to regulate how fast it goes
     {
       int t=100-int(((dt+prev_dt)/2.0)*1000.0);
@@ -232,5 +213,80 @@ void RallyeTimeDG::run_till_quit()
       if (t>1)
         Sleep(t); //stall some time, avg previous two frame times in order to prevent oscillating between .2 and .8 or similiar
     }
+  }
+}
+
+
+//-----------------------------------------------------------
+// first stage, enter official time
+void RallyeTimeDG::switch_to_setup_one()
+{
+  cur_state_=SETUP_ONE;
+
+  screen_.clear();
+  screen_.set_fullscreen_mode(false);
+}
+void RallyeTimeDG::update_setup_one(double dt)
+{
+  static bool entering_time=false;
+
+  if (last_gps_pos_.valid_)
+    lcd_.write_string(LCDString(12,0,"GPS Good"));
+  else
+    lcd_.write_string(LCDString(11,0,"GPS ERROR"));
+  
+  if (!entering_time && key_input_.keypress(VK_RETURN))
+  {
+    voice_.speak("enter official time.");
+    key_input_.start_time_input();
+
+    entering_time=true;
+  }
+
+  if (entering_time)
+  {
+    string cur_input=key_input_.get_time();
+
+    ostringstream out;
+    out<<"OT: "<<cur_input;
+    lcd_.write_string(LCDString(0,3,out.str(),10,false));
+
+    if (key_input_.is_done()) //check if value is good, if so, move to next direction
+    {
+      if (cur_input.size()==6)
+      {
+        official_time_=PrettyTime(cur_input,false);
+
+        out.str("");
+        out<<"Set OT: "<<official_time_;
+        log_.log_event(out.str(),LogManager::LOG);
+        
+        switch_to_setup_two();
+      }
+      else
+      {
+        voice_.speak("in valid, time");
+        lcd_.write_string(LCDString(0,3,"",10,false));
+        entering_time=false;
+      }
+    }
+  }
+}
+
+//-----------------------------------------------------------
+// second stage, get directions
+void RallyeTimeDG::switch_to_setup_two()
+{
+  cur_state_=SETUP_TWO;
+  screen_.clear();
+  lcd_.write_string(LCDString(0,0,"Awaiting dirs..."));
+  voice_.speak("load directions");
+}
+void RallyeTimeDG::update_setup_two(double dt)
+{
+  if (key_input_.keypress('R')) //attempt to load the directions
+  {
+
+
   }
 }

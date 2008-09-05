@@ -28,6 +28,7 @@ private:
 
   //GPSThread gps_;
   //boost::thread gps_thread_;
+  GPSData last_gps_pos_;
   
   DAQLCDThread lcd_;
   boost::thread lcd_thread_;
@@ -35,6 +36,8 @@ private:
   boost::thread input_thread_;
   LogManager log_;
   boost::thread log_thread_;
+  
+  PrettyTime official_time_;
 
   LCDScreen screen_;
   KeyboardInput key_input_;
@@ -44,9 +47,16 @@ private:
   enum ProgramState {SETUP_ONE, SETUP_TWO, STAGING, RALLYE};
   ProgramState cur_state_;
 
+  void switch_to_setup_one();
   void update_setup_one(double dt);
+
+  void switch_to_setup_two();
   void update_setup_two(double dt);
+
+  void switch_to_staging();
   void update_staging(double dt);
+
+  void switch_to_rallye();
   void rallye(double dt);
 
 

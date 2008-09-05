@@ -27,6 +27,8 @@ class LogManager
 private:
   bool* kill_flag_;
 
+  double timestamp_;
+
   //shared data----
   boost::mutex shared_data_mutex_;
   std::vector<std::string> logfile_log_;

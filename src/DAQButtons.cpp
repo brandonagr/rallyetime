@@ -260,7 +260,7 @@ void KeyboardInput::update()
   for (int i=0; i<256; i++)
     keydown_[i] = (unsigned char)(GetAsyncKeyState(i) >> 8);
 
-  /*
+/*
   for (int i=65; i<122; i++)
   {
     if (keydown_[i])
@@ -289,10 +289,10 @@ void KeyboardInput::process_time_input()
 
   if (time_.size()<6)
   {
-    for(int i=48; i<58; i++) //now check through the numbers, 0-9
+    for(int i=0x60; i<=0x69; i++) //now check through the numbers, 0-9
     {
       if (keypress(i))
-        time_.append(string(1,(char)i));
+        time_.append(string(1,(char)(i-0x30)));
     }
 
     if (time_.size()>6) //in case they hit two characters at once

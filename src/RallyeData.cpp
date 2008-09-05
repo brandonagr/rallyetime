@@ -236,11 +236,12 @@ void RallyeDirections::RallyeDirectionsFileWriter(std::string filename, std::vec
 }
 
 //================================================================
-/*
+
 //----------------------------------------------------------------
 // 
-RallyeState::RallyeState(Params params)
-:rallye_dirs_(params.get<std::string>("RallyeFile")),
+RallyeState::RallyeState(Params params, LogManager* log)
+:log_(log),
+ rallye_dirs_(params.get<std::string>("RallyeDirFile")),
  leg_(0),
  section_numb_(0),
  rallye_inprogress_(false),
@@ -251,82 +252,18 @@ RallyeState::RallyeState(Params params)
 
 //----------------------------------------------------------------
 // 
-void RallyeState::update_time(double dt)
-{
-  realclock_+=dt;  
-  window_data_.gps_ttl_+=dt;
-
-  timer_.update(realclock_); 
-  if (timer_.is_active())
-  {        
-    window_data_.timer_currenttime_value_=timer_.get_dif().get_string();
-  }
-  window_data_.cur_time_value_=realclock_.get_string();
-}
-
-//----------------------------------------------------------------
-// 
-void RallyeState::update_pos(double distance, GPSData& gpspos)
+void RallyeState::update(double dt, double dist)
 {  
-  realclock_=gpspos.time_+gps_time_offset_;
-  
-  window_data_.gps_ttl_=0.0;
+  realclock_+=dt;  
+  timer_.update(realclock_); 
+
 
   if (distance_freeze_)
-    distance=0;
+    dist=0;
 
   if (rallye_inprogress_)
-  {    
-    leg_.UpdateLeg(realclock_, distance);
+    leg_.update_leg(realclock_, dist);
     
-    sectiondistance_=(legstart_distance_+leg_.distance_so_far_);    
-
-    //strings to update
-    ostringstream output;output.precision(2);        
-    
-    output<<std::fixed<<gpspos.speed_;
-    window_data_.instant_speed_value_=output.str();output.str("");    
-
-    output<<leg_.leg_speed_;
-    window_data_.avg_speed_value_=output.str();output.str("");
-
-    output<<leg_.leg_cast_;
-    window_data_.cast_value_=output.str();output.str("");
-
-    output<<leg_.distance_so_far_ * 1.0/5280.0; //convert feet to miles
-    window_data_.leg_dist_value_=output.str();output.str("");     
-
-    //output<<section_numb_;
-    //window_data_.section_numb_value_=output.str();output.str("");
-
-    output<<sectiondistance_ * 1.0/5280.0; //convert feet to miles
-    window_data_.section_dist_value_=output.str();output.str("");
-
-    double gain_rate=(leg_.leg_cast_-gpspos.speed_)/leg_.leg_cast_;
-    output<<gain_rate;
-    window_data_.time_gain_rate_value_=output.str();output.str("");
-
-    //window_data_.leg_time_value_=(realclock_-leg_.starttime_).get_string();
-
-    //window_data_.est_leg_result_value_=(leg_.GetActualTime()-leg_.GetExpectedTime()).get_string();    
-
-	  window_data_.est_section_result_value_=(sectiontime_off_+(leg_.GetActualTime()-leg_.GetExpectedTime())).get_string();                     
-
-    window_data_.current_direction_=rallye_dirs_.get_current_dir_numb();
-
-    window_data_.gps_fix_=true;
-    window_data_.last_pos_x=gpspos.state_x_;
-    window_data_.last_pos_y=gpspos.state_y_;
-    window_data_.last_heading=gpspos.bearing_;
-  }
-  
-  if (rallye_inprogress_)
-    window_data_.clock_status_value_="Active";
-  else
-    window_data_.clock_status_value_="Stopped";
-
-  if (distance_freeze_)
-    window_data_.clock_status_value_="FROZEN";
 }
 
 //----------------------------------------------------------------
@@ -345,7 +282,7 @@ void RallyeState::hit_timer_go(PrettyTime target)
 void RallyeState::hit_timer_sync(PrettyTime input)
 {
   if (!rallye_inprogress_)
-    gps_time_offset_=input-realclock_;
+    realclock_=input;    
 }
 
 //----------------------------------------------------------------
@@ -389,11 +326,7 @@ void RallyeState::hit_freeze()
   distance_freeze_=!distance_freeze_;
 
   if (distance_freeze_)
-  {
-    ofstream output(LOG_FILE, ofstream::app);
-    output<<"FREEZE DISTANCE EVENT"<<endl;
-    output.close();
-  }
+    log_->log_event(string("FREEZE DISTANCE EVENT"), LogManager::LOG);
 }
 
 //----------------------------------------------------------------
@@ -403,20 +336,22 @@ void RallyeState::transition_to_stopped()
   calc_end_leg_stats();  
 
   timer_has_goal_=false;
-
-  ofstream output(LOG_FILE, ofstream::app);
+  
   PrettyTime adjusted_time=section_total_time_+section_initial_off_;
+
+  ostringstream output;  
   output<<endl<<"END SECTION: \tNumb- "<<section_numb_
 	                         <<"\tAdj Time- "<<adjusted_time.get_string()<<"\t"<<adjusted_time.get_seconds()
                            <<"\tActual Time - "<<section_total_time_.get_string()<<"\t"<<section_total_time_.get_seconds()
 				                   <<"\tDistance- "<<sectiondistance_/5280.0				       
-	                         <<"\tDiff- "<<sectiontime_off_.get_string()<<"\t"<<sectiontime_off_.get_seconds()<<endl;    
+	                         <<"\tDiff- "<<sectiontime_off_.get_string()<<"\t"<<sectiontime_off_.get_seconds()<<endl;
   output<<"ARRIVED TIME: \tNumb- "<<section_numb_<<"\tActual- "<<realclock_<<endl;
-  output.close();
+  log_->log_event(output.str(),LogManager::LOG);
 
-  ofstream otimesheet(TIMESHEET_FILE, ofstream::app);
-  otimesheet<<section_numb_<<"\t"<<realclock_;    
-  otimesheet.close();
+
+  output.str("");
+  output<<section_numb_<<"\t"<<realclock_;
+  log_->log_event(output.str(),LogManager::TIMESHEET);  
 }
 
 //----------------------------------------------------------------
@@ -432,9 +367,7 @@ void RallyeState::transition_to_active()
   distance_freeze_=false;
 
   leg_=RallyeLeg(rallye_dirs_.get_current_cast());
-  leg_.UpdateLeg(realclock_,0.0); //intialize the clock
-
-  window_data_.last_leg_off_value_=legtime_off_.get_string();
+  leg_.update_leg(realclock_,0.0); //intialize the clock
 
   section_numb_++;
 
@@ -445,11 +378,10 @@ void RallyeState::transition_to_active()
     sectiontime_off_=timer_.get_dif();
 
     timer_.turn_off();
-    window_data_.timer_currenttime_value_=timer_.get_dif().get_string();
   }
 
 
-  ofstream output(LOG_FILE, ofstream::app);
+  ostringstream output;  
   output<<endl<<"BEGIN SECTION: \tNumb- "<<section_numb_
 	                           <<"\tTimer- "<<sectiontime_off_.get_string()<<"\t"<<sectiontime_off_.get_seconds()<<endl;		
   if (timer_has_goal_)
@@ -459,17 +391,18 @@ void RallyeState::transition_to_active()
 
   output<<"START LEG: \tNumb- "<<rallye_dirs_.get_current_dir_numb()
 	             <<"\tCast- "<<rallye_dirs_.get_current_cast()<<endl;
-  output.close();
-      
-  ofstream otimesheet(TIMESHEET_FILE, ofstream::app);
-  if (section_numb_==1)
-    otimesheet<<section_numb_<<" \t";
-  if (timer_has_goal_)
-    otimesheet<<"\t"<<timer_.get_goal()<<endl;    
-  else
-    otimesheet<<"\t"<<realclock_<<endl;    
-  otimesheet.close();
 
+  log_->log_event(output.str(),LogManager::LOG);
+  
+  
+  output.str("");  
+  if (section_numb_==1)
+    output<<section_numb_<<" \t";
+  if (timer_has_goal_)
+    output<<"\t"<<timer_.get_goal()<<endl;    
+  else
+    output<<"\t"<<realclock_<<endl;    
+  log_->log_event(output.str(),LogManager::TIMESHEET);  
 }
 
 //----------------------------------------------------------------
@@ -480,33 +413,29 @@ void RallyeState::goto_nextleg()
   legstart_distance_+=leg_.distance_so_far_;
 
   leg_=RallyeLeg(rallye_dirs_.get_current_cast());
-  leg_.UpdateLeg(realclock_,0.0); //intialize the clock This line was missing from here before, causing it to lose the time from the creation to the first update
-
-  ofstream output(LOG_FILE, ofstream::app);
+  leg_.update_leg(realclock_,0.0); //intialize the clock This line was missing from here before, causing it to lose the time from the creation to the first update
+  
+  ostringstream output;
   output<<"START LEG: \tNumb- "<<rallye_dirs_.get_current_dir_numb()
 	                 <<"\tCast- "<<rallye_dirs_.get_current_cast()<<endl;
-  output.close();
+  log_->log_event(output.str(),LogManager::LOG);
 }
 
 //----------------------------------------------------------------
 // 
 void RallyeState::calc_end_leg_stats()
 {
-  PrettyTime timedif=leg_.GetActualTime()-leg_.GetExpectedTime();
+  PrettyTime timedif=leg_.actual_time()-leg_.expected_time();
 
   legtime_off_=timedif;
   sectiontime_off_+=timedif;
-  section_total_time_+=leg_.GetActualTime();
+  section_total_time_+=leg_.actual_time();
 
-  window_data_.last_leg_off_value_=legtime_off_.get_string();
-
-  ofstream output(LOG_FILE, ofstream::app);
+  ostringstream output;
   output<<"END LEG: \tCast- "<<leg_.leg_cast_
-			    <<"\tTime- "<<leg_.GetActualTime().get_string()<<"\t"<<leg_.GetActualTime().get_seconds()
+			    <<"\tTime- "<<leg_.actual_time().get_string()<<"\t"<<leg_.actual_time().get_seconds()
 			    <<"\tDistance- "<<leg_.distance_so_far_/5280.0
-			    <<"\tIdeal- "<<leg_.GetExpectedTime().get_string()<<"\t"<<leg_.GetExpectedTime().get_seconds()
+			    <<"\tIdeal- "<<leg_.expected_time().get_string()<<"\t"<<leg_.expected_time().get_seconds()
 			    <<"\tDiff- "<<timedif.get_string()<<"\t"<<timedif.get_seconds()<<endl;
-  output.close();
+  log_->log_event(output.str(),LogManager::LOG);
 }
-
-*/
