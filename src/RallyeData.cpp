@@ -326,6 +326,28 @@ void RallyeState::fill_screen_full(LCDScreen& screen)
   screen.set_cast((int)leg_.leg_cast_);
   screen.set_dir_numb(rallye_dirs_.get_current_dir_numb());
 }
+void RallyeState::speak_dirs(CSpeech &voice)
+{
+  RallyeDir curdir=rallye_dirs_.get_dir_offset(0);
+  RallyeDir nextdir=rallye_dirs_.get_dir_offset(1);
+
+
+  ostringstream out;
+
+  if (curdir.cast_>0)
+    out<<curdir.cast_<<" "<<curdir.dir_;
+  else
+    out<<curdir.dir_;
+
+  out<<", then, ";
+
+  if (nextdir.cast_>0)
+    out<<nextdir.cast_<<" "<<nextdir.dir_;
+  else
+    out<<nextdir.dir_;
+
+  voice.speak(out.str().c_str());
+}
 
 //----------------------------------------------------------------
 // 

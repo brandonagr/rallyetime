@@ -10,6 +10,7 @@ Brandon Green - 08-09-02
 #include "Util.h"
 #include "DAQLCD.h"
 #include "LogManager.h"
+#include "Speech.h"
 
 
 //================================================================
@@ -123,6 +124,7 @@ public:
 
   void fill_screen_active(LCDScreen& screen); //display all the actively updated variables
   void fill_screen_full(LCDScreen& screen); //load up all the directions
+  void speak_dirs(CSpeech& voice);
 
   void hit_timer_go(PrettyTime target);
   void hit_timer_sync(PrettyTime input);

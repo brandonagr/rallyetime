@@ -20,6 +20,8 @@ Brandon Green - 08-08-24
 
 #define MAX_PREVIOUS_STATES 5
 
+#define DISABLE_GPS
+
 
 //================================================================
 class RallyeTimeDG
@@ -30,8 +32,10 @@ private:
 
   CSpeech voice_;
 
+#ifdef ENABLE_GPS
   GPSThread gps_;
   boost::thread gps_thread_;
+#endif
   GPSData last_gps_pos_;
   
   DAQLCDThread lcd_;

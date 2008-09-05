@@ -14,8 +14,10 @@ RallyeTimeDG::RallyeTimeDG(const std::string& config_file_location)
  :params_(config_file_location),
   kill_flag_(false),
 
+#ifdef ENABLE_GPS
   gps_(params_, &kill_flag_),
   gps_thread_(boost::bind(&GPSThread::run,&gps_)),
+#endif
   
   lcd_(&kill_flag_),
   lcd_thread_(boost::bind(&DAQLCDThread::run,&lcd_)),
@@ -84,6 +86,7 @@ void RallyeTimeDG::run_till_quit()
     if (key_input_.keydown(VK_ESCAPE)) //exit entire program
       break;
 
+#ifdef ENABLE_GPS
     if (gps_.is_gps_update())
     {
       last_gps_pos_=gps_.get_gps_update();
@@ -91,6 +94,7 @@ void RallyeTimeDG::run_till_quit()
       ostringstream out;out<<last_gps_pos_;
       log_.log_event(out.str(),LogManager::GPSLOG);
     }
+#endif
 
     screen_.set_cur_speed(input_.get_instant_speed());
 
@@ -299,10 +303,11 @@ void RallyeTimeDG::update_staging(double dt)
         save_state();
         rallye_states_.front().hit_next();
         rallye_states_.front().fill_screen_full(screen_);
+        rallye_states_.front().speak_dirs(voice_);
 
         log_.log_event(string("HIT_NEXT"),LogManager::GPSLOG);
 
-        voice_.speak("next");
+        //voice_.speak("next");
       }
       break;
     case ButtonEvent::CHKPNT_PRESS:
@@ -312,10 +317,11 @@ void RallyeTimeDG::update_staging(double dt)
         save_state();
         rallye_states_.front().hit_chkpnt();
         rallye_states_.front().fill_screen_full(screen_);
+        rallye_states_.front().speak_dirs(voice_);
 
         log_.log_event(string("HIT_CHKPNT"),LogManager::GPSLOG);
 
-        voice_.speak("checkpoint");
+        //voice_.speak("checkpoint");
       }
       break;
     case ButtonEvent::UNDO_PRESS:
@@ -379,10 +385,11 @@ void RallyeTimeDG::rallye(double dt)
         save_state();
         rallye_states_.front().hit_next();
         rallye_states_.front().fill_screen_full(screen_);
+        rallye_states_.front().speak_dirs(voice_);
 
         log_.log_event(string("HIT_NEXT"),LogManager::GPSLOG);
 
-        voice_.speak("next");
+        //voice_.speak("next");
       }
       break;
     case ButtonEvent::CHKPNT_PRESS:
@@ -392,6 +399,7 @@ void RallyeTimeDG::rallye(double dt)
         save_state();
         rallye_states_.front().hit_chkpnt();
         rallye_states_.front().fill_screen_full(screen_);
+        //rallye_states_.front().speak_dirs(voice_);
 
         log_.log_event(string("HIT_CHKPNT"),LogManager::GPSLOG);
 
