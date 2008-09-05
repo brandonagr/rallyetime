@@ -16,9 +16,9 @@ LSS          35
 SSL
 SSL
 LSL
-CAST           40
+CAST          40
 RSL          60
-SL  "OPPE"
+SL "OPPE"
 L1          30
 R1
 R1
@@ -63,7 +63,7 @@ RSL          35
 SSL
 SSL/RR          45
 SSS
-SR  "MIT"          30
+SR "MIT"          30
 RSS          35
 SR image
 R1 UNMARKED
@@ -73,16 +73,16 @@ R4
 RSS
 RSS
 L2          50
-SR  "SPEE"          35
+SR "SPEE"          35
 LSS          40
 SSS          55
 SSS
 RSS
-CAST           45
+CAST          45
 SSL
 SSL
 SSL
-CAST           40
+CAST          40
 LSL          25
 RSL
 SSL          30
@@ -95,7 +95,7 @@ SSS
 RSS          30
 RSL
 RSL          25
-SR  "ONLY"
+SR "ONLY"
 R1 UNMARKED          5
 SSS
 L6 UNMARKED
@@ -110,7 +110,7 @@ SSL
 SSL
 SSL
 SSL
-CAST           40
+CAST          40
 RSL          25
 SSS
 SSS
@@ -125,11 +125,11 @@ R9 UNMARKED
 RSS          15
 LSL          30
 SSL
-CAST           35
+CAST          35
 SSL
 SSL
-CAST           50
-CAST           60
+CAST          50
+CAST          60
 R2          55
 RSS          40
 LSS          55
@@ -137,7 +137,7 @@ L1          25
 RSS
 RSS          50
 SL "LIS"
-CAST           40
+CAST          40
 L1 UNMARKED          5
 RT UNMARKED
 R1 UNMARKED

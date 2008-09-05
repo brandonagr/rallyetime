@@ -73,7 +73,7 @@ void DAQButtonThread::update_wss(double dt)
     time+=pulse_dt_history_[i];
   }
 
-  double inst_spd=(pulses*rollout_)/time;
+  double inst_spd=((pulses*rollout_)/time)* 0.68181818181818181818181818181818;
   
   {
     scoped_lock lock(shared_data_mutex_);

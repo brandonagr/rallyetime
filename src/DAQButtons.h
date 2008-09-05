@@ -28,7 +28,7 @@ struct ButtonEvent
 
 // type for wheel sensor revolution counter
 typedef unsigned long WSSCount;
-#define INSTANT_HIST_SIZE 5
+#define INSTANT_HIST_SIZE 40
 
 //===============================================================
 class DAQButtonThread

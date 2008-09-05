@@ -275,7 +275,10 @@ void RallyeState::update(double dt, double dist)
     dist=0;
 
   if (rallye_inprogress_)
+  {
     leg_.update_leg(realclock_, dist);
+	sectiondistance_=legstart_distance_+leg_.distance_so_far_;
+  }
     
 }
 
