@@ -78,6 +78,8 @@ RallyeDir::RallyeDir(string line)
       parts[i]="SL";
     if (parts[i].compare("SOR")==0)
       parts[i]="SR";
+    if (parts[i].compare("CHANGE")==0)
+      parts[i]="";
   }
 
   if (parts.back().size()<=2 && parts.size()>1) //assume last thing is a CAST if it's less than two digits
@@ -178,6 +180,17 @@ RallyeDir& RallyeDirections::get_current_dir()
 {
   return rallye_[current_dir_];
 }
+RallyeDir RallyeDirections::get_dir_offset(int offset)
+{
+  int index=current_dir_+offset;
+
+  if (index<0)
+    return RallyeDir("",0);
+  if (index>=(int)rallye_.size())
+    return RallyeDir("",0);
+
+  return rallye_[index];
+}
 int RallyeDirections::get_current_cast()
 {
   return last_cast_change_;
@@ -264,6 +277,54 @@ void RallyeState::update(double dt, double dist)
   if (rallye_inprogress_)
     leg_.update_leg(realclock_, dist);
     
+}
+
+//----------------------------------------------------------------
+// 
+void RallyeState::fill_screen_active(LCDScreen& screen)
+{
+  if (!rallye_inprogress_)
+  {
+    screen.set_state_flag('S');
+  }
+  else
+  {
+    if (distance_freeze_)
+      screen.set_state_flag('F');
+    else
+      screen.set_state_flag(' ');
+  }
+
+  screen.set_time((sectiontime_off_+(leg_.actual_time()-leg_.expected_time())));
+
+  if (timer_.is_active())
+  {
+    screen.set_state_flag('C');
+    screen.set_time(timer_.get_dif());
+  }
+
+  screen.set_cur_avg_speed(leg_.leg_speed_);
+}
+void RallyeState::fill_screen_full(LCDScreen& screen)
+{
+  vector<string> dir_list;
+
+  for(int i=-1; i<3; i++)
+  {
+    RallyeDir dir=rallye_dirs_.get_dir_offset(i);
+    ostringstream out;    
+
+    if (dir.cast_>0)
+      out<<dir.cast_<<" "<<dir.dir_;
+    else
+      out<<dir.dir_;
+
+    dir_list.push_back(out.str());
+  }
+  
+  screen.set_dirs(dir_list);
+  screen.set_cast((int)leg_.leg_cast_);
+  screen.set_dir_numb(rallye_dirs_.get_current_dir_numb());
 }
 
 //----------------------------------------------------------------

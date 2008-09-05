@@ -14,7 +14,11 @@ Brandon Green - 08-08-24
 #include "ThreadSupport.h"
 #include "LogManager.h"
 #include "Speech.h"
+#include "RallyeData.h"
 #include <memory>
+
+
+#define MAX_PREVIOUS_STATES 5
 
 
 //================================================================
@@ -42,6 +46,17 @@ private:
   LCDScreen screen_;
   KeyboardInput key_input_;
 
+  
+  std::list<RallyeState> rallye_states_; //front is currently active
+  void save_state()
+  {
+    RallyeState copy(rallye_states_.front());
+    rallye_states_.push_front(copy);
+
+    if (rallye_states_.size()>MAX_PREVIOUS_STATES)
+      rallye_states_.pop_back();
+  }
+
 
                      //input official time, input rallye directions, staging(waiting in line to start rallye), running rallye
   enum ProgramState {SETUP_ONE, SETUP_TWO, STAGING, RALLYE};
@@ -58,9 +73,6 @@ private:
 
   void switch_to_rallye();
   void rallye(double dt);
-
-
-
 
 
 public:

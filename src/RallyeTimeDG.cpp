@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <fstream>
 using namespace std;
 
 #define WINDOWS_LEAN_AND_MEAN
@@ -99,105 +100,20 @@ void RallyeTimeDG::run_till_quit()
       break;
     case SETUP_TWO:
 
+      update_setup_two(dt);
+
       break;
     case STAGING:
+
+      update_staging(dt);
 
       break;
     case RALLYE:
 
+      rallye(dt);
+
       break;
     }
-
-/*  //testing asynchronous input  
-    if (key_input_.keypress('S'))
-      key_input_.start_time_input();
-
-    if (!key_input_.is_done())
-      cout<<"Currently: '"<<key_input_.get_time()<<"'"<<endl;
-      */
-
-/*
-    time_since_update+=dt;
-    curtime+=dt;
-
-    if (time_since_update>0.1)
-    {
-      ostringstream out;
-      out<<curtime;
-      //cout<<curtime<<" ";
-      lcd_.write_string(LCDString(0,0,out.str()));
-      log_.log_event(out.str(), LogManager::GPSLOG);
-
-      time_since_update-=0.1;
-    }
-*/
-//process inputs
-//-------------------------------------------------
-    /*
-    if (gps_.is_gps_update())
-    {
-      GPSData update(gps_.get_gps_update());
-
-      {
-        IO_LOCK;
-        cout<<"Got GPS update: "<<update<<endl;
-        
-      }
-    }
-    */
-
-    if (input_.is_event())
-    {
-      ButtonEvent button=input_.get_event();
-
-      switch(button.type_)
-      {
-      case ButtonEvent::NEXT_PRESS:
-        {
-          IO_LOCK;
-          cout<<"NEXT_PRESS"<<endl;
-        }
-        break;
-      case ButtonEvent::CHKPNT_PRESS:
-        {
-          IO_LOCK;
-          cout<<"CHKPNT_PRESS"<<endl;
-        }
-        break;
-      case ButtonEvent::UNDO_PRESS:
-        {
-          IO_LOCK;
-          cout<<"UNDO_PRESS"<<endl;
-        }
-        break;
-      case ButtonEvent::PANIC_ENGAGE:
-        {
-          IO_LOCK;
-          cout<<"PANIC_ENGAGE"<<endl;
-        }
-        break;
-      case ButtonEvent::PANIC_RELEASE:
-        {
-          IO_LOCK;
-          cout<<"PANIC_RELEASE"<<endl;
-        }
-        break;
-      }
-    }
-
-//update rallyetime state
-//-------------------------------------------------
-
-/*
-    curtime+=dt;
-
-    screen_.set_cur_speed(input_.get_instant_speed());
-
-	  screen_.set_cur_avg_speed(gps_spd);
-
-    dist+=input_.get_distance();
-    screen_.set_time(PrettyTime(dist/5280.0));
-*/
 
 
 //process output
@@ -259,7 +175,7 @@ void RallyeTimeDG::update_setup_one(double dt)
 
         out.str("");
         out<<"Set OT: "<<official_time_;
-        log_.log_event(out.str(),LogManager::LOG);
+        log_.log_event(out.str(),LogManager::GPSLOG);
         
         switch_to_setup_two();
       }
@@ -284,9 +200,231 @@ void RallyeTimeDG::switch_to_setup_two()
 }
 void RallyeTimeDG::update_setup_two(double dt)
 {
-  if (key_input_.keypress('R')) //attempt to load the directions
+  if (key_input_.keydown('R') && key_input_.keydown(VK_CONTROL)) //attempt to load the directions
   {
+    ifstream in(params_.get<string>("RallyeDirFile").c_str());
 
+    if (in.is_open())
+    {      
+      rallye_states_.push_front(RallyeState(params_, &log_));
+      rallye_states_.front().hit_timer_sync(official_time_);
+      
+      voice_.speak("directions loaded");
+      switch_to_staging();
+    }
+    else
+    {
+      voice_.speak("unable to load directions");
+      cout<<"ERROR"<<endl;
+    }
 
+    in.close();
   }
 }
+
+//-----------------------------------------------------------
+// staging
+void RallyeTimeDG::switch_to_staging()
+{
+  cur_state_=RallyeTimeDG::STAGING;
+
+  //output initial directions
+  screen_.set_fullscreen_mode(true);
+  rallye_states_.front().fill_screen_active(screen_);
+  rallye_states_.front().fill_screen_full(screen_);
+}
+void RallyeTimeDG::update_staging(double dt)
+{
+  static bool entering_time=false;
+
+  if (!entering_time && key_input_.keypress(VK_RETURN))
+  {
+    voice_.speak("enter leave time.");
+    key_input_.start_time_input();
+
+    entering_time=true;
+  }
+
+  if (entering_time)
+  {
+    string cur_input=key_input_.get_time();
+
+    ostringstream out;
+    out<<"LT: "<<cur_input;
+    lcd_.write_string(LCDString(0,3,out.str(),10,false));
+
+    if (key_input_.is_done()) //check if value is good, if so, move to next direction
+    {
+      if (cur_input.size()==6)
+      {
+        PrettyTime leave_target=PrettyTime(cur_input,false);
+
+        out.str("");
+        out<<"Set LT: "<<leave_target;
+        log_.log_event(out.str(),LogManager::GPSLOG);
+
+        rallye_states_.front().hit_timer_go(leave_target);
+        rallye_states_.front().fill_screen_full(screen_);
+      }
+      else
+      {
+        voice_.speak("in valid, time");
+        lcd_.write_string(LCDString(0,3,"",10,false));
+      }
+      entering_time=false;
+    }
+  }
+
+  double dist=input_.get_distance();
+  for(list<RallyeState>::iterator i=rallye_states_.begin(); i!=rallye_states_.end(); i++)
+    i->update(dt, dist);
+
+  rallye_states_.front().fill_screen_active(screen_);
+
+  if (input_.is_event())
+  {
+    ButtonEvent button=input_.get_event();
+
+    switch(button.type_)
+    {
+    case ButtonEvent::NEXT_PRESS:
+      {
+        switch_to_rallye();
+
+        save_state();
+        rallye_states_.front().hit_next();
+        rallye_states_.front().fill_screen_full(screen_);
+
+        log_.log_event(string("HIT_NEXT"),LogManager::GPSLOG);
+
+        voice_.speak("next");
+      }
+      break;
+    case ButtonEvent::CHKPNT_PRESS:
+      {
+        switch_to_rallye();
+
+        save_state();
+        rallye_states_.front().hit_chkpnt();
+        rallye_states_.front().fill_screen_full(screen_);
+
+        log_.log_event(string("HIT_CHKPNT"),LogManager::GPSLOG);
+
+        voice_.speak("checkpoint");
+      }
+      break;
+    case ButtonEvent::UNDO_PRESS:
+      {
+        if (rallye_states_.size()>1)
+        {
+          rallye_states_.pop_front();
+          if (rallye_states_.front().is_inprogress())
+            switch_to_rallye();
+          rallye_states_.front().fill_screen_full(screen_);
+
+          log_.log_event(string("HIT_UNDO"),LogManager::GPSLOG);
+
+          voice_.speak("undo");
+        }
+        else
+          voice_.speak("error no more undo");
+      }
+      break;
+    case ButtonEvent::PANIC_ENGAGE:
+      {
+        voice_.speak("bitch, don't push my buttons");
+      }
+      break;
+    case ButtonEvent::PANIC_RELEASE:
+      {
+        voice_.speak("that's better");
+      }
+      break;
+    }
+  }
+}
+
+//-----------------------------------------------------------
+// staging
+void RallyeTimeDG::switch_to_rallye()
+{
+  cur_state_=RallyeTimeDG::RALLYE;
+
+  //output initial directions
+  screen_.set_fullscreen_mode(true);
+  rallye_states_.front().fill_screen_active(screen_);
+  rallye_states_.front().fill_screen_full(screen_);
+}
+void RallyeTimeDG::rallye(double dt)
+{
+  double dist=input_.get_distance();
+  for(list<RallyeState>::iterator i=rallye_states_.begin(); i!=rallye_states_.end(); i++)
+    i->update(dt, dist);
+
+  rallye_states_.front().fill_screen_active(screen_);
+
+  if (input_.is_event())
+  {
+    ButtonEvent button=input_.get_event();
+
+    switch(button.type_)
+    {
+    case ButtonEvent::NEXT_PRESS:
+      {
+        save_state();
+        rallye_states_.front().hit_next();
+        rallye_states_.front().fill_screen_full(screen_);
+
+        log_.log_event(string("HIT_NEXT"),LogManager::GPSLOG);
+
+        voice_.speak("next");
+      }
+      break;
+    case ButtonEvent::CHKPNT_PRESS:
+      {
+        switch_to_staging();
+
+        save_state();
+        rallye_states_.front().hit_chkpnt();
+        rallye_states_.front().fill_screen_full(screen_);
+
+        log_.log_event(string("HIT_CHKPNT"),LogManager::GPSLOG);
+
+        voice_.speak("checkpoint");
+      }
+      break;
+    case ButtonEvent::UNDO_PRESS:
+      {
+        if (rallye_states_.size()>1)
+        {
+          rallye_states_.pop_front();
+          if (!rallye_states_.front().is_inprogress())
+            switch_to_staging();
+          rallye_states_.front().fill_screen_full(screen_);
+
+          log_.log_event(string("HIT_UNDO"),LogManager::GPSLOG);
+
+          voice_.speak("undo");
+        }
+        else
+          voice_.speak("error no more undo");
+      }
+      break;
+    case ButtonEvent::PANIC_ENGAGE:
+      {
+        rallye_states_.front().hit_freeze();
+
+        voice_.speak("freeze");
+      }
+      break;
+    case ButtonEvent::PANIC_RELEASE:
+      {
+        rallye_states_.front().hit_freeze();
+
+        voice_.speak("unfreeze");
+      }
+      break;
+    }
+  }
+}
+

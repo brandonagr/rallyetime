@@ -109,6 +109,7 @@ class LCDScreen
 
   double time_since_write_;
 
+  char state_flag_;
   double time_;
   double avg_spd_;
   double spd_;
@@ -134,7 +135,7 @@ class LCDScreen
   dir line 3= 13
   dir line 4= 12
 
-  time= {+,-}###.#
+  time= [char]{+,-}###.#
   avg= ##.#/##
   #(cur dir number)= ###
   spd= >##.#
@@ -145,7 +146,10 @@ public:
 
 
   void set_dirs(std::vector<std::string>& dirs);
+  void set_cast(int cast);
+  void set_dir_numb(int numb);
 
+  void set_state_flag(char flag){state_flag_=flag;}
   void set_time(PrettyTime& time);
   void set_cur_speed(double cur_speed);
   void set_cur_avg_speed(double cur_avg_speed);

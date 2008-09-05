@@ -74,6 +74,7 @@ public:
 
   bool advance_direction(); //return true if there was a cast change
   RallyeDir& get_current_dir();
+  RallyeDir get_dir_offset(int offset);
   int get_current_cast();
   int get_current_dir_numb();
   int get_total_dirs();
@@ -129,6 +130,8 @@ public:
   void hit_next();
   void hit_chkpnt();
   void hit_freeze();
+
+  bool is_inprogress(){return rallye_inprogress_;}
 };
 
 

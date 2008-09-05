@@ -164,7 +164,8 @@ LCDScreen::LCDScreen(DAQLCDThread* lcd)
  avg_spd_(0.0),
  spd_(0.0),
  full_redraw_(false),
- enable_fullscreen_(false)
+ enable_fullscreen_(false),
+ state_flag_('S')
 {
 
 }
@@ -172,6 +173,19 @@ LCDScreen::LCDScreen(DAQLCDThread* lcd)
 // 
 void LCDScreen::set_dirs(std::vector<std::string>& dirs)
 {
+  dirs_=dirs;
+
+  full_redraw_=true;
+}
+void LCDScreen::set_cast(int cast)
+{
+  cast_=cast;
+
+  full_redraw_=true;
+}
+void LCDScreen::set_dir_numb(int numb)
+{
+  dir_numb_=numb;
 
   full_redraw_=true;
 }
@@ -202,7 +216,9 @@ void LCDScreen::update(double dt)
 
     if (enable_fullscreen_)
     {
-      out<<((time_>0)?'+':'-')<<fabs(time_);
+      if (state_flag_!=' ') //display things like S for stopped, C for countdown, F for frozen
+        out<<state_flag_;
+      out<<((time_>=0)?'+':'-')<<fabs(time_);
       lcd_->write_string(LCDString(14,0,out.str(),6));
 
       out.str("");
@@ -213,6 +229,29 @@ void LCDScreen::update(double dt)
     out.str("");
     out<<'>'<<spd_;
     lcd_->write_string(LCDString(15,3,out.str(),5,false));
+
+    if (full_redraw_)
+    {
+      lcd_->write_string(LCDString(0,0,dirs_[0],14,false));
+      lcd_->write_string(LCDString(0,1,dirs_[1],20,false));
+      lcd_->write_string(LCDString(0,2,dirs_[2],13,false));
+      lcd_->write_string(LCDString(0,3,dirs_[3],12,false));
+/*
+      cout<<"wrote dir line 0 "<<dirs_[0]<<endl;
+      cout<<"wrote dir line 1 "<<dirs_[1]<<endl;
+      cout<<"wrote dir line 2 "<<dirs_[2]<<endl;
+      cout<<"wrote dir line 3 "<<dirs_[3]<<endl;
+*/
+      out<<noshowpoint<<setprecision(0);
+
+      out.str("");out<<'/'<<cast_;
+      lcd_->write_string(LCDString(17,2,out.str(),3,false));
+
+      out.str("");out<<dir_numb_;
+      lcd_->write_string(LCDString(12,3,out.str(),3));
+
+      full_redraw_=false;
+    }
 
     time_since_write_-=LCDSCREEN_REFRESH_RATE;
   }
