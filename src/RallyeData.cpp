@@ -277,7 +277,7 @@ void RallyeState::update(double dt, double dist)
   if (rallye_inprogress_)
   {
     leg_.update_leg(realclock_, dist);
-	sectiondistance_=legstart_distance_+leg_.distance_so_far_;
+    sectiondistance_=legstart_distance_+leg_.distance_so_far_;
   }
     
 }
@@ -289,6 +289,14 @@ void RallyeState::fill_screen_active(LCDScreen& screen)
   if (!rallye_inprogress_)
   {
     screen.set_state_flag('S');
+
+    screen.set_time(sectiontime_off_); //after rallye is switched to inactive, leg time is added into sectiontime_off_
+
+    if (timer_.is_active())
+    {
+      screen.set_state_flag('C');
+      screen.set_time(timer_.get_dif());
+    }
   }
   else
   {
@@ -296,17 +304,11 @@ void RallyeState::fill_screen_active(LCDScreen& screen)
       screen.set_state_flag('F');
     else
       screen.set_state_flag(' ');
-  }
 
-  screen.set_time((sectiontime_off_+(leg_.actual_time()-leg_.expected_time())));
+    screen.set_time((sectiontime_off_+(leg_.actual_time()-leg_.expected_time())));
 
-  if (timer_.is_active())
-  {
-    screen.set_state_flag('C');
-    screen.set_time(timer_.get_dif());
-  }
-
-  screen.set_cur_avg_speed(leg_.leg_speed_);
+    screen.set_cur_avg_speed(leg_.leg_speed_);
+  }  
 }
 void RallyeState::fill_screen_full(LCDScreen& screen)
 {
