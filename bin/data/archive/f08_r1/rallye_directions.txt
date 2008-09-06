@@ -1,0 +1,120 @@
+R1 UNMARKED          15
+RSL/YLD          35
+LSL
+SSL
+R1          25
+RSS
+LSS
+R1
+R1
+RSS/T
+LSS
+LSL          30
+SSL
+R1
+LSS
+LSS          25
+RSS/T
+L2
+RSS/T          50
+CAST          45
+RSL/YLD
+LSL          25
+R2
+L4
+RSS/T
+SSS
+LSS/T
+RSS/T
+SSS          30
+RSS/YLD          20
+CAST          25
+LSL          35
+SSL
+SSL
+CAST          40
+SSL
+SSL
+RSL          30
+SSL
+SSL
+SSL
+SSS
+L5          25
+LSS/T
+RSS/T          45
+SSL
+SSL
+RR
+L1          40
+SSS
+SSS          35
+LSS          30
+CAST          45
+RSS          40
+RSS          50
+L1          35
+SSS
+R1
+LSS          40
+L/T/YLD
+RR
+LSS/T          50
+SSL
+CAST          40
+LSL          45
+RR
+CAST          55
+SSL
+SSL
+SSL
+R1
+LSS          60
+SR RIP "OOK"
+L2          30
+R1
+R/T
+RSS
+SR RIP "30,000"
+LSS/T          60
+SR RIP "MFORD"
+R1/YLD
+SR RIP "HEARNE"
+SR RIP "BRYAN"
+RSS/T
+SR RIP "FASTEN"
+R3
+SR RIP 'THOMPSON"
+R1          30
+LSS/T
+RSS          60
+R1
+LSS/RBL          50
+SSS/RBL
+L1          30
+RSS/T          50
+LSL
+CAST          55
+SSL
+SR RIP "DISON"
+R1          35
+RSL          50
+CAST          40
+SSL
+SSL
+SSL
+RSL          35
+L1          60
+R4          45
+RSL/YLD
+SSL
+SSL
+LSL          30
+L1          20
+RSS          25
+RSS
+SSL          35
+RSS/T/YLD          25
+SSS          15
+L1 UNMARKED/YLD
+L1 UNMARKED

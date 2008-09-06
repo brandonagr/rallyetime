@@ -413,6 +413,8 @@ void RallyeState::hit_freeze()
 
   if (distance_freeze_)
     log_->log_event(string("FREEZE DISTANCE EVENT"), LogManager::LOG);
+  else
+	log_->log_event(string("UNFREEZE DISTANCE EVENT"), LogManager::LOG);
 }
 
 //----------------------------------------------------------------
@@ -513,8 +515,22 @@ void RallyeState::calc_end_leg_stats()
 {
   PrettyTime timedif=leg_.actual_time()-leg_.expected_time();
 
+  //legstart_distance_ to sectiondistance_
+
+  double legstart_distance_rndd=(double)(floor((legstart_distance_/5280.0)*10+0.5)/10);
+  double sectiondistance_rndd=(double)(floor((sectiondistance_/5280.0)*10+0.5)/10);
+
+  cout<<"went from legstart "<<legstart_distance_<<" to "<<legstart_distance_rndd<<endl;
+  cout<<"went from sectiondist "<<sectiondistance_<<" to "<<sectiondistance_rndd<<endl;
+
+  PrettyTime improved_timedif=((sectiondistance_rndd-legstart_distance_rndd)/leg_.leg_cast_) * 3600; //make sure time is in seconds
+
+
   legtime_off_=timedif;
   sectiontime_off_+=timedif;
+  //legtime_off_=improved_timedif;
+  //sectiontime_off_+=improved_timedif;
+
   section_total_time_+=leg_.actual_time();
 
   ostringstream output;
@@ -522,6 +538,7 @@ void RallyeState::calc_end_leg_stats()
 			    <<"\tTime- "<<leg_.actual_time().get_string()<<"\t"<<leg_.actual_time().get_seconds()
 			    <<"\tDistance- "<<leg_.distance_so_far_/5280.0
 			    <<"\tIdeal- "<<leg_.expected_time().get_string()<<"\t"<<leg_.expected_time().get_seconds()
-			    <<"\tDiff- "<<timedif.get_string()<<"\t"<<timedif.get_seconds()<<endl;
+			    <<"\tOLDDiff- "<<timedif.get_string()<<"\t"<<timedif.get_seconds()
+				<<"\tDiff- "<<improved_timedif.get_string()<<"\t"<<improved_timedif.get_seconds()<<endl;
   log_->log_event(output.str(),LogManager::LOG);
 }

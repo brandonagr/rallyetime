@@ -147,6 +147,7 @@ void DAQButtonThread::run()
   QueryPerformanceCounter(&prev_time_);  
 
   double daq_bandwidth_limiter=0.0;
+  double time_accum=0.0;
 
   while(!(*kill_flag_))
   {
@@ -157,13 +158,14 @@ void DAQButtonThread::run()
 
 
     daq_bandwidth_limiter+=dt;
+	time_accum+=dt;
 
     //update any active debounce counters
     next_db_+=dt;
     chkpnt_db_+=dt;
     undo_db_+=dt;
     
-    if (daq_bandwidth_limiter>0.1) //only check at 10hz
+    if (daq_bandwidth_limiter>0.08) //only check at 12.5hz
     {
       //update buttons--------------------------------
       unsigned char data;
@@ -233,9 +235,10 @@ void DAQButtonThread::run()
         }
       }
 
-      update_wss(daq_bandwidth_limiter);
+      update_wss(time_accum);
+	  time_accum=0.0;
 
-      daq_bandwidth_limiter=0.0;
+      daq_bandwidth_limiter-=0.08;
     }
 
     boost::thread::yield();

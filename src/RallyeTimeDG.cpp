@@ -47,7 +47,9 @@ RallyeTimeDG::~RallyeTimeDG()
 
   kill_flag_=true;
 
-  //gps_thread_.join();
+#ifdef ENABLE_GPS
+  gps_thread_.join();
+#endif
   lcd_thread_.join();
   input_thread_.join();
   log_thread_.join();
@@ -156,7 +158,7 @@ void RallyeTimeDG::update_setup_one(double dt)
   static bool entering_time=false;
 
   if (last_gps_pos_.valid_)
-    lcd_.write_string(LCDString(12,0,"GPS Good"));
+    lcd_.write_string(LCDString(11,0,"GPS Good "));
   else
     lcd_.write_string(LCDString(11,0,"GPS ERROR"));
   
