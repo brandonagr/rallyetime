@@ -111,7 +111,7 @@ class LCDScreen
 
   char state_flag_;
   double time_;
-  double avg_spd_;
+  double time_trunc_error_;
   double spd_;
 
   bool enable_fullscreen_; 
@@ -127,18 +127,17 @@ class LCDScreen
 /*
   lcd_.write_string(LCDString(0,0,"[dir         ][time]"));
   lcd_.write_string(LCDString(0,1,"[dir               ]"));
-  lcd_.write_string(LCDString(0,2,"[dir        ][avg/c]"));
-  lcd_.write_string(LCDString(0,3,"[dir       ][#][spd]"));
+  lcd_.write_string(LCDString(0,2,"[dir            ][t]"));
+  lcd_.write_string(LCDString(0,3,"[dir        ][][spd]"));
 
   dir line 1= 14
   dir line 2= 20
-  dir line 3= 13
-  dir line 4= 12
+  dir line 3= 17
+  dir line 4= 13
 
-  time= [char]{+,-}###.#
-  avg= ##.#/##
-  #(cur dir number)= ###
-  spd= >##.#
+  time= {status char}{+,-}###.#
+  t= {+,-}## estimated truncated error so far(what the time should read when crossing the checkpoint line)
+  spd= ##>##.#  (cast>speed)
 */
 
 public:
@@ -147,12 +146,11 @@ public:
 
   void set_dirs(std::vector<std::string>& dirs);
   void set_cast(int cast);
-  void set_dir_numb(int numb);
 
   void set_state_flag(char flag){state_flag_=flag;}
   void set_time(PrettyTime& time);
+  void set_trunc_time(PrettyTime& time);
   void set_cur_speed(double cur_speed);
-  void set_cur_avg_speed(double cur_avg_speed);
 
   void update(double dt); 
 

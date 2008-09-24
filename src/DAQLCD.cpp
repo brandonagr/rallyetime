@@ -161,7 +161,7 @@ LCDScreen::LCDScreen(DAQLCDThread* lcd)
 :lcd_(lcd),
  time_since_write_(LCDSCREEN_REFRESH_RATE), //start out at rate so first call will get an update
  time_(0.0),
- avg_spd_(0.0),
+ time_trunc_error_(0.0),
  spd_(0.0),
  full_redraw_(false),
  enable_fullscreen_(false),
@@ -183,12 +183,6 @@ void LCDScreen::set_cast(int cast)
 
   full_redraw_=true;
 }
-void LCDScreen::set_dir_numb(int numb)
-{
-  dir_numb_=numb;
-
-  full_redraw_=true;
-}
 
 //----------------------------------------------------------------
 // 
@@ -196,13 +190,13 @@ void LCDScreen::set_time(PrettyTime& time)
 {
   time_=time.get_seconds();
 }
+void LCDScreen::set_trunc_time(PrettyTime& time)
+{
+  time_trunc_error_=time.get_seconds();
+}
 void LCDScreen::set_cur_speed(double cur_speed)
 {
   spd_=cur_speed;
-}
-void LCDScreen::set_cur_avg_speed(double cur_avg_speed)
-{
-  avg_spd_=cur_avg_speed;
 }
 //----------------------------------------------------------------
 // 
@@ -220,10 +214,6 @@ void LCDScreen::update(double dt)
         out<<state_flag_;
       out<<((time_>=0)?'+':'-')<<fabs(time_);
       lcd_->write_string(LCDString(14,0,out.str(),6));
-
-      out.str("");
-      out<<avg_spd_;
-      lcd_->write_string(LCDString(13,2,out.str(),4));
     }
 
     out.str("");
@@ -234,8 +224,8 @@ void LCDScreen::update(double dt)
     {
       lcd_->write_string(LCDString(0,0,dirs_[0],14,false));
       lcd_->write_string(LCDString(0,1,dirs_[1],20,false));
-      lcd_->write_string(LCDString(0,2,dirs_[2],13,false));
-      lcd_->write_string(LCDString(0,3,dirs_[3],12,false));
+      lcd_->write_string(LCDString(0,2,dirs_[2],17,false));
+      lcd_->write_string(LCDString(0,3,dirs_[3],13,false));
 /*
       cout<<"wrote dir line 0 "<<dirs_[0]<<endl;
       cout<<"wrote dir line 1 "<<dirs_[1]<<endl;
@@ -244,11 +234,12 @@ void LCDScreen::update(double dt)
 */
       out<<noshowpoint<<setprecision(0);
 
-      out.str("");out<<'/'<<cast_;
-      lcd_->write_string(LCDString(17,2,out.str(),3,false));
+      out.str("");out<<cast_;
+      lcd_->write_string(LCDString(13,3,out.str(),2));
 
-      out.str("");out<<dir_numb_;
-      lcd_->write_string(LCDString(12,3,out.str(),3));
+      out.str("");
+      out<<((time_trunc_error_>=0)?'+':'-')<<fabs(time_trunc_error_);      
+      lcd_->write_string(LCDString(17,2,out.str(),3));
 
       full_redraw_=false;
     }

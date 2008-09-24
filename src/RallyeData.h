@@ -101,12 +101,16 @@ private:
   bool distance_freeze_;
 
   int section_numb_;
-  PrettyTime legtime_off_;
   PrettyTime sectiontime_off_;
   PrettyTime section_total_time_;
   PrettyTime section_initial_off_;
+  PrettyTime trunc_err_est_;
   double sectiondistance_;
   double legstart_distance_;
+
+  PrettyTime est_trnc_err_; //estimated truncation error so far in the rallye
+
+
 
   CountdownTimer timer_;
   bool timer_has_goal_;

@@ -26,7 +26,7 @@ DAQButtonThread::DAQButtonThread(bool* kill_flag, Params param)
   dist_(0.0),
   inst_spd_(0.0)
 {
-  rollout_=param.get<double>("TireRollout")*param.get<double>("CorrectionFactor");
+  rollout_per_pulse_=(param.get<double>("TireRollout")*param.get<double>("CorrectionFactor"))/param.get<double>("NumbMagnets");
 
   err_chk( DAQmxCreateDIChan(input_.t_,"Dev1/port1/line4:7","",DAQmx_Val_ChanForAllLines) );
   err_chk( DAQmxCreateCICountEdgesChan(wss_input_.t_,"Dev1/ctr0","",DAQmx_Val_Falling,0,DAQmx_Val_CountUp));
@@ -73,12 +73,12 @@ void DAQButtonThread::update_wss(double dt)
     time+=pulse_dt_history_[i];
   }
 
-  double inst_spd=((pulses*rollout_)/time)* 0.68181818181818181818181818181818;
+  double inst_spd=((pulses*rollout_per_pulse_)/time)* 0.68181818181818181818181818181818;
   
   {
     scoped_lock lock(shared_data_mutex_);
 
-    dist_+=delta_pulse*rollout_;
+    dist_+=delta_pulse*rollout_per_pulse_;
     inst_spd_=inst_spd;
   }
 }
@@ -158,7 +158,7 @@ void DAQButtonThread::run()
 
 
     daq_bandwidth_limiter+=dt;
-	time_accum+=dt;
+    time_accum+=dt;
 
     //update any active debounce counters
     next_db_+=dt;
@@ -205,7 +205,7 @@ void DAQButtonThread::run()
       //UNDO_PRESS
       if (data&0x2)
       {
-        if (undo_db_==0.0 || undo_db_>2.0)
+        if (undo_db_==0.0 || undo_db_>1.5)
         {
           scoped_lock lock(shared_data_mutex_);
           event_que_.push_back(ButtonEvent(ButtonEvent::UNDO_PRESS));
@@ -236,7 +236,7 @@ void DAQButtonThread::run()
       }
 
       update_wss(time_accum);
-	  time_accum=0.0;
+	    time_accum=0.0;
 
       daq_bandwidth_limiter-=0.08;
     }

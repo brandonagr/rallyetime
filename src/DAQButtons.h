@@ -45,7 +45,8 @@ private:
   bool panic_flipped_;
 
 
-  double rollout_; //in feet
+  double rollout_per_pulse_; //in feet
+  
   
   WSSCount prev_wss_;
 

@@ -15,5 +15,8 @@ RallyeDirFile ./dirs.txt
 #Rollout in feet of one tire revolution
 TireRollout 6.4881528587342
 
+#Number of magnets mounted on the wheel
+NumbMagnets 2
+
 #Percent that the car that made the rallye is off from actual
-CorrectionFactor 1.002
+CorrectionFactor 1.00

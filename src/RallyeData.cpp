@@ -306,8 +306,6 @@ void RallyeState::fill_screen_active(LCDScreen& screen)
       screen.set_state_flag(' ');
 
     screen.set_time((sectiontime_off_+(leg_.actual_time()-leg_.expected_time())));
-
-    screen.set_cur_avg_speed(leg_.leg_speed_);
   }  
 }
 void RallyeState::fill_screen_full(LCDScreen& screen)
@@ -329,7 +327,7 @@ void RallyeState::fill_screen_full(LCDScreen& screen)
   
   screen.set_dirs(dir_list);
   screen.set_cast((int)leg_.leg_cast_);
-  screen.set_dir_numb(rallye_dirs_.get_current_dir_numb());
+  screen.set_trunc_time(trunc_err_est_);
 }
 void RallyeState::speak_dirs(CSpeech &voice)
 {
@@ -449,9 +447,11 @@ void RallyeState::transition_to_stopped()
 void RallyeState::transition_to_active()
 {
   //reset all the important variables
-  legtime_off_.set(0,0,0);
   sectiontime_off_.set(0,0,0);    
   section_total_time_.set(0,0,0);
+  section_initial_off_.set(0,0,0);
+  trunc_err_est_.set(0,0,0);
+
   sectiondistance_=0.0;  
   legstart_distance_=0.0;  
   distance_freeze_=false;
@@ -461,7 +461,6 @@ void RallyeState::transition_to_active()
 
   section_numb_++;
 
-  section_initial_off_=PrettyTime(0.0);
   if (timer_.is_active())
   {
     section_initial_off_=timer_.get_dif();
@@ -503,7 +502,7 @@ void RallyeState::goto_nextleg()
   legstart_distance_+=leg_.distance_so_far_;
 
   leg_=RallyeLeg(rallye_dirs_.get_current_cast());
-  leg_.update_leg(realclock_,0.0); //intialize the clock This line was missing from here before, causing it to lose the time from the creation to the first update
+  leg_.update_leg(realclock_,0.0); //intialize the clock
   
   ostringstream output;
   output<<"START LEG: \tNumb- "<<rallye_dirs_.get_current_dir_numb()
@@ -519,21 +518,17 @@ void RallyeState::calc_end_leg_stats()
 
   //legstart_distance_ to sectiondistance_
 
-  double legstart_distance_rndd=(double)(floor((legstart_distance_/5280.0)*10+0.5)/10);
-  double sectiondistance_rndd=(double)(floor((sectiondistance_/5280.0)*10+0.5)/10);
-
-  cout<<"went from legstart "<<legstart_distance_<<" to "<<legstart_distance_rndd<<endl;
-  cout<<"went from sectiondist "<<sectiondistance_<<" to "<<sectiondistance_rndd<<endl;
-
-  PrettyTime improved_timedif=((sectiondistance_rndd-legstart_distance_rndd)/leg_.leg_cast_) * 3600; //make sure time is in seconds
+  double legstart_distance_trnc=(double)(floor((legstart_distance_/5280.0)*10)/10);
+  double sectiondistance_trnc=(double)(floor((sectiondistance_/5280.0)*10)/10);
 
 
-  legtime_off_=timedif;
-  sectiontime_off_+=timedif;
-  //legtime_off_=improved_timedif;
-  //sectiontime_off_+=improved_timedif;
+  PrettyTime time_trunc=((sectiondistance_trnc-legstart_distance_trnc)/leg_.leg_cast_) * 3600; //make sure time is in seconds
+  trunc_err_est_+=time_trunc-leg_.expected_time(); //amount of error from
 
+
+  sectiontime_off_+=timedif;  
   section_total_time_+=leg_.actual_time();
+
 
   ostringstream output;
   output<<"END LEG: \tCast- "<<leg_.leg_cast_
@@ -541,6 +536,6 @@ void RallyeState::calc_end_leg_stats()
 			    <<"\tDistance- "<<leg_.distance_so_far_/5280.0
 			    <<"\tIdeal- "<<leg_.expected_time().get_string()<<"\t"<<leg_.expected_time().get_seconds()
 			    <<"\tOLDDiff- "<<timedif.get_string()<<"\t"<<timedif.get_seconds()
-				<<"\tDiff- "<<improved_timedif.get_string()<<"\t"<<improved_timedif.get_seconds()<<endl;
+				<<"\tTruncTime- "<<time_trunc.get_string()<<"\t"<<time_trunc.get_seconds()<<endl;
   log_->log_event(output.str(),LogManager::LOG);
 }
