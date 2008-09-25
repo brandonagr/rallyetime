@@ -1,143 +1,120 @@
 R1 UNMARKED          15
-RSL          35
-RSL
-SSL
-L1          30
-R3          20
-LSS          25
-R1
-L1
-RSS          20
-LSS          25
-R1
-RSS
-L1
-LSS          35
-SSL
-SSL
+RSL/YLD          35
 LSL
-CAST          40
-RSL          60
-SL "OPPE"
-L1          30
+SSL
+R1          25
+RSS
+LSS
 R1
 R1
+RSS/T
 LSS
-L1          25
-RSS
-L4
-RSS
-L3
-L1
-R2
-LSS
-RSS          40
-LSL          50
-RSL          25
-L2 UNMARKED          10
-L1 UNMARKED
-L1 UNMARKED
-R1 UNMARKED          25
-RSL          40
-SSL
-LSL
-L1          60
-R5          50
-LSS
-LSS
-R2          40
-R3          25
-RSS
-**DIP**
-RSS          30
-SSS
-SSS          40
-SSL
 LSL          30
-RSL
-SSS
-R1
+SSL
 R1
 LSS
-RSL          35
-SSL
-SSL/RR          45
-SSS
-SR "MIT"          30
-RSS          35
-SR image
-R1 UNMARKED
-S/YLD
-SSS          40
-R4
-RSS
-RSS
-L2          50
-SR "SPEE"          35
-LSS          40
-SSS          55
-SSS
-RSS
+LSS          25
+RSS/T
+L2
+RSS/T          50
 CAST          45
-SSL
-SSL
-SSL
-CAST          40
+RSL/YLD
 LSL          25
-RSL
-SSL          30
-LSL
-R1
-R4 UNMARKED          5
-L3 UNMARKED
-R1 UNMARKED
+R2
+L4
+RSS/T
 SSS
-RSS          30
-RSL
-RSL          25
-SR "ONLY"
-R1 UNMARKED          5
-SSS
-L6 UNMARKED
+LSS/T
+RSS/T
+SSS          30
+RSS/YLD          20
+CAST          25
 LSL          35
-SSL
-SSL
-L1 UNMARKED          25
-RSS
-LSS          35
-SSL
-SSL
-SSL
 SSL
 SSL
 CAST          40
-RSL          25
+SSL
+SSL
+RSL          30
+SSL
+SSL
+SSL
 SSS
+L5          25
+LSS/T
+RSS/T          45
+SSL
+SSL
+RR
+L1          40
 SSS
-SSS
-RSS
-LSL          35
-R1          30
-SSL
-SSL
-R1 UNMARKED          5
-R9 UNMARKED
-RSS          15
-LSL          30
-SSL
-CAST          35
-SSL
-SSL
-CAST          50
-CAST          60
-R2          55
+SSS          35
+LSS          30
+CAST          45
 RSS          40
-LSS          55
-L1          25
-RSS
 RSS          50
-SL "LIS"
+L1          35
+SSS
+R1
+LSS          40
+L/T/YLD
+RR
+LSS/T          50
+SSL
 CAST          40
-L1 UNMARKED          5
-RT UNMARKED
-R1 UNMARKED
+LSL          45
+RR
+CAST          55
+SSL
+SSL
+SSL
+R1
+LSS          60
+SR RIP "OOK"
+L2          30
+R1
+R/T
+RSS
+SR RIP "30,000"
+LSS/T          60
+SR RIP "MFORD"
+R1/YLD
+SR RIP "HEARNE"
+SR RIP "BRYAN"
+RSS/T
+SR RIP "FASTEN"
+R3
+SR RIP 'THOMPSON"
+R1          30
+LSS/T
+RSS          60
+R1
+LSS/RBL          50
+SSS/RBL
+L1          30
+RSS/T          50
+LSL
+CAST          55
+SSL
+SR RIP "DISON"
+R1          35
+RSL          50
+CAST          40
+SSL
+SSL
+SSL
+RSL          35
+L1          60
+R4          45
+RSL/YLD
+SSL
+SSL
+LSL          30
+L1          20
+RSS          25
+RSS
+SSL          35
+RSS/T/YLD          25
+SSS          15
+L1 UNMARKED/YLD
+L1 UNMARKED

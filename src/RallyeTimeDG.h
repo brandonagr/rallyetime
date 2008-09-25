@@ -20,7 +20,7 @@ Brandon Green - 08-08-24
 
 #define MAX_PREVIOUS_STATES 5
 
-#define ENABLE_GPS
+#define DISABLE_GPS //ENABLE_GPS to activate it
 
 
 //================================================================
