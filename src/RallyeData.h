@@ -108,9 +108,6 @@ private:
   double sectiondistance_;
   double legstart_distance_;
 
-  PrettyTime est_trnc_err_; //estimated truncation error so far in the rallye
-
-
 
   CountdownTimer timer_;
   bool timer_has_goal_;
