@@ -312,7 +312,7 @@ void RallyeState::fill_screen_full(LCDScreen& screen)
 {
   vector<string> dir_list;
 
-  for(int i=-1; i<3; i++)
+  for(int i=0; i<4; i++)
   {
     RallyeDir dir=rallye_dirs_.get_dir_offset(i);
     ostringstream out;    
