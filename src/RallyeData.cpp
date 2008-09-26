@@ -421,11 +421,13 @@ void RallyeState::hit_chkpnt()
 void RallyeState::hit_freeze()
 {
   distance_freeze_=!distance_freeze_;
-
+/*
+  //logging done in RallyeTimeDG class instead of in here, where it would get put into the log multiple times
   if (distance_freeze_)
     log_->log_event(string("FREEZE DISTANCE EVENT"), LogManager::LOG);
   else
 	log_->log_event(string("UNFREEZE DISTANCE EVENT"), LogManager::LOG);
+*/	
 }
 
 //----------------------------------------------------------------

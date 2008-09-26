@@ -418,7 +418,6 @@ void RallyeTimeDG::rallye(double dt)
           rallye_states_.front().fill_screen_full(screen_);
 
           log_.log_event(string("HIT_UNDO"),LogManager::GPSLOG);
-
           voice_.speak("undo");
         }
         else
@@ -427,15 +426,19 @@ void RallyeTimeDG::rallye(double dt)
       break;
     case ButtonEvent::PANIC_ENGAGE:
       {
-        rallye_states_.front().hit_freeze();
+	    for(list<RallyeState>::iterator i=rallye_states_.begin(); i!=rallye_states_.end(); i++)
+    		i->hit_freeze();
 
+        log_.log_event(string("HIT_FREEZE (engage)"),LogManager::GPSLOG);
         voice_.speak("freeze");
       }
       break;
     case ButtonEvent::PANIC_RELEASE:
       {
-        rallye_states_.front().hit_freeze();
+		for(list<RallyeState>::iterator i=rallye_states_.begin(); i!=rallye_states_.end(); i++)
+    		i->hit_freeze();
 
+        log_.log_event(string("HIT_FREEZE (release)"),LogManager::GPSLOG);
         voice_.speak("unfreeze");
       }
       break;
