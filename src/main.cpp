@@ -4,10 +4,6 @@
 #include <memory>
 using namespace std;
 
-#define WINDOW_LEAN_AND_MEAN
-#include <windows.h>
-
-
 int main()
 {
   const string config_file="data/settings.txt";

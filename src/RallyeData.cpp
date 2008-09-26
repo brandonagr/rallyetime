@@ -72,14 +72,25 @@ RallyeDir::RallyeDir(string line)
 
   for(int i=0; i<(int)parts.size(); i++) //condense redundant directions
   {
-    if (parts[i].compare("SRIP")==0)
-      parts[i]="";
+    for(int j=0; j<(int)parts[i].length(); j++) //make sure all letters are upper case
+    {
+      if (parts[i][j]>='a' && parts[i][j]<='z')
+        parts[i][j]-=' ';
+    }
+
+    if (parts[i].compare("RIP")==0 ||
+        parts[i].compare("SRIP")==0 ||
+        parts[i].compare("CHANGE")==0)
+    {
+      parts.erase(parts.begin()+i);
+      i--;
+      continue;
+    }
+    
     if (parts[i].compare("SOL")==0)
       parts[i]="SL";
     if (parts[i].compare("SOR")==0)
       parts[i]="SR";
-    if (parts[i].compare("CHANGE")==0)
-      parts[i]="";
   }
 
   if (parts.back().size()<=2 && parts.size()>1) //assume last thing is a CAST if it's less than two digits
