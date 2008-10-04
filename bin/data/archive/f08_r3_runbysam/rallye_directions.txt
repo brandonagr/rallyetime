@@ -1,0 +1,253 @@
+L1/UNMARKED          15
+LSS          25
+LSS/T
+SSS
+SSS
+SSS
+SSS
+RSL/YLD          30
+L1          25
+R1
+RT
+L1/DIP
+LSS
+RT
+SSS
+L1
+L2
+R2
+R1
+SOR TIMM
+SOL RIP DEA
+R1
+LSS/T
+R1
+SSS
+LSS/T
+LY
+STREET CHANGE
+SSS/DIP
+SSS
+RSS/T
+RSS/T
+RSS
+LSL
+R1
+R1
+SSS
+DIP
+RSS/T          30
+MILEAGE CHECK: 4.7 miles in 11.4 minutes
+L1          25
+RSS/T
+RSS/T          30
+L2          25
+L1
+RSS/T          30
+RSL
+RSL          25
+SOR DIP
+L1
+L2
+RSS          30
+L3          25
+LSS/T
+LSS          30
+L4          25
+LSS/T
+L5
+DIP
+LSS/T
+SSS/DIP
+RSS
+LSS/T          30
+L1          25
+LSS/T
+LY
+L/T
+RSS/T
+RSS/T          30
+R1          25
+R2/DIPS
+LSS/T
+DIP
+SSS
+LSS/DIP
+RSS/DIP          30
+SSL
+SSS
+LSL          40
+SSL
+LSL          45
+SSL
+SSL          40
+SSL
+SSL
+SSL
+L1          35
+SSS
+LSL          40
+L1          10
+R1/UNMARKED
+R1/UNMARKED
+RT          40
+LSL
+L1          25
+SSS/DIP
+SSS/DIP
+R1
+L1
+LSS
+RSS/T
+RSS/T
+LSS          40
+R1/UNMARKED          20
+LSS/T
+RSS/T          50
+R1          30
+L1          10
+DIP
+RSS/T          50
+SSS
+L1          60
+R2          50
+R3          40
+R7          30
+LSS
+LSS/T          50
+L1          60
+R3          25
+L1
+LSS/T          50
+SOR RIP ORN
+SOR RIP DOWLING
+L1          40
+LSS
+CAST          50
+CAST          35
+LSS
+SSS
+LSS/T          55
+CAST          60
+L2          40
+SSS
+RSS/T          50
+R2          60
+L2          40
+SSS
+R1          30
+R2
+RSS/T          60
+R1/UNMARKED          25
+L1/UNMARKED
+RT
+RT
+L1
+SOL TOURNAY
+L1/UNMARKED          5
+R/T          25
+L1
+LSS/T          30
+LSS/T          50
+L1          60
+CAST          55
+CAST          45
+RSL          50
+L2
+L/T/YLD
+R2          30
+RSS
+R1
+RSS/T          50
+L1          60
+L1          45
+LSL          30
+LSL
+RSL          35
+SOL RIP EDICAL
+SSL
+L1/UNMARKED          20
+R1/UNMARKED
+RT/UNMARKED          20
+LSS
+RSS          35
+SSL
+SSL
+SSL          40
+CAST          45
+L1          50
+L1          25
+RSS
+R1
+RT
+LT
+RSS/T          50
+LSS/T          45
+SOR RIP APT
+SOL RIP ARR
+SOL RIP ADL
+SSS
+L1          30
+LSS/T
+R1
+RSS/T
+LSS/T          50
+SSS
+CAST          40
+L1          30
+RT
+RSS
+RSS
+LSS/T
+LSS/T          40
+CAST          35
+RSL          50
+L1          60
+SOR RIP SOUTHWEST PKWY
+R3          40
+LSL
+SSL
+LSL          25
+L1/UNMARKED          10
+R2/UNMARKED
+SOR RIP SPEED
+SOL RIP AUT
+LT          30
+RSS/T          50
+CAST          35
+SSL
+CAST          40
+R1/UNMARKED          20
+RSS/YLD/T
+SSS
+SSS
+RSS
+RT
+SSS
+RSS
+RT          40
+R1          35
+RSL
+L1/UNMARKED          10
+LT          35
+LSL/T
+SSL          30
+RSL/T          35
+SSL
+LSL          35
+RSS/YLD          25
+RSS/YLD
+R1/UNMARKED          15
+LSL          35
+SSL          30
+SSL
+SSL
+SSL
+SSL
+CAST          35
+SSL
+SSL          50
+R1          55
+SSL
+L6          25
+L10/UNMARKED
