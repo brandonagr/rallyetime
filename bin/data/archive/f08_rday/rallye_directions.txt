@@ -1,0 +1,121 @@
+L1 UNMARKED          15
+LSS          20
+LSS/T          25
+LSS          35
+SSL          25
+R4
+L1
+SSS
+RSS/T
+L1
+LSS/T          30
+MC 1.8 IN 4.2 MINUTES
+SR ATHENS
+RSS
+L1
+RSS/T
+L1
+LSS/T          35
+SSL
+SSL
+RSL
+CAST          40
+CAST          45
+SSL
+CAST          50
+SSS
+CAST          45
+CAST          40
+LSL
+LSL
+SSL
+CAST          45
+SSS
+CAST          25
+SR EACH
+SR 30,000SIGN
+CAST          35
+SR USTO
+CAST          55
+SSS
+RR
+CAST          65
+SR BUMP
+RR
+SR SOTA
+RSS/T
+SR INTERSECTION
+L1          60
+CAST          45
+SR PASS
+CAST          60
+SR BOSSE
+SR BUCK
+SR FELDER
+SR CHAPPELL
+SR SPRINGS
+SR PLANTATION
+CAST          55
+CAST          40
+CAST          25
+SSS
+CAST          35
+SSL
+LSS/T
+CAST          55
+RSS/T
+SR MEL ACRES
+SR SKI
+LSS/T
+SR RACOON
+LSS
+CAST          50
+CAST          60
+SR WALLER
+CAST          55
+R1
+SSS/RBL
+RSS/T
+S/YBL
+LSS/RBL
+RSS/T          50
+SL STOCKDICK
+L2          35
+R1
+SL PRAIRIE GRASS
+L2          40
+SR WATER
+LSS          55
+SR STOCKDICK
+RSS
+SSS/RBL
+SSS/RBL
+SR STOCKDICK CHURCH
+CAST          45
+S/YBL
+RSL          40
+SSL
+SSL
+SSL
+SSL
+SSL
+SSL
+LSL
+SSL
+SSL
+SSL
+SSL
+SSL
+CAST          30
+LSL          25
+SSS
+SSS
+SSS
+LSS/T
+RSS/T
+LSS/T
+LSS/T
+RSS
+RSS
+SR CHURCH
+R6 UNMARKED
