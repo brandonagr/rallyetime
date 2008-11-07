@@ -135,6 +135,7 @@ public:
   void hit_freeze();
 
   bool is_inprogress(){return rallye_inprogress_;}
+  int get_cast(){return rallye_dirs_.get_current_cast();}
 };
 
 

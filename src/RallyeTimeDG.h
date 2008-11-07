@@ -42,6 +42,7 @@ private:
   boost::thread lcd_thread_;
   DAQButtonThread input_;
   boost::thread input_thread_;
+  double latest_instant_speed_;
   LogManager log_;
   boost::thread log_thread_;
   

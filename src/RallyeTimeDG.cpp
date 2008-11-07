@@ -25,6 +25,7 @@ RallyeTimeDG::RallyeTimeDG(const std::string& config_file_location)
 
   input_(&kill_flag_, params_),
   input_thread_(boost::bind(&DAQButtonThread::run,&input_)),
+  latest_instant_speed_(0.0),
 
   log_(&kill_flag_),
   log_thread_(boost::bind(&LogManager::run,&log_)),
@@ -98,7 +99,8 @@ void RallyeTimeDG::run_till_quit()
     }
 #endif
 
-    screen_.set_cur_speed(input_.get_instant_speed());
+    latest_instant_speed_=input_.get_instant_speed();
+    screen_.set_cur_speed(latest_instant_speed_);
 
     //--------------------------------------------------------
     // state based updates
@@ -345,7 +347,7 @@ void RallyeTimeDG::update_staging(double dt)
       break;
     case ButtonEvent::PANIC_ENGAGE:
       {
-        voice_.speak("bitch, don't push my buttons");
+        voice_.speak("don't push my buttons");
       }
       break;
     case ButtonEvent::PANIC_RELEASE:
@@ -370,6 +372,21 @@ void RallyeTimeDG::switch_to_rallye()
 }
 void RallyeTimeDG::rallye(double dt)
 {
+  //verbal warning every 5 seconds when you are speeding 10 over the speed limit
+  static double time_speeding=0.0;
+  if (latest_instant_speed_>rallye_states_.front().get_cast()+15.0)
+    time_speeding+=dt;
+  else
+    time_speeding=0.0;
+
+  if (time_speeding>5.0) //over 10 over for more than 5 seconds
+  {
+    time_speeding=0.0;
+    ostringstream out;
+    out<<"speeding "<<(int)(latest_instant_speed_-(rallye_states_.front().get_cast()+5))<<" over";
+    voice_.speak(out.str().c_str());
+  }
+
   double dist=input_.get_distance();
   for(list<RallyeState>::iterator i=rallye_states_.begin(); i!=rallye_states_.end(); i++)
     i->update(dt, dist);
