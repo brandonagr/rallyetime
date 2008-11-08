@@ -372,14 +372,14 @@ void RallyeTimeDG::switch_to_rallye()
 }
 void RallyeTimeDG::rallye(double dt)
 {
-  //verbal warning every 5 seconds when you are speeding 10 over the speed limit
+  //verbal warning every 7 seconds when you are speeding 12 over the speed limit
   static double time_speeding=0.0;
-  if (latest_instant_speed_>rallye_states_.front().get_cast()+15.0)
+  if (latest_instant_speed_>rallye_states_.front().get_cast()+17.0)
     time_speeding+=dt;
   else
     time_speeding=0.0;
 
-  if (time_speeding>5.0) //over 10 over for more than 5 seconds
+  if (time_speeding>7.0) //over 12 over for more than 7 seconds
   {
     time_speeding=0.0;
     ostringstream out;
@@ -396,6 +396,7 @@ void RallyeTimeDG::rallye(double dt)
   if (input_.is_event())
   {
     ButtonEvent button=input_.get_event();
+	time_speeding=0.0;
 
     switch(button.type_)
     {

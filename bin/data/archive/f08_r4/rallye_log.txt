@@ -1,0 +1,521 @@
+
+BEGIN SECTION: 	Numb- 1	Timer-  00:00:00.00	0
+DEPART TIME: 	Numb- 1	Actual-  00:01:10.38	Timesheet-  00:01:10.38
+START LEG: 	Numb- 1	Cast- 15
+	(186.972)
+END LEG: 	Cast- 15	Time-  00:05:06.10	306.1	Distance- 2.7888	Ideal-  00:11:09.31	669.312	OLDDiff- -00:06:03.21	-363.212	TruncTime-  00:10:48.00	648
+	(493.072)
+START LEG: 	Numb- 2	Cast- 20
+	(493.072)
+END LEG: 	Cast- 20	Time-  00:00:16.23	16.2333	Distance- 0.292458	Ideal-  00:00:52.64	52.6425	OLDDiff- -00:00:36.40	-36.4092	TruncTime-  00:00:53.99	54
+	(509.306)
+START LEG: 	Numb- 3	Cast- 25
+	(509.306)
+END LEG: 	Cast- 25	Time-  00:00:10.32	10.3248	Distance- 0.185551	Ideal-  00:00:26.71	26.7194	OLDDiff- -00:00:16.39	-16.3946	TruncTime-  00:00:28.80	28.8
+	(519.63)
+START LEG: 	Numb- 4	Cast- 35
+	(519.63)
+END LEG: 	Cast- 35	Time-  00:02:02.69	122.696	Distance- 1.45369	Ideal-  00:02:29.52	149.522	OLDDiff- -00:00:26.82	-26.8259	TruncTime-  00:02:34.28	154.286
+	(642.327)
+START LEG: 	Numb- 5	Cast- 25
+	(642.327)
+
+BEGIN SECTION: 	Numb- 1	Timer-  00:00:00.00	0
+DEPART TIME: 	Numb- 1	Actual-  00:00:21.56	Timesheet-  00:00:21.56
+START LEG: 	Numb- 1	Cast- 15
+	(37.8834)
+
+BEGIN SECTION: 	Numb- 1	Timer-  00:00:00.00	0
+DEPART TIME: 	Numb- 1	Actual-  00:03:32.49	Timesheet-  00:03:32.49
+START LEG: 	Numb- 1	Cast- 15
+	(228.818)
+END LEG: 	Cast- 15	Time-  00:00:06.09	6.09874	Distance- 0.0589832	Ideal-  00:00:14.15	14.156	OLDDiff- -00:00:08.05	-8.05723	TruncTime-  00:00:00.00	0
+	(234.917)
+START LEG: 	Numb- 2	Cast- 20
+	(234.917)
+END LEG: 	Cast- 20	Time-  00:00:07.53	7.53091	Distance- 0.0792587	Ideal-  00:00:14.26	14.2666	OLDDiff- -00:00:06.73	-6.73566	TruncTime-  00:00:18.00	18
+	(242.448)
+START LEG: 	Numb- 3	Cast- 25
+	(242.448)
+END LEG: 	Cast- 25	Time-  00:00:08.28	8.28186	Distance- 0.0540679	Ideal-  00:00:07.78	7.78578	OLDDiff-  00:00:00.49	0.496073	TruncTime-  00:00:00.00	0
+	(250.729)
+START LEG: 	Numb- 4	Cast- 35
+	(250.729)
+END LEG: 	Cast- 25	Time-  00:00:14.00	14	Distance- 0.0540679	Ideal-  00:00:07.78	7.78578	OLDDiff-  00:00:06.21	6.21425	TruncTime-  00:00:00.00	0
+	(256.448)
+START LEG: 	Numb- 4	Cast- 35
+	(256.448)
+
+BEGIN SECTION: 	Numb- 1	Timer-  00:00:00.00	0
+DEPART TIME: 	Numb- 1	Actual-  19:54:48.42	Timesheet-  19:54:48.42
+START LEG: 	Numb- 1	Cast- 15
+	(952.37)
+END LEG: 	Cast- 15	Time-  00:00:01.19	1.19173	Distance- 0.00184323	Ideal-  00:00:00.44	0.442374	OLDDiff-  00:00:00.74	0.749353	TruncTime-  00:00:00.00	0
+	(953.589)
+START LEG: 	Numb- 2	Cast- 30
+	(953.589)
+END LEG: 	Cast- 30	Time-  00:00:02.32	2.32337	Distance- 0.00368645	Ideal-  00:00:00.44	0.442374	OLDDiff-  00:00:01.88	1.88099	TruncTime-  00:00:00.00	0
+	(955.885)
+START LEG: 	Numb- 3	Cast- 20
+	(955.885)
+END LEG: 	Cast- 20	Time-  00:00:02.36	2.36346	Distance- 0.00368645	Ideal-  00:00:00.66	0.663561	OLDDiff-  00:00:01.69	1.6999	TruncTime-  00:00:00.00	0
+	(958.248)
+START LEG: 	Numb- 4	Cast- 15
+	(958.248)
+END LEG: 	Cast- 15	Time-  00:00:02.03	2.03284	Distance- 0.00307204	Ideal-  00:00:00.73	0.73729	OLDDiff-  00:00:01.29	1.29555	TruncTime-  00:00:00.00	0
+	(960.281)
+START LEG: 	Numb- 5	Cast- 30
+	(960.281)
+END LEG: 	Cast- 30	Time-  00:00:01.57	1.57227	Distance- 0.00245763	Ideal-  00:00:00.29	0.294916	OLDDiff-  00:00:01.27	1.27735	TruncTime-  00:00:00.00	0
+	(961.853)
+START LEG: 	Numb- 6	Cast- 20
+	(961.853)
+END LEG: 	Cast- 20	Time-  00:00:02.01	2.0129	Distance- 0.00184323	Ideal-  00:00:00.33	0.331781	OLDDiff-  00:00:01.68	1.68112	TruncTime-  00:00:00.00	0
+	(963.866)
+START LEG: 	Numb- 7	Cast- 15
+	(963.866)
+END LEG: 	Cast- 15	Time-  00:00:01.93	1.93279	Distance- 0.00245763	Ideal-  00:00:00.58	0.589832	OLDDiff-  00:00:01.34	1.34296	TruncTime-  00:00:00.00	0
+	(965.799)
+START LEG: 	Numb- 8	Cast- 30
+	(965.799)
+END LEG: 	Cast- 30	Time-  00:00:02.29	2.29331	Distance- 0.00122882	Ideal-  00:00:00.14	0.147458	OLDDiff-  00:00:02.14	2.14586	TruncTime-  00:00:00.00	0
+	(968.092)
+START LEG: 	Numb- 9	Cast- 20
+	(968.092)
+END LEG: 	Cast- 20	Time-  00:00:02.39	2.39342	Distance- 0.00245763	Ideal-  00:00:00.44	0.442374	OLDDiff-  00:00:01.95	1.95105	TruncTime-  00:00:00.00	0
+	(970.486)
+START LEG: 	Numb- 10	Cast- 25
+	(970.486)
+END LEG: 	Cast- 25	Time-  00:00:08.92	8.92281	Distance- 0.00245763	Ideal-  00:00:00.35	0.353899	OLDDiff-  00:00:08.56	8.56891	TruncTime-  00:00:00.00	0
+	(979.409)
+START LEG: 	Numb- 16	Cast- 15
+	(979.409)
+END LEG: 	Cast- 15	Time-  00:00:03.72	3.72536	Distance- 0	Ideal-  00:00:00.00	0	OLDDiff-  00:00:03.72	3.72536	TruncTime-  00:00:00.00	0
+	(983.134)
+
+END SECTION: 	Numb- 1	Adj Time-  00:00:30.76	30.7642	Actual Time -  00:00:30.76	30.7642	Distance- 0.0251907	Diff-  00:00:26.31	26.3184
+ARRIVED TIME: 	Numb- 1	Actual-  19:55:19.18
+	(983.134)
+
+BEGIN SECTION: 	Numb- 2	Timer-  00:00:00.00	0
+DEPART TIME: 	Numb- 2	Actual-  20:07:42.64	Timesheet-  20:07:42.64
+START LEG: 	Numb- 20	Cast- 25
+	(1726.59)
+END LEG: 	Cast- 25	Time-  00:06:17.82	377.823	Distance- 2.74579	Ideal-  00:06:35.39	395.394	OLDDiff- -00:00:17.57	-17.5707	TruncTime-  00:06:28.80	388.8
+	(2104.42)
+START LEG: 	Numb- 33	Cast- 15
+	(2104.42)
+END LEG: 	Cast- 15	Time-  00:01:30.06	90.0695	Distance- 0.491527	Ideal-  00:01:57.96	117.966	OLDDiff- -00:00:27.89	-27.8969	TruncTime-  00:02:00.00	120
+	(2194.49)
+START LEG: 	Numb- 36	Cast- 25
+	(2194.49)
+END LEG: 	Cast- 25	Time-  00:03:39.38	219.386	Distance- 1.552	Ideal-  00:03:43.48	223.487	OLDDiff- -00:00:04.10	-4.10176	TruncTime-  00:03:36.00	216
+	(2413.87)
+START LEG: 	Numb- 40	Cast- 35
+	(2413.87)
+END LEG: 	Cast- 35	Time-  00:01:17.85	77.8518	Distance- 0.508116	Ideal-  00:00:52.26	52.2633	OLDDiff-  00:00:25.58	25.5885	TruncTime-  00:00:51.42	51.4286
+	(2491.72)
+START LEG: 	Numb- 42	Cast- 25
+	(2491.72)
+END LEG: 	Cast- 25	Time-  00:00:40.30	40.308	Distance- 0.196611	Ideal-  00:00:28.31	28.3119	OLDDiff-  00:00:11.99	11.9961	TruncTime-  00:00:28.80	28.8
+	(2532.03)
+
+END SECTION: 	Numb- 2	Adj Time-  00:13:25.43	805.438	Actual Time -  00:13:25.43	805.438	Distance- 5.49404	Diff- -00:00:11.98	-11.9848
+ARRIVED TIME: 	Numb- 2	Actual-  20:21:08.08
+	(2532.03)
+
+BEGIN SECTION: 	Numb- 3	Timer- -00:00:09.05	-9.05715
+DEPART TIME: 	Numb- 3	Actual-  20:24:50.94	Timesheet-  20:25:00.00	Dif- -00:00:09.05
+START LEG: 	Numb- 43	Cast- 25
+	(2754.89)
+END LEG: 	Cast- 25	Time-  00:01:07.51	67.517	Distance- 0.568942	Ideal-  00:01:21.92	81.9277	OLDDiff- -00:00:14.41	-14.4107	TruncTime-  00:01:12.00	72
+	(2822.41)
+START LEG: 	Numb- 45	Cast- 35
+	(2822.41)
+END LEG: 	Cast- 35	Time-  00:00:59.06	59.065	Distance- 0.578773	Ideal-  00:00:59.53	59.5309	OLDDiff- -00:00:00.46	-0.465957	TruncTime-  00:01:01.71	61.7143
+	(2881.47)
+START LEG: 	Numb- 46	Cast- 15
+	(2881.47)
+END LEG: 	Cast- 15	Time-  00:01:04.64	64.6429	Distance- 0.362501	Ideal-  00:01:27.00	87.0002	OLDDiff- -00:00:22.35	-22.3573	TruncTime-  00:01:35.99	96
+	(2946.12)
+START LEG: 	Numb- 47	Cast- 25
+	(2946.12)
+END LEG: 	Cast- 25	Time-  00:03:48.36	228.368	Distance- 1.32466	Ideal-  00:03:10.75	190.752	OLDDiff-  00:00:37.61	37.6167	TruncTime-  00:03:07.19	187.2
+	(3174.49)
+START LEG: 	Numb- 53	Cast- 45
+	(3174.49)
+END LEG: 	Cast- 45	Time-  00:00:37.52	37.524	Distance- 0.311505	Ideal-  00:00:24.92	24.9204	OLDDiff-  00:00:12.60	12.6036	TruncTime-  00:00:24.00	24
+	(3212.01)
+START LEG: 	Numb- 54	Cast- 25
+	(3212.01)
+END LEG: 	Cast- 25	Time-  00:04:56.72	296.727	Distance- 1.15324	Ideal-  00:02:46.06	166.067	OLDDiff-  00:02:10.65	130.659	TruncTime-  00:02:38.40	158.4
+	(3508.74)
+START LEG: 	Numb- 60	Cast- 35
+	(3508.74)
+END LEG: 	Cast- 35	Time-  00:01:55.63	115.636	Distance- 0.678921	Ideal-  00:01:09.83	69.8319	OLDDiff-  00:00:45.80	45.8045	TruncTime-  00:01:12.00	72
+	(3624.37)
+START LEG: 	Numb- 64	Cast- 15
+	(3624.37)
+END LEG: 	Cast- 15	Time-  00:00:31.67	31.6754	Distance- 0.199068	Ideal-  00:00:47.77	47.7764	OLDDiff- -00:00:16.10	-16.101	TruncTime-  00:00:47.99	48
+	(3656.05)
+START LEG: 	Numb- 65	Cast- 5
+	(3656.05)
+END LEG: 	Cast- 5	Time-  00:00:59.98	59.9863	Distance- 0.343454	Ideal-  00:04:07.28	247.287	OLDDiff- -00:03:07.30	-187.301	TruncTime-  00:04:48.00	288
+	(3716.03)
+START LEG: 	Numb- 67	Cast- 30
+	(3716.03)
+END LEG: 	Cast- 30	Time-  00:00:37.92	37.9246	Distance- 0.279556	Ideal-  00:00:33.54	33.5467	OLDDiff-  00:00:04.37	4.37789	TruncTime-  00:00:35.99	36
+	(3753.96)
+START LEG: 	Numb- 70	Cast- 20
+	(3753.96)
+END LEG: 	Cast- 20	Time-  00:01:25.61	85.6131	Distance- 0.482925	Ideal-  00:01:26.92	86.9265	OLDDiff- -00:00:01.31	-1.31343	TruncTime-  00:01:12.00	72
+	(3839.57)
+START LEG: 	Numb- 72	Cast- 25
+	(3839.57)
+END LEG: 	Cast- 25	Time-  00:07:37.49	457.498	Distance- 2.66162	Ideal-  00:06:23.27	383.273	OLDDiff-  00:01:14.22	74.2251	TruncTime-  00:06:28.80	388.8
+	(4297.07)
+START LEG: 	Numb- 86	Cast- 40
+	(4297.07)
+END LEG: 	Cast- 40	Time-  00:00:35.78	35.7813	Distance- 0.242691	Ideal-  00:00:21.84	21.8422	OLDDiff-  00:00:13.93	13.9391	TruncTime-  00:00:17.99	18
+	(4332.85)
+START LEG: 	Numb- 89	Cast- 25
+	(4332.85)
+END LEG: 	Cast- 25	Time-  00:01:12.15	72.1538	Distance- 0.640828	Ideal-  00:01:32.27	92.2792	OLDDiff- -00:00:20.12	-20.1254	TruncTime-  00:01:40.80	100.8
+	(4405)
+START LEG: 	Numb- 90	Cast- 35
+	(4405)
+END LEG: 	Cast- 35	Time-  00:00:56.31	56.311	Distance- 0.533921	Ideal-  00:00:54.91	54.9176	OLDDiff-  00:00:01.39	1.39338	TruncTime-  00:00:51.42	51.4286
+	(4461.32)
+START LEG: 	Numb- 91	Cast- 50
+	(4461.32)
+END LEG: 	Cast- 50	Time-  00:00:29.45	29.4525	Distance- 0.414726	Ideal-  00:00:29.86	29.8602	OLDDiff- -00:00:00.40	-0.407774	TruncTime-  00:00:28.79	28.8
+	(4490.77)
+START LEG: 	Numb- 92	Cast- 55
+	(4490.77)
+END LEG: 	Cast- 55	Time-  00:00:50.87	50.8731	Distance- 0.739133	Ideal-  00:00:48.37	48.3796	OLDDiff-  00:00:02.49	2.49342	TruncTime-  00:00:52.36	52.3636
+	(4541.64)
+START LEG: 	Numb- 93	Cast- 40
+	(4541.64)
+END LEG: 	Cast- 40	Time-  00:02:43.68	163.685	Distance- 2.08899	Ideal-  00:03:08.00	188.009	OLDDiff- -00:00:24.32	-24.3236	TruncTime-  00:03:08.99	189
+	(4705.33)
+START LEG: 	Numb- 98	Cast- 25
+	(4705.33)
+END LEG: 	Cast- 25	Time-  00:01:10.94	70.9421	Distance- 0.576315	Ideal-  00:01:22.98	82.9894	OLDDiff- -00:00:12.04	-12.0473	TruncTime-  00:01:12.00	72
+	(4776.27)
+START LEG: 	Numb- 102	Cast- 35
+	(4776.27)
+END LEG: 	Cast- 35	Time-  00:00:23.02	23.0231	Distance- 0.0768011	Ideal-  00:00:07.89	7.89954	OLDDiff-  00:00:15.12	15.1236	TruncTime-  00:00:10.28	10.2857
+	(4799.29)
+START LEG: 	Numb- 103	Cast- 25
+	(4799.29)
+END LEG: 	Cast- 25	Time-  00:10:46.56	646.57	Distance- 4.47474	Ideal-  00:10:44.36	644.362	OLDDiff-  00:00:02.20	2.20771	TruncTime-  00:10:48.00	648
+	(5445.86)
+START LEG: 	Numb- 133	Cast- 30
+	(5445.86)
+END LEG: 	Cast- 30	Time-  00:02:07.27	127.273	Distance- 1.35231	Ideal-  00:02:42.27	162.278	OLDDiff- -00:00:35.00	-35.0045	TruncTime-  00:02:36.00	156
+	(5573.13)
+START LEG: 	Numb- 137	Cast- 35
+	(5573.13)
+END LEG: 	Cast- 35	Time-  00:00:56.82	56.8218	Distance- 0.575086	Ideal-  00:00:59.15	59.1517	OLDDiff- -00:00:02.32	-2.3299	TruncTime-  00:01:01.71	61.7143
+	(5629.96)
+START LEG: 	Numb- 138	Cast- 40
+	(5629.96)
+END LEG: 	Cast- 40	Time-  00:01:48.93	108.937	Distance- 0.709642	Ideal-  00:01:03.86	63.8678	OLDDiff-  00:00:45.06	45.0688	TruncTime-  00:01:02.99	63
+	(5738.89)
+START LEG: 	Numb- 140	Cast- 50
+	(5738.89)
+END LEG: 	Cast- 50	Time-  00:00:58.23	58.2338	Distance- 0.609493	Ideal-  00:00:43.88	43.8835	OLDDiff-  00:00:14.35	14.3503	TruncTime-  00:00:43.19	43.2
+	(5797.13)
+START LEG: 	Numb- 142	Cast- 25
+	(5797.13)
+END LEG: 	Cast- 25	Time-  00:01:46.33	106.333	Distance- 0.961549	Ideal-  00:02:18.46	138.463	OLDDiff- -00:00:32.13	-32.1302	TruncTime-  00:02:24.00	144
+	(5903.46)
+START LEG: 	Numb- 145	Cast- 15
+	(5903.46)
+END LEG: 	Cast- 15	Time-  00:02:03.92	123.928	Distance- 0.838667	Ideal-  00:03:21.28	201.28	OLDDiff- -00:01:17.35	-77.352	TruncTime-  00:03:12.00	192
+	(6027.39)
+START LEG: 	Numb- 149	Cast- 40
+	(6027.39)
+END LEG: 	Cast- 40	Time-  00:02:28.39	148.393	Distance- 1.72403	Ideal-  00:02:35.16	155.163	OLDDiff- -00:00:06.76	-6.7693	TruncTime-  00:02:42.00	162
+	(6175.78)
+START LEG: 	Numb- 153	Cast- 50
+	(6175.78)
+END LEG: 	Cast- 50	Time-  00:02:11.13	131.139	Distance- 1.7652	Ideal-  00:02:07.09	127.094	OLDDiff-  00:00:04.04	4.04447	TruncTime-  00:02:02.39	122.4
+	(6306.92)
+START LEG: 	Numb- 156	Cast- 30
+	(6306.92)
+END LEG: 	Cast- 30	Time-  00:01:29.11	89.1181	Distance- 0.806104	Ideal-  00:01:36.73	96.7325	OLDDiff- -00:00:07.61	-7.61434	TruncTime-  00:01:36.00	96
+	(6396.04)
+START LEG: 	Numb- 158	Cast- 35
+	(6396.04)
+END LEG: 	Cast- 35	Time-  00:04:30.54	270.549	Distance- 2.22907	Ideal-  00:03:49.27	229.276	OLDDiff-  00:00:41.27	41.2729	TruncTime-  00:03:56.57	236.571
+	(6666.59)
+START LEG: 	Numb- 162	Cast- 60
+	(6666.59)
+END LEG: 	Cast- 60	Time-  00:01:41.06	101.065	Distance- 1.7996	Ideal-  00:01:47.97	107.976	OLDDiff- -00:00:06.91	-6.9108	TruncTime-  00:01:48.00	108
+	(6767.65)
+START LEG: 	Numb- 163	Cast- 50
+	(6767.65)
+END LEG: 	Cast- 50	Time-  00:00:24.99	24.9959	Distance- 0.248835	Ideal-  00:00:17.91	17.9161	OLDDiff-  00:00:07.07	7.0798	TruncTime-  00:00:14.39	14.4
+	(6792.65)
+START LEG: 	Numb- 164	Cast- 35
+	(6792.65)
+END LEG: 	Cast- 35	Time-  00:00:16.81	16.8142	Distance- 0.198454	Ideal-  00:00:20.41	20.4124	OLDDiff- -00:00:03.59	-3.59824	TruncTime-  00:00:20.57	20.5714
+	(6809.46)
+START LEG: 	Numb- 165	Cast- 45
+	(6809.46)
+END LEG: 	Cast- 45	Time-  00:00:13.37	13.3792	Distance- 0.202755	Ideal-  00:00:16.22	16.2204	OLDDiff- -00:00:02.84	-2.84118	TruncTime-  00:00:16.00	16
+	(6822.84)
+START LEG: 	Numb- 166	Cast- 55
+	(6822.84)
+END LEG: 	Cast- 55	Time-  00:00:07.83	7.8313	Distance- 0.0909324	Ideal-  00:00:05.95	5.95194	OLDDiff-  00:00:01.87	1.87936	TruncTime-  00:00:06.54	6.54545
+	(6830.67)
+START LEG: 	Numb- 167	Cast- 30
+	(6830.67)
+END LEG: 	Cast- 30	Time-  00:01:07.43	67.437	Distance- 0.671548	Ideal-  00:01:20.58	80.5858	OLDDiff- -00:00:13.14	-13.1488	TruncTime-  00:01:24.00	84
+	(6898.11)
+START LEG: 	Numb- 169	Cast- 40
+	(6898.11)
+END LEG: 	Cast- 40	Time-  00:00:23.19	23.1933	Distance- 0.15606	Ideal-  00:00:14.04	14.0454	OLDDiff-  00:00:09.14	9.14795	TruncTime-  00:00:09.00	9
+	(6921.3)
+START LEG: 	Numb- 170	Cast- 35
+	(6921.3)
+END LEG: 	Cast- 35	Time-  00:01:03.42	63.4212	Distance- 0.60765	Ideal-  00:01:02.50	62.5011	OLDDiff-  00:00:00.92	0.920076	TruncTime-  00:01:01.71	61.7143
+	(6984.72)
+START LEG: 	Numb- 171	Cast- 30
+	(6984.72)
+END LEG: 	Cast- 30	Time-  00:00:48.07	48.0792	Distance- 0.454048	Ideal-  00:00:54.48	54.4857	OLDDiff- -00:00:06.40	-6.40656	TruncTime-  00:01:00.00	60
+	(7032.8)
+START LEG: 	Numb- 172	Cast- 25
+	(7032.8)
+END LEG: 	Cast- 25	Time-  00:03:36.08	216.081	Distance- 1.61344	Ideal-  00:03:52.33	232.335	OLDDiff- -00:00:16.25	-16.2539	TruncTime-  00:03:50.39	230.4
+	(7248.88)
+START LEG: 	Numb- 179	Cast- 50
+	(7248.88)
+END LEG: 	Cast- 50	Time-  00:02:16.10	136.105	Distance- 1.52803	Ideal-  00:01:50.01	110.018	OLDDiff-  00:00:26.08	26.087	TruncTime-  00:01:48.00	108
+	(7384.99)
+START LEG: 	Numb- 182	Cast- 40
+	(7384.99)
+END LEG: 	Cast- 40	Time-  00:00:43.10	43.102	Distance- 0.480467	Ideal-  00:00:43.24	43.2421	OLDDiff- -00:00:00.14	-0.140062	TruncTime-  00:00:45.00	45
+	(7428.09)
+START LEG: 	Numb- 184	Cast- 60
+	(7428.09)
+END LEG: 	Cast- 60	Time-  00:00:48.03	48.039	Distance- 0.857714	Ideal-  00:00:51.46	51.4628	OLDDiff- -00:00:03.42	-3.42381	TruncTime-  00:00:54.00	54
+	(7476.13)
+START LEG: 	Numb- 185	Cast- 40
+	(7476.13)
+END LEG: 	Cast- 40	Time-  00:01:21.88	81.8877	Distance- 1.02545	Ideal-  00:01:32.29	92.2903	OLDDiff- -00:00:10.40	-10.4025	TruncTime-  00:01:30.00	90
+	(7558.02)
+START LEG: 	Numb- 188	Cast- 50
+	(7558.02)
+END LEG: 	Cast- 50	Time-  00:00:34.56	34.5698	Distance- 0.482925	Ideal-  00:00:34.77	34.7706	OLDDiff- -00:00:00.20	-0.200829	TruncTime-  00:00:36.00	36
+	(7592.59)
+START LEG: 	Numb- 189	Cast- 45
+	(7592.59)
+END LEG: 	Cast- 45	Time-  00:02:47.42	167.421	Distance- 1.67181	Ideal-  00:02:13.74	133.744	OLDDiff-  00:00:33.67	33.6763	TruncTime-  00:02:07.99	128
+	(7760.01)
+
+END SECTION: 	Numb- 3	Adj Time-  01:23:16.06	4996.06	Actual Time -  01:23:25.11	5005.12	Distance- 42.3942	Diff- -00:00:08.46	-8.46593
+ARRIVED TIME: 	Numb- 3	Actual-  21:48:16.06
+	(7760.01)
+
+BEGIN SECTION: 	Numb- 4	Timer- -00:00:11.06	-11.0621
+DEPART TIME: 	Numb- 4	Actual-  21:56:48.93	Timesheet-  21:57:00.00	Dif- -00:00:11.06
+START LEG: 	Numb- 190	Cast- 45
+	(8272.89)
+END LEG: 	Cast- 45	Time-  00:03:06.11	186.118	Distance- 1.94092	Ideal-  00:02:35.27	155.273	OLDDiff-  00:00:30.84	30.8444	TruncTime-  00:02:32.00	152
+	(8459)
+START LEG: 	Numb- 192	Cast- 35
+	(8459)
+END LEG: 	Cast- 35	Time-  00:04:45.44	285.44	Distance- 3.76387	Ideal-  00:06:27.14	387.14	OLDDiff- -00:01:41.70	-101.7	TruncTime-  00:06:30.85	390.857
+	(8744.44)
+START LEG: 	Numb- 193	Cast- 50
+	(8744.44)
+END LEG: 	Cast- 50	Time-  00:03:17.91	197.915	Distance- 2.88711	Ideal-  00:03:27.87	207.872	OLDDiff- -00:00:09.95	-9.95694	TruncTime-  00:03:21.59	201.6
+	(8942.36)
+START LEG: 	Numb- 194	Cast- 60
+	(8942.36)
+END LEG: 	Cast- 60	Time-  00:01:25.65	85.6533	Distance- 1.45246	Ideal-  00:01:27.14	87.1477	OLDDiff- -00:00:01.49	-1.49442	TruncTime-  00:01:30.00	90
+	(9028.01)
+START LEG: 	Numb- 195	Cast- 25
+	(9028.01)
+END LEG: 	Cast- 25	Time-  00:01:09.99	69.9906	Distance- 0.622396	Ideal-  00:01:29.62	89.625	OLDDiff- -00:00:19.63	-19.6344	TruncTime-  00:01:26.39	86.4
+	(9098)
+START LEG: 	Numb- 198	Cast- 60
+	(9098)
+END LEG: 	Cast- 60	Time-  00:01:16.82	76.8205	Distance- 1.16	Ideal-  00:01:09.60	69.6002	OLDDiff-  00:00:07.22	7.22027	TruncTime-  00:01:12.00	72
+	(9174.82)
+START LEG: 	Numb- 199	Cast- 40
+	(9174.82)
+END LEG: 	Cast- 40	Time-  00:01:57.68	117.689	Distance- 0.154217	Ideal-  00:00:13.87	13.8795	OLDDiff-  00:01:43.80	103.81	TruncTime-  00:00:08.99	9
+	(9292.51)
+
+END SECTION: 	Numb- 4	Adj Time-  00:16:48.56	1008.56	Actual Time -  00:16:59.62	1019.63	Distance- 11.981	Diff- -00:00:01.97	-1.97362
+ARRIVED TIME: 	Numb- 4	Actual-  22:13:48.56
+	(9292.51)
+
+BEGIN SECTION: 	Numb- 5	Timer- -00:00:36.32	-36.3247
+DEPART TIME: 	Numb- 5	Actual-  22:18:13.67	Timesheet-  22:18:50.00	Dif- -00:00:36.32
+START LEG: 	Numb- 200	Cast- 15
+	(9557.62)
+END LEG: 	Cast- 15	Time-  00:00:35.70	35.7015	Distance- 0.231018	Ideal-  00:00:55.44	55.4442	OLDDiff- -00:00:19.74	-19.7427	TruncTime-  00:00:48.00	48
+	(9593.33)
+START LEG: 	Numb- 201	Cast- 60
+	(9593.33)
+END LEG: 	Cast- 60	Time-  00:00:31.44	31.4451	Distance- 0.271569	Ideal-  00:00:16.29	16.2941	OLDDiff-  00:00:15.15	15.151	TruncTime-  00:00:18.00	18
+	(9624.77)
+START LEG: 	Numb- 202	Cast- 40
+	(9624.77)
+END LEG: 	Cast- 40	Time-  00:01:53.91	113.914	Distance- 1.43772	Ideal-  00:02:09.39	129.394	OLDDiff- -00:00:15.48	-15.4806	TruncTime-  00:02:05.99	126
+	(9738.68)
+START LEG: 	Numb- 203	Cast- 50
+	(9738.68)
+END LEG: 	Cast- 50	Time-  00:04:21.96	261.967	Distance- 3.20537	Ideal-  00:03:50.78	230.787	OLDDiff-  00:00:31.18	31.1801	TruncTime-  00:03:50.40	230.4
+	(10000.7)
+START LEG: 	Numb- 205	Cast- 40
+	(10000.7)
+END LEG: 	Cast- 40	Time-  00:00:27.85	27.8501	Distance- 0.323793	Ideal-  00:00:29.14	29.1414	OLDDiff- -00:00:01.29	-1.29133	TruncTime-  00:00:27.00	27
+	(10028.5)
+START LEG: 	Numb- 206	Cast- 35
+	(10028.5)
+END LEG: 	Cast- 35	Time-  00:00:06.00	6.00859	Distance- 0.0417798	Ideal-  00:00:04.29	4.29735	OLDDiff-  00:00:01.71	1.71124	TruncTime-  00:00:10.28	10.2857
+	(10034.5)
+START LEG: 	Numb- 207	Cast- 50
+	(10034.5)
+END LEG: 	Cast- 50	Time-  00:01:26.46	86.4644	Distance- 1.00886	Ideal-  00:01:12.63	72.6378	OLDDiff-  00:00:13.82	13.8266	TruncTime-  00:01:12.00	72
+	(10121)
+START LEG: 	Numb- 208	Cast- 30
+	(10121)
+END LEG: 	Cast- 30	Time-  00:00:08.83	8.83263	Distance- 0.040551	Ideal-  00:00:04.86	4.86611	OLDDiff-  00:00:03.96	3.96652	TruncTime-  00:00:00.00	0
+	(10129.8)
+
+END SECTION: 	Numb- 5	Adj Time-  00:08:55.85	535.858	Actual Time -  00:09:32.18	572.183	Distance- 6.56065	Diff- -00:00:07.00	-7.00386
+ARRIVED TIME: 	Numb- 5	Actual-  22:27:45.85
+	(10129.8)
+
+BEGIN SECTION: 	Numb- 6	Timer- -00:00:20.17	-20.178
+DEPART TIME: 	Numb- 6	Actual-  22:29:39.82	Timesheet-  22:30:00.00	Dif- -00:00:20.17
+START LEG: 	Numb- 208	Cast- 30
+	(10243.8)
+END LEG: 	Cast- 30	Time-  00:01:39.31	99.3128	Distance- 0.769854	Ideal-  00:01:32.38	92.3824	OLDDiff-  00:00:06.93	6.93034	TruncTime-  00:01:23.99	84
+	(10343.1)
+START LEG: 	Numb- 212	Cast- 5
+	(10343.1)
+END LEG: 	Cast- 5	Time-  00:00:21.01	21.0102	Distance- 0.0780299	Ideal-  00:00:56.18	56.1815	OLDDiff- -00:00:35.17	-35.1713	TruncTime-  00:01:12.00	72
+	(10364.1)
+START LEG: 	Numb- 213	Cast- 30
+	(10364.1)
+END LEG: 	Cast- 30	Time-  00:01:38.34	98.3415	Distance- 0.638985	Ideal-  00:01:16.67	76.6782	OLDDiff-  00:00:21.66	21.6633	TruncTime-  00:01:11.99	72
+	(10462.4)
+START LEG: 	Numb- 218	Cast- 25
+	(10462.4)
+END LEG: 	Cast- 25	Time-  00:01:02.36	62.3696	Distance- 0.538836	Ideal-  00:01:17.59	77.5924	OLDDiff- -00:00:15.22	-15.2228	TruncTime-  00:01:26.40	86.4
+	(10524.8)
+START LEG: 	Numb- 220	Cast- 40
+	(10524.8)
+END LEG: 	Cast- 40	Time-  00:00:30.58	30.5839	Distance- 0.275869	Ideal-  00:00:24.82	24.8282	OLDDiff-  00:00:05.75	5.7557	TruncTime-  00:00:26.99	27
+	(10555.4)
+START LEG: 	Numb- 221	Cast- 50
+	(10555.4)
+END LEG: 	Cast- 50	Time-  00:02:34.62	154.622	Distance- 1.43341	Ideal-  00:01:43.20	103.206	OLDDiff-  00:00:51.41	51.4165	TruncTime-  00:01:40.80	100.8
+	(10710)
+START LEG: 	Numb- 223	Cast- 35
+	(10710)
+END LEG: 	Cast- 35	Time-  00:00:38.74	38.7457	Distance- 0.413497	Ideal-  00:00:42.53	42.5311	OLDDiff- -00:00:03.78	-3.78537	TruncTime-  00:00:41.14	41.1429
+	(10748.8)
+START LEG: 	Numb- 226	Cast- 40
+	(10748.8)
+END LEG: 	Cast- 40	Time-  00:00:04.87	4.87696	Distance- 0.0743434	Ideal-  00:00:06.69	6.69091	OLDDiff- -00:00:01.81	-1.81395	TruncTime-  00:00:09.00	9
+	(10753.6)
+START LEG: 	Numb- 227	Cast- 60
+	(10753.6)
+END LEG: 	Cast- 60	Time-  00:01:19.41	79.4143	Distance- 1.54769	Ideal-  00:01:32.86	92.8617	OLDDiff- -00:00:13.44	-13.4474	TruncTime-  00:01:30.00	90
+	(10833)
+START LEG: 	Numb- 228	Cast- 50
+	(10833)
+END LEG: 	Cast- 50	Time-  00:00:40.51	40.5182	Distance- 0.480467	Ideal-  00:00:34.59	34.5937	OLDDiff-  00:00:05.92	5.92455	TruncTime-  00:00:36.00	36
+	(10873.6)
+START LEG: 	Numb- 230	Cast- 45
+	(10873.6)
+END LEG: 	Cast- 45	Time-  00:00:13.79	13.7998	Distance- 0.141314	Ideal-  00:00:11.30	11.3051	OLDDiff-  00:00:02.49	2.49473	TruncTime-  00:00:07.99	8
+	(10887.4)
+START LEG: 	Numb- 231	Cast- 25
+	(10887.4)
+END LEG: 	Cast- 25	Time-  00:00:34.66	34.6698	Distance- 0.267268	Ideal-  00:00:38.48	38.4865	OLDDiff- -00:00:03.81	-3.81672	TruncTime-  00:00:43.19	43.2
+	(10922)
+START LEG: 	Numb- 232	Cast- 45
+	(10922)
+END LEG: 	Cast- 45	Time-  00:00:23.33	23.3336	Distance- 0.244535	Ideal-  00:00:19.56	19.5628	OLDDiff-  00:00:03.77	3.77083	TruncTime-  00:00:24.00	24
+	(10945.4)
+START LEG: 	Numb- 234	Cast- 40
+	(10945.4)
+END LEG: 	Cast- 40	Time-  00:02:06.40	126.402	Distance- 0.865087	Ideal-  00:01:17.85	77.8578	OLDDiff-  00:00:48.54	48.5439	TruncTime-  00:01:11.99	72
+	(11071.8)
+START LEG: 	Numb- 236	Cast- 25
+	(11071.8)
+END LEG: 	Cast- 25	Time-  00:01:02.03	62.0392	Distance- 0.376632	Ideal-  00:00:54.23	54.2351	OLDDiff-  00:00:07.80	7.80411	TruncTime-  00:00:57.59	57.6
+	(11133.8)
+START LEG: 	Numb- 238	Cast- 5
+	(11133.8)
+END LEG: 	Cast- 5	Time-  00:00:25.98	25.9874	Distance- 0.20767	Ideal-  00:02:29.52	149.522	OLDDiff- -00:02:03.53	-123.535	TruncTime-  00:02:24.00	144
+	(11159.8)
+START LEG: 	Numb- 239	Cast- 40
+	(11159.8)
+END LEG: 	Cast- 40	Time-  00:00:53.51	53.5169	Distance- 0.502586	Ideal-  00:00:45.23	45.2327	OLDDiff-  00:00:08.28	8.28417	TruncTime-  00:00:45.00	45
+	(11213.3)
+START LEG: 	Numb- 240	Cast- 5
+	(11213.3)
+END LEG: 	Cast- 5	Time-  00:00:35.59	35.5912	Distance- 0.134555	Ideal-  00:01:36.87	96.8799	OLDDiff- -00:01:01.28	-61.2887	TruncTime-  00:01:11.99	72
+	(11248.9)
+START LEG: 	Numb- 242	Cast- 40
+	(11248.9)
+END LEG: 	Cast- 40	Time-  00:00:56.72	56.7215	Distance- 0.369259	Ideal-  00:00:33.23	33.2334	OLDDiff-  00:00:23.48	23.4882	TruncTime-  00:00:36.00	36
+	(11305.6)
+START LEG: 	Numb- 243	Cast- 30
+	(11305.6)
+END LEG: 	Cast- 30	Time-  00:01:36.95	96.9595	Distance- 0.681993	Ideal-  00:01:21.83	81.8392	OLDDiff-  00:00:15.12	15.1203	TruncTime-  00:01:23.99	84
+	(11402.6)
+START LEG: 	Numb- 245	Cast- 5
+	(11402.6)
+END LEG: 	Cast- 5	Time-  00:00:33.69	33.6985	Distance- 0.111208	Ideal-  00:01:20.06	80.0697	OLDDiff- -00:00:46.37	-46.3712	TruncTime-  00:01:11.99	72
+	(11436.3)
+START LEG: 	Numb- 246	Cast- 30
+	(11436.3)
+END LEG: 	Cast- 30	Time-  00:01:06.36	66.3654	Distance- 0.32748	Ideal-  00:00:39.29	39.2976	OLDDiff-  00:00:27.06	27.0678	TruncTime-  00:00:36.00	36
+	(11502.7)
+START LEG: 	Numb- 249	Cast- 60
+	(11502.7)
+END LEG: 	Cast- 60	Time-  00:00:19.14	19.1476	Distance- 0.253136	Ideal-  00:00:15.18	15.1882	OLDDiff-  00:00:03.95	3.9594	TruncTime-  00:00:17.99	18
+	(11521.8)
+START LEG: 	Numb- 250	Cast- 50
+	(11521.8)
+END LEG: 	Cast- 50	Time-  00:02:53.90	173.9	Distance- 2.12708	Ideal-  00:02:33.14	153.15	OLDDiff-  00:00:20.75	20.7502	TruncTime-  00:02:31.20	151.2
+	(11695.7)
+START LEG: 	Numb- 252	Cast- 40
+	(11695.7)
+END LEG: 	Cast- 40	Time-  00:01:02.39	62.3997	Distance- 0.652502	Ideal-  00:00:58.72	58.7252	OLDDiff-  00:00:03.67	3.67454	TruncTime-  00:01:02.99	63
+	(11758.1)
+START LEG: 	Numb- 254	Cast- 35
+	(11758.1)
+END LEG: 	Cast- 35	Time-  00:00:51.67	51.6743	Distance- 0.541908	Ideal-  00:00:55.73	55.7391	OLDDiff- -00:00:04.06	-4.06483	TruncTime-  00:00:51.42	51.4286
+	(11809.8)
+START LEG: 	Numb- 255	Cast- 30
+	(11809.8)
+END LEG: 	Cast- 30	Time-  00:01:23.06	83.0694	Distance- 0.481696	Ideal-  00:00:57.80	57.8035	OLDDiff-  00:00:25.26	25.2659	TruncTime-  00:01:00.00	60
+	(11892.8)
+START LEG: 	Numb- 256	Cast- 25
+	(11892.8)
+END LEG: 	Cast- 25	Time-  00:02:30.87	150.877	Distance- 0.795659	Ideal-  00:01:54.57	114.575	OLDDiff-  00:00:36.30	36.3021	TruncTime-  00:01:55.20	115.2
+	(12043.7)
+START LEG: 	Numb- 264	Cast- 35
+	(12043.7)
+END LEG: 	Cast- 35	Time-  00:06:25.44	385.444	Distance- 2.28929	Ideal-  00:03:55.46	235.469	OLDDiff-  00:02:29.97	149.975	TruncTime-  00:03:56.57	236.571
+	(12429.2)
+START LEG: 	Numb- 273	Cast- 15
+	(12429.2)
+END LEG: 	Cast- 15	Time-  00:00:42.30	42.3008	Distance- 0.314577	Ideal-  00:01:15.49	75.4985	OLDDiff- -00:00:33.19	-33.1977	TruncTime-  00:01:11.99	72
+	(12471.5)
+
+END SECTION: 	Numb- 6	Adj Time-  00:36:47.51	2207.52	Actual Time -  00:37:07.69	2227.69	Distance- 17.9364	Diff-  00:01:46.29	106.299
+ARRIVED TIME: 	Numb- 6	Actual-  23:06:47.51
+	(12471.5)
