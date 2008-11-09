@@ -1,52 +1,5 @@
 
 BEGIN SECTION: 	Numb- 1	Timer-  00:00:00.00	0
-DEPART TIME: 	Numb- 1	Actual-  00:01:10.38	Timesheet-  00:01:10.38
-START LEG: 	Numb- 1	Cast- 15
-	(186.972)
-END LEG: 	Cast- 15	Time-  00:05:06.10	306.1	Distance- 2.7888	Ideal-  00:11:09.31	669.312	OLDDiff- -00:06:03.21	-363.212	TruncTime-  00:10:48.00	648
-	(493.072)
-START LEG: 	Numb- 2	Cast- 20
-	(493.072)
-END LEG: 	Cast- 20	Time-  00:00:16.23	16.2333	Distance- 0.292458	Ideal-  00:00:52.64	52.6425	OLDDiff- -00:00:36.40	-36.4092	TruncTime-  00:00:53.99	54
-	(509.306)
-START LEG: 	Numb- 3	Cast- 25
-	(509.306)
-END LEG: 	Cast- 25	Time-  00:00:10.32	10.3248	Distance- 0.185551	Ideal-  00:00:26.71	26.7194	OLDDiff- -00:00:16.39	-16.3946	TruncTime-  00:00:28.80	28.8
-	(519.63)
-START LEG: 	Numb- 4	Cast- 35
-	(519.63)
-END LEG: 	Cast- 35	Time-  00:02:02.69	122.696	Distance- 1.45369	Ideal-  00:02:29.52	149.522	OLDDiff- -00:00:26.82	-26.8259	TruncTime-  00:02:34.28	154.286
-	(642.327)
-START LEG: 	Numb- 5	Cast- 25
-	(642.327)
-
-BEGIN SECTION: 	Numb- 1	Timer-  00:00:00.00	0
-DEPART TIME: 	Numb- 1	Actual-  00:00:21.56	Timesheet-  00:00:21.56
-START LEG: 	Numb- 1	Cast- 15
-	(37.8834)
-
-BEGIN SECTION: 	Numb- 1	Timer-  00:00:00.00	0
-DEPART TIME: 	Numb- 1	Actual-  00:03:32.49	Timesheet-  00:03:32.49
-START LEG: 	Numb- 1	Cast- 15
-	(228.818)
-END LEG: 	Cast- 15	Time-  00:00:06.09	6.09874	Distance- 0.0589832	Ideal-  00:00:14.15	14.156	OLDDiff- -00:00:08.05	-8.05723	TruncTime-  00:00:00.00	0
-	(234.917)
-START LEG: 	Numb- 2	Cast- 20
-	(234.917)
-END LEG: 	Cast- 20	Time-  00:00:07.53	7.53091	Distance- 0.0792587	Ideal-  00:00:14.26	14.2666	OLDDiff- -00:00:06.73	-6.73566	TruncTime-  00:00:18.00	18
-	(242.448)
-START LEG: 	Numb- 3	Cast- 25
-	(242.448)
-END LEG: 	Cast- 25	Time-  00:00:08.28	8.28186	Distance- 0.0540679	Ideal-  00:00:07.78	7.78578	OLDDiff-  00:00:00.49	0.496073	TruncTime-  00:00:00.00	0
-	(250.729)
-START LEG: 	Numb- 4	Cast- 35
-	(250.729)
-END LEG: 	Cast- 25	Time-  00:00:14.00	14	Distance- 0.0540679	Ideal-  00:00:07.78	7.78578	OLDDiff-  00:00:06.21	6.21425	TruncTime-  00:00:00.00	0
-	(256.448)
-START LEG: 	Numb- 4	Cast- 35
-	(256.448)
-
-BEGIN SECTION: 	Numb- 1	Timer-  00:00:00.00	0
 DEPART TIME: 	Numb- 1	Actual-  19:54:48.42	Timesheet-  19:54:48.42
 START LEG: 	Numb- 1	Cast- 15
 	(952.37)
