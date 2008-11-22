@@ -1,0 +1,107 @@
+R1 UNMARKED               15
+RSL/YLD               35
+SSL
+SOR SRIP "CHEF CAO"               45
+SSL
+SSL
+SSL
+SSL
+R1               25
+RSS/T
+R1
+L3
+SSS
+RSS/T
+RSS
+RSS
+L3
+SSS
+LSS/T
+SSS
+SSS
+LSS               35
+RSL/YLD
+SSL
+SSL
+SSL
+SSL
+LSL               40
+SSL
+SSL
+R1               45
+L1               40
+SSS               35
+SSS               40
+L2               50
+SOR SRIP"SPEED"               30
+SSS
+SOR SRIP"LIMIT"               55
+L1
+RSS               35
+SSL
+SSL
+SSL
+SSL
+RSL               50
+L1               60
+R1               50
+LSL               35
+SSL
+R1               30
+L2               25
+RSS
+LSS               30
+RSS               50
+SSS               55
+LSS/T               60
+R3               50
+RSS               40
+L2               25
+RSS               40
+LSS               50
+RSL
+LSL               60
+L2               35
+RSS               55
+SOR SRIP "SPEED"               45
+RSL               35
+L1               60
+R2               35
+LSL
+SSL
+R1               25
+L1
+LSS
+RSL               35
+SSL
+SSL
+SSL
+SOR SRIP "CITIBANK"               30
+SSL
+SSL
+SSL
+SSL
+SSL
+LSL               35
+SSL
+RSL/YLD               25
+L7
+L1
+R2
+R1
+LSS
+SOR SRIP "STATION"               20
+R3
+R1
+L1
+LSS
+R1
+LSS               40
+LSL
+S/YLD               30
+SSL
+SOR SRIP "LIMIT"               35
+LSL               25
+RSS
+L1
+R2 UNMARKED

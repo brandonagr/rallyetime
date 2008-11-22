@@ -1,0 +1,259 @@
+L1 UNMARKED          15
+LSS          20
+LSS/T          25
+SSS
+SSS
+SSS
+RSS
+LSS/T
+RSL/YLD          35
+SSL
+L3          20
+SSS
+LSS/T
+L1
+RSS
+SSS
+SSS
+SOR DIP
+SOR DIP
+SSS
+RSS          25
+LSL
+LSL          30
+LSL          35
+SSL
+RSL/YLD          25
+SSS          15
+SSS
+SSS          25
+L2
+SYLD
+LSS/T
+SSS
+SSS
+RSS/YLD          35
+SSL          25
+SOR DIP
+R2
+R1
+LSS
+L3
+RSS/T          35
+SSL
+SSL
+LSL
+SSL
+CAST          30
+SSL
+SSL
+SSL
+SSL
+SSL
+CAST          35
+RSL/YLD          25
+LSS          40
+SSL          30
+RSS/T          40
+RSS/T          55
+SSL
+SSL
+LSL          40
+LSS/T          25
+RSS/T          30
+SSL          35
+R2          20
+SSS
+SSS
+R1
+L1
+RSS
+LSS/T          30
+SSS
+R1          25
+L1
+R1
+SOR BOSWELL
+RSS/T
+RSS          30
+SSL          35
+LSL          40
+RSL/YLD          45
+L1          40
+LSS          55
+L1          40
+SSS          25
+RSS          30
+LSS
+RSS
+R2          25
+L1
+SOL CAMILLE
+R1
+L1
+RT
+RSS/T          30
+L4          25
+RSS          30
+SOR DIP
+RSL          35
+R1          25
+SSS
+RSS
+RSS          30
+SSL
+SOR DIP
+SSS
+RSS/T          40
+SSS/RBL
+SSS
+L1          25
+RSS/T          50
+R1          40
+RSS/RBL          60
+R1          30
+L3
+LSS
+L1
+R1
+LT
+R1
+RT
+L1
+RT
+SSS
+LSS/T          50
+LSS          35
+RSS          60
+R1          40
+L2          30
+L1
+LT
+LY
+LT
+SSS
+R2
+RT
+RSS
+SSS
+LSS/T          50
+RSL          35
+CAST          40
+CAST          50
+RSS          45
+CAST          25
+SOR EEK          35
+SOR TON
+L1          50
+CAST          60
+SOR ORDINANCE
+R1          55
+CAST          45
+L2          25
+L1
+RSS          30
+L2          20
+RSS/T
+R1
+LSS/T/DIP
+L1
+SSS
+R1
+RSS/T          25
+L1          20
+RSS/T
+LSS/T
+RYLD/T
+LSS
+R2
+SYLD
+LSS          30
+SOL LINCOLN
+L2          35
+CAST          40
+CAST          45
+SSL
+SSL
+CAST          50
+CAST          60
+R1          30
+L2
+RY
+SSS
+RR
+SSS
+RR
+RSS          60
+R1          30
+RSS/T          60
+R2          35
+RT
+LSS/T          60
+CAST          50
+CAST          45
+RSL          50
+S/YLD
+LSL          35
+SSL
+CAST          25
+SSL
+SSL
+LSL
+R2
+OIR POLE
+SYLD
+RR
+RT
+L1
+RR
+R1
+LSS          35
+SSL
+CAST          40
+CAST          50
+CAST          60
+OOL TANK
+SOR AIRPORT
+R1
+RR
+SSS          55
+L2          50
+CAST          60
+SOR RAINTREE
+R2          35
+LSL
+SSL
+SSL
+R1          30
+RSS/T          25
+L1
+SSS
+SSS
+LSS/T
+RSS          20
+LSS/T          25
+R5
+SSS
+SOR DIP
+SOR DIP
+SSS
+LSS/T
+RSS/T          35
+SSL
+L1          20
+LYLD
+LSS          45
+CAST          40
+L1          15
+RSS
+LSS/T
+RSS
+RSS/T
+SOR FRONT
+LSS
+SSL
+RSS/YLD
+LSL
+SSL
+R1
+L2 UNMARKED

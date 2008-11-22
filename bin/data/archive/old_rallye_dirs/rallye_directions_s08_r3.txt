@@ -1,0 +1,114 @@
+L1 UNMARKED          10
+RSS/T/YLD          20
+LSL          30
+SSL
+SSL
+SSL
+RSL          20
+R1
+LT
+LSS/T
+RSS
+L1
+LSS/T          35
+LSL
+S/YLD
+SSL
+SSL          50
+CC          60
+R1          45
+RSS
+LSS/T
+L1          25
+L1
+LSS/T
+R1
+LSS/T
+RSS/T
+RSS/T
+SSS
+L4
+RSS/T
+LSS
+LSS/T          55
+SSS/RBL
+SSS/RBL
+LSS/T          40
+RSS/T          60
+CC          50
+L1          40
+LT
+R1
+SSS
+CC          30
+RT/YLD          45
+LSS/T          60
+CC          55
+RSS/T/RBL          60
+L5          40
+OIR TREE
+SSS
+RSS/T
+SOL "UT"
+LSS/T          60
+LSS/T
+LSS/T
+CC          50
+CC          45
+R1          40
+CC          50
+CC          60
+RT/YLD          50
+SOR "RING"
+SOL "105"
+LSS/T          60
+CC          40
+CC          30
+L4          20
+R/YLD
+L/YLD
+R1
+SSS          15
+LSS/T          45
+R2          25
+DIP
+RT/YLD
+SSS
+L1
+L1
+RSS/T
+LSS/T          55
+R2          25
+SOR "202"
+RSS/T          50
+SSS/RBL          25
+CC          15
+CC          25
+RR          40
+LSS/T          60
+R3          40
+L1          35
+RSS/T          60
+RSS/T
+LSS
+CC          50
+R1          55
+LSL          40
+CC          45
+LSL          25
+LSS
+SSS
+SSS
+RSS/T
+LSL          35
+SSL
+SSL
+SSL
+SSL
+SSL
+SSL          20
+LSS          30
+LSS
+LSS          25
+R1
+L3 UNMARKED

@@ -1,0 +1,113 @@
+L1 UNMARKED         +15
+RSS/YLD             +20
+LSL                 +30
+SSL
+SSL
+SSL
+SSL
+CAST                +35
+SSL
+SSL                 +50
+CAST                +60
+R2                  +65
+SYBL
+L1                  +55
+SSS
+R2
+SSS
+SSS
+LSS/T               +65
+R4
+CAST                +50
+CAST                +65
+LSS/T
+R2                  +55
+RSS/T               +65
+CAST                +50
+CAST                +45
+CAST                +40
+LSS/T/RBL           +65
+SOR SRIP "6"
+SOR SRIP "WACO"
+CAST                +50
+CAST                +45
+CAST                +40
+SYBL
+CAST                +30
+SSL
+CAST                +35
+CAST                +45
+SYBL
+CAST                +50
+CAST                +65
+L1
+LSS/T
+CAST                +55
+SOR SRIP "413"
+S AT PLUS
+SOR SRIP "413"
+CAST                +45
+CAST                +35
+RSS/RBL             +40
+L/YBL
+R1
+L5                  +50
+L1
+RSS/T               +65
+L2                  +55
+SSS
+RSS                 +65
+CAST                +50
+CAST                +40
+RSS                 +35
+CAST                +30
+SSS/RBL
+CAST                +40
+R1                  +35
+CAST                +45
+CAST                +55
+L3
+CAST                +50
+CAST                +40
+SSS                 +25
+SSS
+CAST                +40
+CAST                +50
+CAST                +65
+RR
+R1                  +50
+RR
+LSS/T               +65
+SOR SRIP "979"
+LSS/T               +60
+CAST                +50
+CAST                +35
+CAST                +25
+SOR "DIP"
+SSS/RBL
+RR
+CAST                +40
+CAST                +45
+CAST                +50
+CAST                +65
+CAST                +55
+CAST                +65
+RSS/T
+L1 UNMARKED
+LT
+L6
+L1
+R8                  +35
+RSL
+SSL
+SSL
+LSL                 +30
+SSL
+SSL
+RSL                 +25
+L1
+LSS/T
+LSS/T               +35
+SSL
+L1                  +40
+R1 UNMARKED
