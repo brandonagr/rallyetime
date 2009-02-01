@@ -1,5 +1,5 @@
 #summary RallyeTime DG design
-#labels Featured,Phase-Design
+#labels Phase-Design
 
 = Introduction =
 
