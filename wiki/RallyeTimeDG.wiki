@@ -1,4 +1,4 @@
-#summary Overview of !RallyeTimeDG system
+#summary Overview of RallyeTimeDG system
 
 = Introduction =
 
@@ -66,4 +66,3 @@ The LCD display, displays 4 directions at a time, the current time off(tells me 
 ====Credits====
 
 I have been continually working on and improving this program over the years and lots of people have helped. Thanks to Ben, Kat, Sam, Darcie, Sam's Garage, Chad, and Russell for ideas, inspiration, and help testing.
-
