@@ -17,11 +17,11 @@ The fall season has concluded and luckily I can report that this project was a s
 
 Here is some media from the fall 2008 season:
   * [http://www.youtube.com/watch?v=NPkjtrgg9Co Video showing the first leg of the final rallye of the semester]
-  * [http://maps.google.com/maps?f=q&hl=en&geocode=&q=http:%2F%2Frallyetime.googlecode.com%2Fsvn%2Fbin%2Fdata%2Farchive%2Ff08_r1%2Ff08_r1.kmz&ie=UTF8&z=12 Rally 1 map]
-  * [http://maps.google.com/maps?f=q&hl=en&geocode=&q=http:%2F%2Frallyetime.googlecode.com%2Fsvn%2Fbin%2Fdata%2Farchive%2Ff08_r2%2Ff08_r2.kmz&ie=UTF8&z=12 Rally 2 map]
-  * [http://maps.google.com/maps?f=q&hl=en&geocode=&q=http:%2F%2Frallyetime.googlecode.com%2Fsvn%2Fbin%2Fdata%2Farchive%2Ff08_r3_runbysam%2Ff08_r3.kmz&ie=UTF8&z=12 Rally 3 map]
-  * [http://maps.google.com/maps?f=q&hl=en&geocode=&q=http:%2F%2Frallyetime.googlecode.com%2Fsvn%2Fbin%2Fdata%2Farchive%2Ff08_rday%2Ff08_rday.kmz&ie=UTF8&z=12 Day Rally map]
-  * [http://maps.google.com/maps?f=q&hl=en&geocode=&q=http:%2F%2Frallyetime.googlecode.com%2Fsvn%2Fbin%2Fdata%2Farchive%2Ff08_r4%2Ff08_r4.kmz&ie=UTF8&z=12 Rally 4 map]
+  * [http://maps.google.com/maps?f=q&hl=en&geocode=&q=http:%2F%2Frallyetime.googlecode.com%2Fsvn%2FRallyeTimeDG%2Fbin%2Fdata%2Farchive%2Ff08_r1%2Ff08_r1.kmz&ie=UTF8&z=12 Rally 1 map]
+  * [http://maps.google.com/maps?f=q&hl=en&geocode=&q=http:%2F%2Frallyetime.googlecode.com%2Fsvn%2FRallyeTimeDG%2Fbin%2Fdata%2Farchive%2Ff08_r2%2Ff08_r2.kmz&ie=UTF8&z=12 Rally 2 map]
+  * [http://maps.google.com/maps?f=q&hl=en&geocode=&q=http:%2F%2Frallyetime.googlecode.com%2Fsvn%2FRallyeTimeDG%2Fbin%2Fdata%2Farchive%2Ff08_r3_runbysam%2Ff08_r3.kmz&ie=UTF8&z=12 Rally 3 map]
+  * [http://maps.google.com/maps?f=q&hl=en&geocode=&q=http:%2F%2Frallyetime.googlecode.com%2Fsvn%2FRallyeTimeDG%2Fbin%2Fdata%2Farchive%2Ff08_rday%2Ff08_rday.kmz&ie=UTF8&z=12 Day Rally map]
+  * [http://maps.google.com/maps?f=q&hl=en&geocode=&q=http:%2F%2Frallyetime.googlecode.com%2Fsvn%2FRallyeTimeDG%2Fbin%2Fdata%2Farchive%2Ff08_r4%2Ff08_r4.kmz&ie=UTF8&z=12 Rally 4 map]
 
 
 You can also view a map of all the Fall
