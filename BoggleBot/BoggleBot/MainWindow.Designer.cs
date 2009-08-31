@@ -60,6 +60,7 @@
 			this.listBox1.Name = "listBox1";
 			this.listBox1.Size = new System.Drawing.Size(172, 472);
 			this.listBox1.TabIndex = 1;
+			this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
 			// 
 			// gridSize_ComboBox
 			// 
@@ -67,11 +68,14 @@
 			this.gridSize_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.gridSize_ComboBox.FormattingEnabled = true;
 			this.gridSize_ComboBox.Items.AddRange(new object[] {
+            "3x3",
             "4x4",
             "5x5",
             "6x6",
             "7x7",
-            "8x8"});
+            "8x8",
+            "10x10",
+            "20x20"});
 			this.gridSize_ComboBox.Location = new System.Drawing.Point(506, 27);
 			this.gridSize_ComboBox.Name = "gridSize_ComboBox";
 			this.gridSize_ComboBox.Size = new System.Drawing.Size(86, 21);

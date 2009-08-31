@@ -13,7 +13,7 @@ namespace BoggleBot
 		#region Declerations
 
 		BoggleBoardData _data;
-		BoggleWord _displayMove;
+		BoggleSolution _displayMove;
 		int _curInput = 0;
 		bool _curInputState = true;
 
@@ -39,6 +39,11 @@ namespace BoggleBot
 			get { return !_curInputState; }
 		}
 
+		public BoggleBoardData BoardData
+		{
+			get { return _data; }
+		}
+
 		#endregion
 
 		#region Initialization
@@ -57,6 +62,11 @@ namespace BoggleBot
 
 		public void ChangeBoardTo(int size)
 		{
+			if (size == 9)
+				size = 10;
+			else if (size == 10)
+				size = 20;
+
 			if (size != _data.Size)
 			{
 				_data = new BoggleBoardData(size);
@@ -105,7 +115,7 @@ namespace BoggleBot
 			_curInputState = false;
 		}
 
-		public void SetDisplayMove(BoggleWord word)
+		public void SetDisplayMove(BoggleSolution word)
 		{
 			_displayMove = word;
 		}
@@ -293,6 +303,9 @@ namespace BoggleBot
 						continue;
 
 					BoardPos testPos = new BoardPos(curPos._x + dx, curPos._y + dy);
+
+					if (testPos._x < 0 || testPos._x >= _size || testPos._y < 0 || testPos._y >= _size)
+						continue;					
 
 					if (!UsedPos(testPos))
 						moves.Add(testPos);

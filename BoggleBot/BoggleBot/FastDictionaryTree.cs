@@ -21,6 +21,15 @@ namespace BoggleBot
 
 		#endregion
 
+		#region Properties
+
+		public FDTNode Root
+		{
+			get { return _root; }
+		}
+
+		#endregion
+
 		#region Initialization
 
 		public FastDictionaryTree()
@@ -201,6 +210,19 @@ namespace BoggleBot
 				_children[index] = new FDTNode();
 
 			_children[index].AddToChildren(word.Substring(1));
+		}
+
+		public bool HasChild(char letter)
+		{
+			if (!HasChildren)
+				return false;
+
+			return (_children[Util.Index(letter)] != null);
+		}
+
+		public FDTNode Child(char letter)
+		{
+			return _children[Util.Index(letter)];
 		}
 
 		#endregion
