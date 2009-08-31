@@ -9,70 +9,83 @@ using System.Windows.Forms;
 
 namespace BoggleBot
 {
-    public partial class BoggleBotWindow : Form
-    {
-        int _boardSize = 4;
+	public partial class BoggleBotWindow : Form
+	{
+		#region Declerations
 
-        public BoggleBotWindow()
-        {
-            InitializeComponent();
+		BogglePlayer _bot;
+		BoggleBoard _board;
 
-            gridSize_ComboBox.SelectedIndex = 0;
-            _boardSize = gridSize_ComboBox.SelectedIndex + 4;
+		#endregion
 
-            DrawBoard();
-        }
+		public BoggleBotWindow()
+		{
+			InitializeComponent();
+			this.KeyPreview = true;
 
-        public void DrawBoard()
-        {
-            System.Drawing.Graphics formGraphics = this.CreateGraphics();
+			_bot = new BogglePlayer();
+			_board = new BoggleBoard(gridSize_ComboBox.SelectedIndex + 4);
 
-            SolidBrush solidBrush = new SolidBrush(Color.DarkCyan);
-            formGraphics.FillEllipse(solidBrush, 10, 10, 100, 30);
+			gridSize_ComboBox.SelectedIndex = 0;
 
-            formGraphics.Dispose();
 
-        }
 
-        /// <summary>
-        /// Reset the BoggleBot
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void gridSize_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            _boardSize = gridSize_ComboBox.SelectedIndex + 4;
-            panel1.Refresh();
-        }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-            Panel panel = (Panel)sender;
+			BoggleWord word = new BoggleWord();
+			word._moves.Add(new BoardPos(0, 0));
+			word._moves.Add(new BoardPos(1, 1));
+			word._moves.Add(new BoardPos(2, 1));
+			word._moves.Add(new BoardPos(3, 1));
+			word._moves.Add(new BoardPos(2, 2));
 
-            Pen border = new Pen(System.Drawing.Color.Black, 3);
+			_board.SetDisplayMove(word);
+		}
 
-            Point upper_left = new Point(5, 5);
-            Point lower_right = new Point(panel.DisplayRectangle.Width - 5, panel.DisplayRectangle.Height - 5);
+		private void gridSize_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			_board.ChangeBoardTo(gridSize_ComboBox.SelectedIndex + 4);
+			panel1.Refresh();
+			panel1.Focus();
+		}
 
-            int height = lower_right.Y - upper_left.Y;
-            int width = lower_right.X - upper_left.X;
+		private void panel1_Paint(object sender, PaintEventArgs e)
+		{
+			_board.Paint((Panel)sender, e);
+		}
 
-            int dy = height / _boardSize;
-            int dx = width / _boardSize;
-            int y = upper_left.Y;
-            int x = upper_left.X;
+		private void BoggleBotWindow_Resize(object sender, EventArgs e)
+		{
+			_board.Resized();
+			panel1.Invalidate();
+		}
 
-            Point actual_lower_right = new Point(upper_left.X + _boardSize * dx, upper_left.Y + _boardSize * dy);
+		private void BoggleBotWindow_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			_board.KeyPress(e.KeyChar);
+			panel1.Invalidate();
 
-            for (int line = 0; line <= _boardSize; line++)
-            {
-                e.Graphics.DrawLine(border, new Point(upper_left.X, y), new Point(actual_lower_right.X, y));
-                e.Graphics.DrawLine(border, new Point(x, upper_left.Y), new Point(x, actual_lower_right.Y));
+			if (_board.CompleteBoard)
+			{
+				//do solve
+			}
+		}
 
-                y += dy;
-                x += dx;
-            }
-            
-        }
-    }
+		private void randomGrid_Button_Click(object sender, EventArgs e)
+		{
+			_board.GenerateRandom();
+			panel1.Invalidate();
+		}
+	}
+
+	public class DoubleBufferPanel : Panel
+	{
+		public DoubleBufferPanel()
+		{
+			this.SetStyle(
+				ControlStyles.UserPaint |
+				ControlStyles.AllPaintingInWmPaint |
+				ControlStyles.OptimizedDoubleBuffer, true);
+			UpdateStyles();
+		}
+	}
 }
