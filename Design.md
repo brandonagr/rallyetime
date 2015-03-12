@@ -1,0 +1,69 @@
+# Introduction #
+
+Some guiding principles in designing the code for this project:
+  * Must be completly realtime, no blocking for I/O or read operations
+  * Multithreaded, seperate threads for each main task of the system
+  * Easy to use, must be simple and quick to start up and initialize
+  * Gracefully handle errors, including loss of GPS signal
+  * Use common libraries, including Boost Threads
+
+## Components ##
+
+Different hardware components making up the system:
+  * **Laptop**, runs everything
+  * **Buttons**, external buttons mounted next to shifter, for next, checkpoint, undo, panic, used during the rallye
+  * **LCD**, external 20x4 LCD display mounted on gauge cluster, used to display
+  * **Audio**, laptop audio out going through the car stereo to read directions out loud
+  * **DAQ**, interface everything with the laptop, including reading the VSS signal through the counter
+  * **Laptop mount**, mount all loose electronics and laptop
+
+
+# Details #
+
+Different sections of the program:
+  * Calculation, based on current time and distance,
+  * Read DAQ, read in button status, wheel sensor counter
+  * Write DAQ, output LCD screen, reset button flipflop
+  * GPS, get gps update if available
+  * Audio, use MS speech SDK to speak next two directions and button push acknowledgements
+
+Should there be an fltk gui thread as in previous versions? Having a gui would make things easier when loading thing initially, but don't need the realtime gui since will never be using it. So only a console application with perhaps and open file dialog when first executed to load the directions file.
+
+Different threads will be, calculation[1](1.md)(wr current state/rd buttons/vss), DAQ communication[2](2.md)(wr buttons/rd current state), GPS reading[3](3.md)(wr cur pos), log data[4](4.md)(rd buttons/current state).
+
+Possibly use an event buffer following the description in http://www.ddj.com/cpp/184401518 to communicate between threads.
+
+20x4 LCD layout will be
+```
+12345678901234567890
+
+During rallye operation:
+## LSS       ##:##.#
+##>SL adfasdfasdfasd
+## SSS      ##.##/##
+## R1       ##.# ###
+
+
+1) [2 cast][1 space][9 dir][1 space][7 time]
+2) [2 cast][1 arrow][17 dir]
+3) [2 cast][1 space][8 dir][1 space][8 avg spd/cast]
+4) [2 cast][1 space][8 dir][1 space][4 cur spd][4 cur direction number]
+
+Stopped
+##>LSS/U    
+## 
+!Stopped!
+MODE: input area
+
+
+##>LSS/U    
+## 
+!Countdown to go!
+Timer: ##:##.##
+```
+
+If no cast change on a direction, then the 3 spaces on the left will be given to the direction.
+
+LCD display has 160 characters/second update rate, so updating, 17 characters can easily get 5Hz update rate for dynamic fields
+
+How to handle initial inputting of times and counting down? Sync to rallye clock, input leave time, start timer counting down to leave time. Need ability to do all that through the LCD, so that the laptop lid never has to be opened during the rallye. Only time it should be opened is at the beginning when loading the directions on to the laptop.
